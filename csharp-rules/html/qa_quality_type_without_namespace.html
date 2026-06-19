@@ -1,0 +1,16 @@
+<p>Types declared in the global namespace pollute the root scope and collide easily with other libraries. Place every type in a namespace that reflects its ownership and feature area.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public sealed class GlobalWidget
+{
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+namespace Company.Product
+{
+    public sealed class Widget
+    {
+    }
+}
+</pre>

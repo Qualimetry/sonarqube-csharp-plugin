@@ -1,0 +1,16 @@
+{
+  "id": "QCS0170",
+  "title": "Properties that only wrap a backing field should be auto-implemented",
+  "tags": [
+    "clarity",
+    "convention"
+  ],
+  "messageFormat": "Convert this property to an auto-implemented property.",
+  "summary": [
+    "<p>When a property's getter only returns a private field and its setter only assigns that same field, the explicit backing field and accessor bodies repeat what an auto-implemented property expresses in one line. The compiler generates the same field behind the scenes.</p>",
+    "<p>Replacing the pattern with <code>{ get; set; }</code> removes boilerplate and keeps the field private to the property, where it belongs.</p>"
+  ],
+  "noncompliant": "public class Person\n{\n    private string _name;\n\n    public string Name // Noncompliant\n    {\n        get { return _name; }\n        set { _name = value; }\n    }\n}",
+  "compliant": "public class Person\n{\n    public string Name { get; set; }\n}",
+  "ruleKey": "qa_style_explicit_backing_field_property"
+}

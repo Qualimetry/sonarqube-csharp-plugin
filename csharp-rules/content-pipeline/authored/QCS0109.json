@@ -1,0 +1,21 @@
+{
+  "id": "QCS0109",
+  "title": "Method names should start with an uppercase letter",
+  "tags": [
+    "convention",
+    "naming"
+  ],
+  "messageFormat": "Rename method '{0}' so its name starts with an uppercase letter.",
+  "summary": [
+    "<p>Methods in .NET are written in PascalCase, so the first letter is uppercase. A method whose name opens with a lowercase letter reads like a field or a local, and breaks the casing pattern that lets a reader tell members apart by sight.</p>"
+  ],
+  "noncompliant": "public class Report\n{\n    public void generate() // Noncompliant\n    {\n    }\n}",
+  "compliant": "public class Report\n{\n    public void Generate()\n    {\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "Capitalization conventions",
+      "href": "https://learn.microsoft.com/dotnet/standard/design-guidelines/capitalization-conventions"
+    }
+  ],
+  "ruleKey": "qa_naming_method_name_upper_case"
+}

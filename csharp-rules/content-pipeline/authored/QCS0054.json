@@ -1,0 +1,22 @@
+{
+  "id": "QCS0054",
+  "title": "Emptiness checks should not compare a string to an empty literal",
+  "tags": [
+    "convention",
+    "clarity"
+  ],
+  "messageFormat": "Use string.IsNullOrEmpty or a length check instead of comparing to an empty string literal.",
+  "summary": [
+    "<p>Comparing a string to <code>\"\"</code> tests only for an empty value and silently treats <code>null</code> as different, which is rarely what the author meant. The intent of \"is there any text here\" is clearer through a dedicated check.</p>",
+    "<p>Using <code>string.IsNullOrEmpty</code> or comparing the length states the question directly and handles the null case explicitly.</p>"
+  ],
+  "noncompliant": "if (name == \"\") // Noncompliant\n{\n    UseDefault();\n}",
+  "compliant": "if (string.IsNullOrEmpty(name))\n{\n    UseDefault();\n}",
+  "seeAlso": [
+    {
+      "text": "String.IsNullOrEmpty",
+      "href": "https://learn.microsoft.com/dotnet/api/system.string.isnullorempty"
+    }
+  ],
+  "ruleKey": "qa_style_empty_string_comparison"
+}

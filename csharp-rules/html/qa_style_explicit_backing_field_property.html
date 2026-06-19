@@ -1,0 +1,22 @@
+<p>When a property's getter only returns a private field and its setter only assigns that same field, the explicit backing field and accessor bodies repeat what an auto-implemented property expresses in one line. The compiler generates the same field behind the scenes.</p>
+<p>Replacing the pattern with <code>{ get; set; }</code> removes boilerplate and keeps the field private to the property, where it belongs.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class Person
+{
+    private string _name;
+
+    public string Name // Noncompliant
+    {
+        get { return _name; }
+        set { _name = value; }
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class Person
+{
+    public string Name { get; set; }
+}
+</pre>

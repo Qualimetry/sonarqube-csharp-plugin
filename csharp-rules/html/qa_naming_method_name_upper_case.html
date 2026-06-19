@@ -1,0 +1,23 @@
+<p>Methods in .NET are written in PascalCase, so the first letter is uppercase. A method whose name opens with a lowercase letter reads like a field or a local, and breaks the casing pattern that lets a reader tell members apart by sight.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class Report
+{
+    public void generate() // Noncompliant
+    {
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class Report
+{
+    public void Generate()
+    {
+    }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/standard/design-guidelines/capitalization-conventions">Capitalization conventions</a></li>
+</ul>

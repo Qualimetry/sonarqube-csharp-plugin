@@ -1,0 +1,33 @@
+<p>A <code>switch</code> section that runs several statements without a block shares one scope with its neighbours, so a local declared in one section is visible in the others and it is easy to misread where a section ends. Wrapping each section in braces gives it its own scope and clear boundaries.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+switch (state)
+{
+    case State.Open:
+        var message = Load(); // Noncompliant
+        Send(message);
+        break;
+    case State.Closed:
+        break;
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+switch (state)
+{
+    case State.Open:
+    {
+        var message = Load();
+        Send(message);
+        break;
+    }
+    case State.Closed:
+    {
+        break;
+    }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/statements/selection-statements#the-switch-statement">The switch statement (C# language reference)</a></li>
+</ul>

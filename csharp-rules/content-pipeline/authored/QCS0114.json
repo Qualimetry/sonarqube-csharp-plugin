@@ -1,0 +1,22 @@
+{
+  "id": "QCS0114",
+  "title": "Dispose objects a method creates and owns",
+  "tags": [
+    "bug",
+    "resource-management"
+  ],
+  "messageFormat": "Dispose this object before the method returns, or wrap it in a using statement.",
+  "summary": [
+    "<p>A local that holds a freshly created <code>IDisposable</code> owns that resource. If the method never disposes it, never returns it, and never hands ownership to another component, the underlying handle (file, socket, connection) leaks until the finalizer eventually runs, if ever.</p>",
+    "<p>Wrap the local in a <code>using</code> declaration or call <code>Dispose</code> on every exit path.</p>"
+  ],
+  "noncompliant": "public void Save(string path)\n{\n    var stream = new FileStream(path, FileMode.Create); // Noncompliant\n    stream.WriteByte(0);\n}",
+  "compliant": "public void Save(string path)\n{\n    using var stream = new FileStream(path, FileMode.Create);\n    stream.WriteByte(0);\n}",
+  "seeAlso": [
+    {
+      "text": "Using objects that implement IDisposable",
+      "href": "https://learn.microsoft.com/dotnet/standard/garbage-collection/using-objects"
+    }
+  ],
+  "ruleKey": "qa_quality_undisposed_disposable_local"
+}

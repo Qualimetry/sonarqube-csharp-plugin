@@ -1,0 +1,22 @@
+{
+  "id": "QCS0144",
+  "title": "Empty finalizers should be removed",
+  "tags": [
+    "performance",
+    "redundant"
+  ],
+  "messageFormat": "Remove this empty finalizer; it only adds finalization overhead.",
+  "summary": [
+    "<p>Declaring a finalizer, even an empty one, puts every instance of the type on the finalization queue. The garbage collector must then keep those objects alive for an extra generation and run a finalizer that does nothing, paying real cost for no effect.</p>",
+    "<p>Delete the empty finalizer. Add one back only when there is genuine unmanaged state to release, ideally through the dispose pattern.</p>"
+  ],
+  "noncompliant": "public class Buffer\n{\n    ~Buffer() // Noncompliant\n    {\n    }\n}",
+  "compliant": "public class Buffer\n{\n}",
+  "seeAlso": [
+    {
+      "text": "Finalizers (C# reference)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/finalizers"
+    }
+  ],
+  "ruleKey": "qa_quality_empty_finalizer"
+}

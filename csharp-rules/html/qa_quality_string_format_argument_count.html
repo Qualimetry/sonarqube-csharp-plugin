@@ -1,0 +1,24 @@
+<p>A call to <code>string.Format</code> with a literal format string whose highest placeholder index is greater than or equal to the number of arguments supplied will throw <code>FormatException</code> the moment it runs. The mismatch is invisible at compile time but fatal in production.</p>
+<p>Align the placeholders with the arguments: every <code>{n}</code> must have a matching argument at position <code>n</code>.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class Greeter
+{
+    public string Build(string user) =&gt;
+        string.Format("{0} signed in at {1}", user); // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System;
+
+public class Greeter
+{
+    public string Build(string user) =&gt;
+        string.Format("{0} signed in at {1}", user, DateTime.UtcNow);
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/standard/base-types/composite-formatting">Composite formatting (.NET)</a></li>
+</ul>

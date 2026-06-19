@@ -1,0 +1,31 @@
+<p>Boxing value types onto the heap and unboxing them back adds allocation and runtime cost on hot paths. Prefer generic APIs, typed overloads, or ref-based patterns that keep values on the stack.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public sealed class Counter
+{
+    public void Report(object value)
+    {
+        System.Console.WriteLine(value);
+    }
+
+    public void Emit(int count)
+    {
+        Report(count);
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public sealed class Counter
+{
+    public void Report(int value)
+    {
+        System.Console.WriteLine(value);
+    }
+
+    public void Emit(int count)
+    {
+        Report(count);
+    }
+}
+</pre>

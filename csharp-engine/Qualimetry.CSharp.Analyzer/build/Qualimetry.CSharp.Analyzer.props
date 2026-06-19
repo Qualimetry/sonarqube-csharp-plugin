@@ -1,0 +1,5 @@
+<Project>
+  <ItemGroup>
+    <GlobalAnalyzerConfigFiles Include="$(MSBuildThisFileDirectory)..\config\analyzers.globalconfig" />
+  </ItemGroup>
+</Project>

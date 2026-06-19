@@ -1,0 +1,15 @@
+{
+  "id": "QCS0048",
+  "title": "Non-extensible classes should be sealed",
+  "tags": [
+    "design",
+    "performance"
+  ],
+  "messageFormat": "Seal this class; it has no derived types and cannot be extended outside this assembly.",
+  "summary": [
+    "<p>An <code>internal</code> class that nobody derives from is, in practice, final, but leaving it open invites an accidental subclass and forces the runtime to treat its members as potentially overridden. Sealing such a class documents that it is a leaf in the hierarchy, lets the just-in-time compiler devirtualize calls, and prevents inheritance from being added without a deliberate decision.</p>"
+  ],
+  "noncompliant": "internal class PriceFormatter // Noncompliant\n{\n    public string Format(decimal value) => value.ToString(\"C\");\n}",
+  "compliant": "internal sealed class PriceFormatter\n{\n    public string Format(decimal value) => value.ToString(\"C\");\n}",
+  "ruleKey": "qa_quality_sealable_internal_class"
+}

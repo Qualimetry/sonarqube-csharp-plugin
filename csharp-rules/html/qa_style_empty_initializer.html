@@ -1,0 +1,14 @@
+<p>An object or collection initializer with no members between its braces does nothing the constructor call did not already do. The empty braces are pure noise and can read as an unfinished edit.</p>
+<p>Removing them leaves a plain constructor call that says exactly the same thing with less ceremony.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+var list = new List&lt;int&gt;() { }; // Noncompliant
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+var list = new List&lt;int&gt;();
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/object-and-collection-initializers">Object and collection initializers</a></li>
+</ul>

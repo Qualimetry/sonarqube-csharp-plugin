@@ -1,0 +1,24 @@
+<p>Unless an enum is constrained by interop, persistence, or a wire format, it should keep the default <code>int</code> underlying type. Smaller or larger integer types save little in practice, surprise readers, and can break code that assumes the conventional 32-bit storage.</p>
+<p>If a non-default size is genuinely required (for example to match a native struct), keep the explicit type and document why.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public enum Priority : long // Noncompliant
+{
+    Low,
+    Normal,
+    High
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public enum Priority
+{
+    Low,
+    Normal,
+    High
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/enum">Enumeration types (C# reference)</a></li>
+</ul>

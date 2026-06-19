@@ -1,0 +1,16 @@
+{
+  "id": "QCS0177",
+  "title": "Method that does not use instance state should be static",
+  "tags": [
+    "design",
+    "performance"
+  ],
+  "summary": [
+    "<p>A method that never touches <code>this</code>, an instance field, or an instance member does not depend on the object it is called on. Leaving it as an instance method hides that fact, forces callers to hold an instance they do not need, and adds an avoidable <code>this</code> argument to every call.</p>",
+    "<p>Mark the method <code>static</code> to state that it is independent of instance state. Members that implement an interface or override a base member are excluded.</p>"
+  ],
+  "messageFormat": "Make this method static; it does not use any instance state.",
+  "noncompliant": "public class Calculator\n{\n    public int Square(int value) // Noncompliant\n    {\n        return value * value;\n    }\n}",
+  "compliant": "public class Calculator\n{\n    public static int Square(int value)\n    {\n        return value * value;\n    }\n}",
+  "ruleKey": "qa_quality_non_private_method_could_be_static"
+}

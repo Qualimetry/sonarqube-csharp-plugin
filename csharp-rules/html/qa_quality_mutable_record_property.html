@@ -1,0 +1,18 @@
+<p>Records exist to model immutable values: equality, <code>with</code> expressions, and safe sharing all assume the value cannot change after construction. A property with a public <code>set</code> accessor breaks that assumption, so two records that were equal can silently diverge and hashed lookups can lose track of them.</p>
+<p>Declare the property with <code>init</code> or make it get-only and set it through the constructor.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public record Money
+{
+    public decimal Amount { get; set; } // Noncompliant
+    public string Currency { get; init; } = "USD";
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public record Money
+{
+    public decimal Amount { get; init; }
+    public string Currency { get; init; } = "USD";
+}
+</pre>

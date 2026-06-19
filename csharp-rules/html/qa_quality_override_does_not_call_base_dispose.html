@@ -1,0 +1,38 @@
+<p>The dispose pattern relies on every level of an inheritance chain releasing the resources it owns. When a type overrides <code>Dispose(bool)</code> but never invokes the base version, the resources held by base types are silently leaked, and the leak only surfaces under load when handles or memory run out.</p>
+<p>An override of <code>Dispose(bool)</code> should forward the call to <code>base.Dispose(disposing)</code> on every path so the chain stays intact.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class CachingStream : MemoryStream
+{
+    protected override void Dispose(bool disposing) // Noncompliant
+    {
+        if (disposing)
+        {
+            _cache.Clear();
+        }
+    }
+
+    private readonly System.Collections.Generic.List&lt;byte[]&gt; _cache = new();
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class CachingStream : MemoryStream
+{
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            _cache.Clear();
+        }
+
+        base.Dispose(disposing);
+    }
+
+    private readonly System.Collections.Generic.List&lt;byte[]&gt; _cache = new();
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/standard/garbage-collection/implementing-dispose">Implement a Dispose method</a></li>
+</ul>

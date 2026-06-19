@@ -1,0 +1,15 @@
+{
+  "id": "QCS0207",
+  "title": "Static initialization cycles should be avoided",
+  "tags": [
+    "reliability",
+    "initialization"
+  ],
+  "messageFormat": "Static initialization cycle detected: {0}.",
+  "summary": [
+    "<p>Static field initializers and static constructors run in dependency order. A cycle leaves one member uninitialized at first access and can throw <code>TypeInitializationException</code>.</p>"
+  ],
+  "noncompliant": "public sealed class Cycle\n{\n    private static readonly int A = B + 1;\n    private static readonly int B = A + 1;\n}",
+  "compliant": "public sealed class NoCycle\n{\n    private static readonly int A = 1;\n    private static readonly int B = A + 1;\n}",
+  "ruleKey": "qa_reliability_type_initialization_cycle"
+}

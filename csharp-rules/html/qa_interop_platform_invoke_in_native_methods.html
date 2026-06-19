@@ -1,0 +1,28 @@
+<p>Each <code>extern</code> method carrying a <code>DllImport</code> attribute crosses the managed boundary and runs unmanaged code with no verification. Scattering these declarations across ordinary business classes hides the unsafe surface and makes it hard to audit which calls reach native libraries.</p>
+<p>Grouping every platform invoke into a class whose name ends with <code>NativeMethods</code> keeps the native surface in one reviewable place, so security and lifetime concerns can be reasoned about together rather than chased through unrelated types.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System;
+using System.Runtime.InteropServices;
+
+public static class FileService
+{
+    [DllImport("kernel32.dll", SetLastError = true)]
+    public static extern bool CloseHandle(IntPtr handle); // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System;
+using System.Runtime.InteropServices;
+
+internal static class NativeMethods
+{
+    [DllImport("kernel32.dll", SetLastError = true)]
+    internal static extern bool CloseHandle(IntPtr handle);
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/standard/native-interop/best-practices">Native interoperability best practices</a></li>
+</ul>

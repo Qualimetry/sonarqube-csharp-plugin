@@ -1,0 +1,16 @@
+{
+  "id": "QCS0174",
+  "title": "Use nameof for parameter names in argument exceptions",
+  "tags": [
+    "clarity",
+    "maintainability"
+  ],
+  "summary": [
+    "<p>Passing a parameter name to an argument exception as a string literal silently rots when the parameter is renamed: the refactoring tool updates the signature but leaves the literal pointing at a name that no longer exists. The <code>nameof</code> operator binds the text to the symbol, so a rename keeps them in step and a typo becomes a compile error.</p>",
+    "<p>Replace the literal with <code>nameof(parameter)</code>.</p>"
+  ],
+  "messageFormat": "Use 'nameof' instead of a string literal to refer to the parameter.",
+  "noncompliant": "using System;\n\npublic class Account\n{\n    public void Withdraw(decimal amount)\n    {\n        if (amount <= 0)\n        {\n            throw new ArgumentOutOfRangeException(\"amount\"); // Noncompliant\n        }\n    }\n}",
+  "compliant": "using System;\n\npublic class Account\n{\n    public void Withdraw(decimal amount)\n    {\n        if (amount <= 0)\n        {\n            throw new ArgumentOutOfRangeException(nameof(amount));\n        }\n    }\n}",
+  "ruleKey": "qa_quality_use_name_of_for_parameter_name"
+}

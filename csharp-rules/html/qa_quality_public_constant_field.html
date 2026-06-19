@@ -1,0 +1,20 @@
+<p>The value of a <code>public const</code> is copied into every assembly that references it at compile time. If the constant ever changes, consumers keep the old value until they are recompiled, which produces silent version skew across a solution.</p>
+<p>A <code>public static readonly</code> field is resolved at run time, so updating the declaring assembly is enough for every caller to observe the new value. Reserve <code>public const</code> for values that are part of the language or protocol and can never change.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class Limits
+{
+    public const int MaxRetries = 3; // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class Limits
+{
+    public static readonly int MaxRetries = 3;
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/const">const (C# reference)</a></li>
+</ul>

@@ -1,0 +1,15 @@
+{
+  "id": "QCS0015",
+  "title": "Fields should not hide a field of the same name in a base type",
+  "tags": [
+    "suspicious",
+    "clarity"
+  ],
+  "messageFormat": "Rename this field; it hides the field '{0}' declared in a base type.",
+  "summary": [
+    "<p>Declaring a field whose name matches a field in a base type silently shadows the inherited one. Two distinct storage slots then share a name, and which one a piece of code reads or writes depends on the static type at the access site. That is a frequent source of bugs where a value is set on one slot and read from the other. Choose a distinct name, or if shadowing is genuinely intended, make it explicit with the <code>new</code> modifier.</p>"
+  ],
+  "noncompliant": "public class Base\n{\n    protected int count;\n}\n\npublic sealed class Derived : Base\n{\n    private int count; // Noncompliant\n}",
+  "compliant": "public class Base\n{\n    protected int count;\n}\n\npublic sealed class Derived : Base\n{\n    private int processedCount;\n}",
+  "ruleKey": "qa_quality_field_hides_base_field"
+}

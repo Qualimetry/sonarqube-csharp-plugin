@@ -1,0 +1,19 @@
+<p>A method shaped like an event handler (returning <code>void</code> and taking an <code>object</code> sender plus an <code>EventArgs</code> argument) is wired up by code that subscribes to an event, not called directly by other types. Exposing it publicly enlarges the API surface and invites callers to invoke it out of context.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public void OnSaved(object sender, EventArgs e) // Noncompliant
+{
+    Refresh();
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+private void OnSaved(object sender, EventArgs e)
+{
+    Refresh();
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/standard/events/">Handling and raising events</a></li>
+</ul>

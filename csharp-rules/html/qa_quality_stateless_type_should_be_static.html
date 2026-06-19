@@ -1,0 +1,19 @@
+<p>A type that carries no instance state and exposes only static members is never meant to be instantiated. Leaving it as a normal class invites callers to create useless instances and hides the type's real intent. Marking it <code>static</code> makes the compiler enforce that no instance is ever created and signals at a glance that the type is a pure utility holder.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class MathHelpers // Noncompliant
+{
+    public static int Square(int value) =&gt; value * value;
+
+    public static int Cube(int value) =&gt; value * value * value;
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public static class MathHelpers
+{
+    public static int Square(int value) =&gt; value * value;
+
+    public static int Cube(int value) =&gt; value * value * value;
+}
+</pre>

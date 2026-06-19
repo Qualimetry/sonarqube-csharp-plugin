@@ -1,0 +1,15 @@
+<p>Spaces or tabs sitting at the end of a line are invisible in most editors yet they pollute diffs, trigger noisy version-control changes, and can break here-strings or shell snippets embedded in source. They carry no meaning and should not survive review.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class Account
+{
+    public int Balance { get; set; }   
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class Account
+{
+    public int Balance { get; set; }
+}
+</pre>

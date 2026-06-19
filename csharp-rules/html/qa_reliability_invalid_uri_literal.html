@@ -1,0 +1,24 @@
+<p>Constructing a <code>Uri</code> from a constant string defaults to requiring an absolute URI, and an ill-formed literal throws a <code>UriFormatException</code> only when that line executes. A missing scheme or an illegal character in a fixed literal can be detected as soon as it is written.</p>
+<p>Correct the literal so it is a well-formed absolute URI, or construct it with the relative kind when a relative reference is intended.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System;
+
+public sealed class Service
+{
+    public Uri Endpoint() =&gt; new Uri("http://:// invalid"); // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System;
+
+public sealed class Service
+{
+    public Uri Endpoint() =&gt; new Uri("https://example.com/api");
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/api/system.uri">System.Uri (.NET API reference)</a></li>
+</ul>

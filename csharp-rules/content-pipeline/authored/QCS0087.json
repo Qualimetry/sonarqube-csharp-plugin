@@ -1,0 +1,22 @@
+{
+  "id": "QCS0087",
+  "title": "Declare enums with the default Int32 underlying type",
+  "tags": [
+    "design",
+    "interoperability"
+  ],
+  "messageFormat": "Use the default Int32 underlying type for this enum unless a specific storage size is required.",
+  "summary": [
+    "<p>Unless an enum is constrained by interop, persistence, or a wire format, it should keep the default <code>int</code> underlying type. Smaller or larger integer types save little in practice, surprise readers, and can break code that assumes the conventional 32-bit storage.</p>",
+    "<p>If a non-default size is genuinely required (for example to match a native struct), keep the explicit type and document why.</p>"
+  ],
+  "noncompliant": "public enum Priority : long // Noncompliant\n{\n    Low,\n    Normal,\n    High\n}",
+  "compliant": "public enum Priority\n{\n    Low,\n    Normal,\n    High\n}",
+  "seeAlso": [
+    {
+      "text": "Enumeration types (C# reference)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/enum"
+    }
+  ],
+  "ruleKey": "qa_quality_non_standard_enum_underlying_type"
+}

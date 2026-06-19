@@ -1,0 +1,14 @@
+<p>An interface with no members and no base interfaces declares no behaviour. It is used only as a tag the runtime can test for, which couples consumers to a type-check rather than to a capability and cannot be applied to types that are already sealed by someone else. Where the goal is metadata, an attribute expresses intent more directly; where the goal is a contract, the interface should declare the members that contract requires.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public interface IEntity // Noncompliant
+{
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public interface IEntity
+{
+    int Id { get; }
+}
+</pre>

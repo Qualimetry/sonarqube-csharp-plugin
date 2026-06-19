@@ -1,0 +1,22 @@
+<p>A local initialised with a compile-time constant and never reassigned is a constant in everything but declaration. Marking it <code>const</code> records that fact and lets the compiler reject any later attempt to change it.</p>
+<p>The reader then knows the value is fixed for the whole method without scanning for reassignments.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+void Render()
+{
+    int margin = 8; // Noncompliant
+    Apply(margin);
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+void Render()
+{
+    const int margin = 8;
+    Apply(margin);
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/const">const (C# reference)</a></li>
+</ul>

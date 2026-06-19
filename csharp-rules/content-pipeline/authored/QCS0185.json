@@ -1,0 +1,16 @@
+{
+  "id": "QCS0185",
+  "title": "XML doc should not describe a nonexistent parameter",
+  "tags": [
+    "documentation",
+    "clarity"
+  ],
+  "summary": [
+    "<p>A <code>&lt;param&gt;</code> tag whose name does not match any parameter of the documented member is stale documentation. It usually means a parameter was renamed or removed and the comment was left behind, so readers and documentation generators are told about an argument that the method does not accept.</p>",
+    "<p>Update the tag to the actual parameter name, or delete it.</p>"
+  ],
+  "messageFormat": "This '<param>' tag refers to a parameter that the member does not declare.",
+  "noncompliant": "public class Converter\n{\n    /// <summary>Converts a value.</summary>\n    /// <param name=\"input\">The value.</param>\n    /// <param name=\"culture\">Unused.</param>\n    public string Convert(string input) // Noncompliant\n    {\n        return input;\n    }\n}",
+  "compliant": "public class Converter\n{\n    /// <summary>Converts a value.</summary>\n    /// <param name=\"input\">The value.</param>\n    public string Convert(string input)\n    {\n        return input;\n    }\n}",
+  "ruleKey": "qa_quality_xml_doc_nonexistent_parameter"
+}

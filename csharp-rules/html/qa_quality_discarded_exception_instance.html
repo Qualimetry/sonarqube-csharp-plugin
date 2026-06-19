@@ -1,0 +1,36 @@
+<p>Creating an exception object as a stand-alone statement does nothing useful: the instance is constructed and then immediately discarded, so the error it was meant to report never surfaces. This is almost always a forgotten <code>throw</code>, which means a failure path silently continues as if nothing went wrong.</p>
+<p>Either <code>throw</code> the exception so the caller is notified, or delete the dead construction if it was left behind by mistake.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System;
+
+public class Validator
+{
+    public void Check(int value)
+    {
+        if (value &lt; 0)
+        {
+            new ArgumentOutOfRangeException(nameof(value)); // Noncompliant
+        }
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System;
+
+public class Validator
+{
+    public void Check(int value)
+    {
+        if (value &lt; 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(value));
+        }
+    }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/statements/exception-handling-statements">throw statement (C# language reference)</a></li>
+</ul>

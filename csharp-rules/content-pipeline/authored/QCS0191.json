@@ -1,0 +1,21 @@
+{
+  "id": "QCS0191",
+  "title": "Single-statement members should use an expression body",
+  "tags": [
+    "convention",
+    "clarity"
+  ],
+  "messageFormat": "Convert this member to an expression-bodied member.",
+  "summary": [
+    "<p>A method or accessor whose block contains a single return or expression statement carries three lines of braces around one line of work. An expression body states the same logic with <code>=&gt;</code>, reducing the visual weight and making the one-liner read as the simple mapping it is.</p>"
+  ],
+  "noncompliant": "public int Square(int value)\n{\n    return value * value; // Noncompliant\n}",
+  "compliant": "public int Square(int value) => value * value;",
+  "seeAlso": [
+    {
+      "text": "Expression-bodied members (C# language reference)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/programming-guide/statements-expressions-operators/expression-bodied-members"
+    }
+  ],
+  "ruleKey": "qa_style_expression_body_opportunity"
+}

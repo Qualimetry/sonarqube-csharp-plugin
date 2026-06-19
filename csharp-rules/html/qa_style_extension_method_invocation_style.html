@@ -1,0 +1,14 @@
+<p>An extension method exists so that it reads as if it belonged to the receiver type. Calling it through the declaring class as a plain static method discards that benefit and makes a fluent chain harder to follow.</p>
+<p>Rewriting the call as member access on the first argument keeps related operations on one subject reading left to right, which matches how the rest of the API is used.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+var trimmed = StringExtensions.Shorten(name, 10); // Noncompliant
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+var trimmed = name.Shorten(10);
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/extension-methods">Extension methods (C# programming guide)</a></li>
+</ul>

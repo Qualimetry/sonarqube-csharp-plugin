@@ -1,0 +1,22 @@
+{
+  "id": "QCS0142",
+  "title": "Code should not force garbage collection",
+  "tags": [
+    "performance",
+    "suspicious"
+  ],
+  "messageFormat": "Remove this call to GC.Collect and let the runtime manage collection.",
+  "summary": [
+    "<p>An explicit <code>GC.Collect</code> forces a full collection on the runtime's schedule rather than its own. It almost always hurts: it promotes short-lived objects, stalls threads, and masks the real allocation problem instead of fixing it.</p>",
+    "<p>Remove the call and address the underlying allocation pattern; the garbage collector is tuned to decide when collection is worthwhile.</p>"
+  ],
+  "noncompliant": "using System;\n\npublic class Importer\n{\n    public void Finish()\n    {\n        GC.Collect(); // Noncompliant\n    }\n}",
+  "compliant": "public class Importer\n{\n    public void Finish()\n    {\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "GC.Collect (.NET API)",
+      "href": "https://learn.microsoft.com/dotnet/api/system.gc.collect"
+    }
+  ],
+  "ruleKey": "qa_quality_garbage_collector_collect_call"
+}

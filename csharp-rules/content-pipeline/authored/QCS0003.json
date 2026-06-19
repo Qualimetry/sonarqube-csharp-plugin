@@ -1,0 +1,28 @@
+{
+  "id": "QCS0003",
+  "title": "Abstract base classes should carry a 'Base' suffix",
+  "tags": [
+    "convention",
+    "naming"
+  ],
+  "messageFormat": "Rename abstract class '{0}' so its name ends with 'Base'.",
+  "summary": [
+    "<p>A consistent <code>Base</code> suffix on an <code>abstract</code> class signals at the point of use that the type is meant to be inherited rather than instantiated. The suffix can be turned off through configuration where a project follows a different convention.</p>"
+  ],
+  "noncompliant": "public abstract class Repository // Noncompliant\n{\n    public abstract void Save();\n}",
+  "compliant": "public abstract class RepositoryBase\n{\n    public abstract void Save();\n}",
+  "configuration": [
+    {
+      "parameter": "suffix",
+      "type": "string",
+      "default": "Base"
+    }
+  ],
+  "seeAlso": [
+    {
+      "text": "Names of classes, structs, and interfaces",
+      "href": "https://learn.microsoft.com/dotnet/standard/design-guidelines/names-of-classes-structs-and-interfaces"
+    }
+  ],
+  "ruleKey": "qa_naming_abstract_base_class_suffix"
+}

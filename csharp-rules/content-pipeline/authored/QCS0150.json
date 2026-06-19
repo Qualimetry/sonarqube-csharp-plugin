@@ -1,0 +1,16 @@
+{
+  "id": "QCS0150",
+  "title": "Event handler methods should not be public",
+  "tags": [
+    "design",
+    "api-design"
+  ],
+  "summary": [
+    "<p>A method shaped like an event handler, taking a sender and an <code>EventArgs</code> and named for the event it serves, is wiring rather than contract. Exposing it as <code>public</code> invites callers to invoke it directly, bypassing the event and coupling them to an internal detail of how the type reacts to notifications.</p>",
+    "<p>Give event handlers <code>private</code> or <code>protected</code> visibility, and expose a separately named public method when the behaviour is part of the contract.</p>"
+  ],
+  "messageFormat": "Reduce the visibility of this event handler; it should not be part of the public API.",
+  "noncompliant": "using System;\n\npublic class Uploader\n{\n    public void OnProgressChanged(object sender, EventArgs e) // Noncompliant\n    {\n    }\n}",
+  "compliant": "using System;\n\npublic class Uploader\n{\n    private void OnProgressChanged(object sender, EventArgs e)\n    {\n    }\n}",
+  "ruleKey": "qa_quality_public_event_handler_exposed"
+}

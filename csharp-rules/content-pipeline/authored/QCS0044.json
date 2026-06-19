@@ -1,0 +1,22 @@
+{
+  "id": "QCS0044",
+  "title": "Boolean expressions should not be compared to a boolean literal",
+  "tags": [
+    "convention",
+    "clarity"
+  ],
+  "messageFormat": "Use the boolean expression directly instead of comparing it to 'true' or 'false'.",
+  "summary": [
+    "<p>Comparing a boolean value to <code>true</code> or <code>false</code> adds a layer that says nothing: <code>x == true</code> is just <code>x</code>, and <code>x == false</code> is just <code>!x</code>. The literal comparison only lengthens the expression.</p>",
+    "<p>Dropping the comparison reads closer to the condition's intent and removes a classic spot where a stray single <code>=</code> turns a test into an assignment.</p>"
+  ],
+  "noncompliant": "if (isReady == true) // Noncompliant\n{\n    Start();\n}",
+  "compliant": "if (isReady)\n{\n    Start();\n}",
+  "seeAlso": [
+    {
+      "text": "Boolean logical operators (C# reference)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/language-reference/operators/boolean-logical-operators"
+    }
+  ],
+  "ruleKey": "qa_style_boolean_literal_comparison"
+}

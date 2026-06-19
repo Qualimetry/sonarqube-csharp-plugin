@@ -1,0 +1,30 @@
+<p>A private field that is set in its declaration or a constructor and never written again is conceptually immutable. Declaring it <code>readonly</code> turns that intent into a guarantee the compiler enforces.</p>
+<p>The modifier documents that later code must not reassign the field and blocks an accidental write from slipping in during maintenance.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public sealed class Cache
+{
+    private int _capacity; // Noncompliant
+
+    public Cache(int capacity)
+    {
+        _capacity = capacity;
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public sealed class Cache
+{
+    private readonly int _capacity;
+
+    public Cache(int capacity)
+    {
+        _capacity = capacity;
+    }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/readonly">readonly (C# reference)</a></li>
+</ul>

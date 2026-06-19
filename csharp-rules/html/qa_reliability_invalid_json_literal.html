@@ -1,0 +1,20 @@
+<p>When a constant string is handed to a JSON parser, malformed content is only discovered when the line runs and throws. A missing brace, a trailing comma, or an unquoted key turns into a runtime parse failure that a quick check of the literal would have caught.</p>
+<p>Fix the literal so it is valid JSON before it reaches the parser.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public sealed class Config
+{
+    public object Load() =&gt; Json.Parse("{ \"enabled\": true, }"); // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public sealed class Config
+{
+    public object Load() =&gt; Json.Parse("{ \"enabled\": true }");
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://www.rfc-editor.org/rfc/rfc8259">RFC 8259: The JavaScript Object Notation (JSON) Data Interchange Format</a></li>
+</ul>

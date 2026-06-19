@@ -1,0 +1,25 @@
+<p><code>XmlDocument</code> is a large, non-virtual-friendly class that was never designed as a base type. A subclass inherits dozens of members it cannot meaningfully override and becomes tightly bound to an implementation that is expensive and hard to evolve.</p>
+<p>Hold an <code>XmlDocument</code> as a private field and expose only the operations the type actually needs.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System.Xml;
+
+public class ConfigDocument : XmlDocument // Noncompliant
+{
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System.Xml;
+
+public class ConfigDocument
+{
+    private readonly XmlDocument _document = new XmlDocument();
+
+    public void Load(string path) =&gt; _document.Load(path);
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/standard/design-guidelines/choosing-between-class-and-struct">Composition over inheritance</a></li>
+</ul>

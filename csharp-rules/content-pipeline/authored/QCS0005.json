@@ -1,0 +1,21 @@
+{
+  "id": "QCS0005",
+  "title": "Switch sections should be enclosed in braces",
+  "tags": [
+    "convention",
+    "clarity"
+  ],
+  "messageFormat": "Enclose the statements of this switch section in braces.",
+  "summary": [
+    "<p>A <code>switch</code> section that runs several statements without a block shares one scope with its neighbours, so a local declared in one section is visible in the others and it is easy to misread where a section ends. Wrapping each section in braces gives it its own scope and clear boundaries.</p>"
+  ],
+  "noncompliant": "switch (state)\n{\n    case State.Open:\n        var message = Load(); // Noncompliant\n        Send(message);\n        break;\n    case State.Closed:\n        break;\n}",
+  "compliant": "switch (state)\n{\n    case State.Open:\n    {\n        var message = Load();\n        Send(message);\n        break;\n    }\n    case State.Closed:\n    {\n        break;\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "The switch statement (C# language reference)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/language-reference/statements/selection-statements#the-switch-statement"
+    }
+  ],
+  "ruleKey": "qa_style_switch_section_braces"
+}

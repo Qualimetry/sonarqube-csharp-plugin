@@ -1,0 +1,16 @@
+<p>A type name that runs very long usually folds its namespace, its role, and several qualifiers into one identifier. Shorter names that lean on the namespace for context read better at every use site.</p>
+<p>The maximum length is configurable.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public sealed class GenericRepositoryFactoryConfigurationProviderBuilder
+{
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public sealed class RepositoryBuilder
+{
+}
+</pre>
+<h2>Parameters</h2>
+<p>This rule is configurable. Edit <code>maxnamelength</code> (default <code>40</code>) on the rule in your quality profile; SonarQube applies the value during analysis and synchronises it to connected IDEs.</p>

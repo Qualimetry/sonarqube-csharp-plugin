@@ -1,0 +1,18 @@
+<p>A class that gathers platform invoke declarations is a private implementation detail of one assembly. Exposing it as <code>public</code> leaks the unmanaged surface to callers who should never reach native code directly, and leaving it instantiable invites pointless objects that carry no state.</p>
+<p>Declaring the container <code>internal static</code> keeps the native entry points hidden behind the assembly boundary and signals that the type is a stateless gateway, not something to construct.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class NativeMethods // Noncompliant
+{
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+internal static class NativeMethods
+{
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/standard/native-interop/best-practices">Native interoperability best practices</a></li>
+</ul>

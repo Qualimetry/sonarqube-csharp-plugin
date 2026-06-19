@@ -1,0 +1,24 @@
+<p>A method shaped like an event handler, taking a sender and an <code>EventArgs</code> and named for the event it serves, is wiring rather than contract. Exposing it as <code>public</code> invites callers to invoke it directly, bypassing the event and coupling them to an internal detail of how the type reacts to notifications.</p>
+<p>Give event handlers <code>private</code> or <code>protected</code> visibility, and expose a separately named public method when the behaviour is part of the contract.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System;
+
+public class Uploader
+{
+    public void OnProgressChanged(object sender, EventArgs e) // Noncompliant
+    {
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System;
+
+public class Uploader
+{
+    private void OnProgressChanged(object sender, EventArgs e)
+    {
+    }
+}
+</pre>

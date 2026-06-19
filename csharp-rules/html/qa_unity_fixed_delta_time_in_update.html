@@ -1,0 +1,26 @@
+<p><code>Update</code> and <code>LateUpdate</code> run once per rendered frame at a variable cadence, so motion and timing in them must be scaled by <code>Time.deltaTime</code>, the elapsed time since the previous frame. Reading <code>Time.fixedDeltaTime</code> there instead pulls in the fixed physics step, which is unrelated to how long the current frame actually took.</p>
+<p>The mismatch produces movement that speeds up or slows down with the frame rate instead of staying constant in real time. Use <code>Time.deltaTime</code> in frame callbacks and reserve <code>Time.fixedDeltaTime</code> for <code>FixedUpdate</code>.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class Mover : MonoBehaviour
+{
+    void Update()
+    {
+        position += speed * Time.fixedDeltaTime; // Noncompliant
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class Mover : MonoBehaviour
+{
+    void Update()
+    {
+        position += speed * Time.deltaTime;
+    }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://docs.unity3d.com/ScriptReference/Time-deltaTime.html">Time.deltaTime (Unity scripting reference)</a></li>
+</ul>

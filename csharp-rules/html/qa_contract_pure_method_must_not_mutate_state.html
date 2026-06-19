@@ -1,0 +1,35 @@
+<p>Applying <code>[Pure]</code> tells callers and tooling that a method computes a result without changing any observable state, which makes it safe to elide, reorder, or cache. A pure method that assigns to a field or property of its type, or to static state, breaks that promise: callers that rely on the annotation will silently drop the side effect and behave incorrectly.</p>
+<p>Either remove the mutation so the method honours its contract, or remove the <code>[Pure]</code> attribute so the side effect is visible to everyone reading the signature.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System.Diagnostics.Contracts;
+
+public class Counter
+{
+    private int _count;
+
+    [Pure]
+    public int Next() // Noncompliant
+    {
+        _count++;
+        return _count;
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System.Diagnostics.Contracts;
+
+public class Calculator
+{
+    [Pure]
+    public int Add(int a, int b)
+    {
+        return a + b;
+    }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/api/system.diagnostics.contracts.pureattribute">PureAttribute (System.Diagnostics.Contracts)</a></li>
+</ul>

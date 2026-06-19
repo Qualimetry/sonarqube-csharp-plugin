@@ -1,0 +1,22 @@
+{
+  "id": "QCS0172",
+  "title": "Instantiate ScriptableObject types with CreateInstance",
+  "tags": [
+    "unity",
+    "suspicious"
+  ],
+  "messageFormat": "Create this ScriptableObject through ScriptableObject.CreateInstance rather than a constructor.",
+  "summary": [
+    "<p>A <code>ScriptableObject</code> is a Unity-managed object whose lifetime, serialisation and asset bindings are wired up by the engine, not by the C# constructor. Calling <code>new</code> on a type derived from <code>ScriptableObject</code> produces an instance the engine never registered, so its serialised fields are not restored and Unity may discard or mishandle it.</p>",
+    "<p><code>ScriptableObject.CreateInstance</code> performs the engine-side construction that gives back a fully initialised, properly tracked instance. Use it for every ScriptableObject-derived type.</p>"
+  ],
+  "noncompliant": "public class SettingsFactory\n{\n    public GameSettings Build()\n    {\n        return new GameSettings(); // Noncompliant\n    }\n}",
+  "compliant": "public class SettingsFactory\n{\n    public GameSettings Build()\n    {\n        return ScriptableObject.CreateInstance<GameSettings>();\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "ScriptableObject.CreateInstance (Unity scripting reference)",
+      "href": "https://docs.unity3d.com/ScriptReference/ScriptableObject.CreateInstance.html"
+    }
+  ],
+  "ruleKey": "qa_unity_scriptable_object_create_instance"
+}

@@ -1,0 +1,26 @@
+<p>Unity calls a method decorated with <code>InitializeOnLoadMethod</code> (or <code>RuntimeInitializeOnLoadMethod</code>) automatically during load, with no instance and no arguments. The engine therefore only ever resolves a static, parameterless method; an instance method or one that declares parameters cannot be invoked this way.</p>
+<p>A non-static or parameterised target is silently skipped, so the load-time setup the attribute promises never runs. Declare the method <code>static</code> and remove its parameters so the callback actually fires.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class Loader
+{
+    [InitializeOnLoadMethod]
+    void Register() // Noncompliant
+    {
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class Loader
+{
+    [InitializeOnLoadMethod]
+    static void Register()
+    {
+    }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://docs.unity3d.com/ScriptReference/InitializeOnLoadMethodAttribute.html">InitializeOnLoadMethodAttribute (Unity scripting reference)</a></li>
+</ul>

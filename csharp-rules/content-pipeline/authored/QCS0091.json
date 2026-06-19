@@ -1,0 +1,22 @@
+{
+  "id": "QCS0091",
+  "title": "Avoid exposing fields with public or internal visibility",
+  "tags": [
+    "design",
+    "encapsulation"
+  ],
+  "messageFormat": "Make this field private or protected and expose it through a property if it must be reachable.",
+  "summary": [
+    "<p>A field that is <code>public</code> or <code>internal</code> lets any caller read and overwrite the value with no validation, no change notification, and no way to evolve the implementation later. Properties give the same syntax to callers while keeping the storage encapsulated.</p>",
+    "<p>Constants are exempt because their value can never change.</p>"
+  ],
+  "noncompliant": "public class Account\n{\n    public decimal Balance; // Noncompliant\n}",
+  "compliant": "public class Account\n{\n    public decimal Balance { get; private set; }\n}",
+  "seeAlso": [
+    {
+      "text": "Fields (C# guide)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/fields"
+    }
+  ],
+  "ruleKey": "qa_quality_public_field_declaration"
+}

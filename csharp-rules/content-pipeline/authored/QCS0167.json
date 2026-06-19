@@ -1,0 +1,16 @@
+{
+  "id": "QCS0167",
+  "title": "Unused private methods should be removed",
+  "tags": [
+    "dead-code",
+    "maintainability"
+  ],
+  "messageFormat": "Remove the unused private method '{0}'.",
+  "summary": [
+    "<p>A <code>private</code> method can only be invoked from inside the type that declares it. When no reference to it exists anywhere in that type, it is dead code: it cannot be reached, yet it still has to be read, maintained and compiled.</p>",
+    "<p>This rule reports a private method whose name appears nowhere else in the declaring type. If the method is genuinely an entry point reached by reflection, give it a usage or document it so the intent is explicit.</p>"
+  ],
+  "noncompliant": "public class Report\n{\n    public int Total() => 1;\n\n    private int Unused() => 0; // Noncompliant\n}",
+  "compliant": "public class Report\n{\n    public int Total() => Helper();\n\n    private int Helper() => 0;\n}",
+  "ruleKey": "qa_style_unused_private_method"
+}

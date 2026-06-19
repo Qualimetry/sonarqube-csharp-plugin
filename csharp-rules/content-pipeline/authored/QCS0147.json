@@ -1,0 +1,15 @@
+{
+  "id": "QCS0147",
+  "title": "Boolean results should be returned directly instead of through if/else",
+  "tags": [
+    "clarity",
+    "convention"
+  ],
+  "messageFormat": "Return the condition directly instead of branching to return 'true' and 'false'.",
+  "summary": [
+    "<p>An <code>if</code> that returns <code>true</code> in one branch and <code>false</code> in the other is just the condition itself, spelled out the long way. Returning the expression directly removes four lines of ceremony and states the intent plainly.</p>"
+  ],
+  "noncompliant": "public bool IsPositive(int value)\n{\n    if (value > 0) // Noncompliant\n    {\n        return true;\n    }\n    else\n    {\n        return false;\n    }\n}",
+  "compliant": "public bool IsPositive(int value)\n{\n    return value > 0;\n}",
+  "ruleKey": "qa_style_boolean_return_via_if"
+}

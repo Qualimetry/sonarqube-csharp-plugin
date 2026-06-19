@@ -1,0 +1,17 @@
+<p>Each level of inheritance adds context a reader must carry to understand a class: inherited state, virtual members that may be overridden, and constructor chaining. A deep chain makes behaviour hard to predict from any single file. Measuring the distance from a class to the root of its base chain flags hierarchies that have grown unwieldy and might be better expressed through composition.</p>
+<p>The depth limit is configurable.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class A { }
+public class B : A { }
+public class C : B { }
+public class D : C { }
+public class E : D { } // Noncompliant
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class Animal { }
+public class Dog : Animal { }
+</pre>
+<h2>Parameters</h2>
+<p>This rule is configurable. Edit <code>maxdepth</code> (default <code>5</code>) on the rule in your quality profile; SonarQube applies the value during analysis and synchronises it to connected IDEs.</p>

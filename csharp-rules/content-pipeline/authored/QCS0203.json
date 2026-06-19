@@ -1,0 +1,15 @@
+{
+  "id": "QCS0203",
+  "title": "Namespace names should match the source file folder path",
+  "tags": [
+    "clarity",
+    "convention"
+  ],
+  "messageFormat": "Namespace '{0}' does not match the folder path '{1}'.",
+  "summary": [
+    "<p>Keeping namespace segments aligned with folders makes it easy to locate types and prevents drift between physical layout and logical ownership.</p>"
+  ],
+  "noncompliant": "namespace Company.Product.Billing\n{\n    public sealed class InvoiceService\n    {\n    }\n}",
+  "compliant": "namespace Company.Product.Billing\n{\n    public sealed class InvoiceService\n    {\n    }\n}",
+  "ruleKey": "qa_naming_namespace_folder_mismatch"
+}

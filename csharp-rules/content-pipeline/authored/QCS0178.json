@@ -1,0 +1,16 @@
+{
+  "id": "QCS0178",
+  "title": "Composite formatting in console output should use string interpolation",
+  "tags": [
+    "clarity",
+    "convention"
+  ],
+  "messageFormat": "Use an interpolated string instead of composite format arguments on this console call.",
+  "summary": [
+    "<p>Passing a format string with numbered placeholders and a separate argument list to <code>Console.Write</code> or <code>Console.WriteLine</code> forces the reader to match each <code>{0}</code> to its argument by position. A misnumbered or missing placeholder is only caught at run time.</p>",
+    "<p>An interpolated string puts each value where it appears in the text, so the output reads in order and the compiler checks every expression.</p>"
+  ],
+  "noncompliant": "using System;\n\npublic class Greeter\n{\n    public void Hello(string name)\n    {\n        Console.WriteLine(\"Hello {0}\", name); // Noncompliant\n    }\n}",
+  "compliant": "using System;\n\npublic class Greeter\n{\n    public void Hello(string name)\n    {\n        Console.WriteLine($\"Hello {name}\");\n    }\n}",
+  "ruleKey": "qa_style_console_composite_format"
+}

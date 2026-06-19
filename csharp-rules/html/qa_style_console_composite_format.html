@@ -1,0 +1,26 @@
+<p>Passing a format string with numbered placeholders and a separate argument list to <code>Console.Write</code> or <code>Console.WriteLine</code> forces the reader to match each <code>{0}</code> to its argument by position. A misnumbered or missing placeholder is only caught at run time.</p>
+<p>An interpolated string puts each value where it appears in the text, so the output reads in order and the compiler checks every expression.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System;
+
+public class Greeter
+{
+    public void Hello(string name)
+    {
+        Console.WriteLine("Hello {0}", name); // Noncompliant
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System;
+
+public class Greeter
+{
+    public void Hello(string name)
+    {
+        Console.WriteLine($"Hello {name}");
+    }
+}
+</pre>

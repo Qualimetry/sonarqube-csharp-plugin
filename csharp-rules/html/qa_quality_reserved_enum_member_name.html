@@ -1,0 +1,19 @@
+<p>Naming an enum member <code>Reserved</code> bakes a placeholder into a public contract. It tells callers nothing about what the value means, yet it occupies a real numeric slot they can serialize, persist, and switch on. If a value is needed later, add it with a descriptive name then; reserving an ordinal in advance only leaves a meaningless option in every consumer's list.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public enum Channel
+{
+    Email,
+    Sms,
+    Reserved // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public enum Channel
+{
+    Email,
+    Sms,
+    Push
+}
+</pre>

@@ -1,0 +1,30 @@
+<p>Declaring a member with the <code>new</code> modifier hides the inherited one rather than overriding it. The member that runs then depends on the compile-time type of the reference, so the same object behaves differently when seen through the base type versus the derived type. That split is a frequent source of bugs that only appear through polymorphism.</p>
+<p>If the intent is to specialize behavior, mark the base member <code>virtual</code> and <code>override</code> it so dispatch is consistent. If the members are genuinely unrelated, give the new one a distinct name.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class Animal
+{
+    public virtual string Describe() =&gt; "animal";
+}
+
+public class Dog : Animal
+{
+    public new string Describe() =&gt; "dog"; // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class Animal
+{
+    public virtual string Describe() =&gt; "animal";
+}
+
+public class Dog : Animal
+{
+    public override string Describe() =&gt; "dog";
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/new-modifier">new modifier (C# reference)</a></li>
+</ul>

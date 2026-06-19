@@ -1,0 +1,16 @@
+{
+  "id": "QCS0171",
+  "title": "Awaited tasks in reusable code should specify ConfigureAwait",
+  "tags": [
+    "async",
+    "reliability"
+  ],
+  "messageFormat": "Specify 'ConfigureAwait' on this awaited task to make context capture explicit.",
+  "summary": [
+    "<p>By default <code>await</code> captures the current synchronization context and resumes on it. In library and other reusable code that capture is rarely needed and, on contexts with a single UI or request thread, resuming on it can deadlock when a caller blocks on the task.</p>",
+    "<p>Stating <code>ConfigureAwait(false)</code> (or <code>true</code> where the context really is required) makes the intent explicit at every await and avoids the accidental capture.</p>"
+  ],
+  "noncompliant": "using System.Threading.Tasks;\n\npublic class Loader\n{\n    public async Task RunAsync()\n    {\n        await FetchAsync(); // Noncompliant\n    }\n\n    private Task FetchAsync() => Task.CompletedTask;\n}",
+  "compliant": "using System.Threading.Tasks;\n\npublic class Loader\n{\n    public async Task RunAsync()\n    {\n        await FetchAsync().ConfigureAwait(false);\n    }\n\n    private Task FetchAsync() => Task.CompletedTask;\n}",
+  "ruleKey": "qa_style_missing_configure_await"
+}

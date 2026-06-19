@@ -1,0 +1,29 @@
+<p>An <code>abstract</code> type cannot be instantiated directly, so a <code>public</code> constructor on it is misleading: callers see a constructor they can never invoke. Declaring such constructors <code>protected</code> states the real contract, that only derived types call them.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public abstract class Shape
+{
+    public Shape(string name) // Noncompliant
+    {
+        Name = name;
+    }
+
+    public string Name { get; }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public abstract class Shape
+{
+    protected Shape(string name)
+    {
+        Name = name;
+    }
+
+    public string Name { get; }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/abstract">Abstract classes (C# language reference)</a></li>
+</ul>

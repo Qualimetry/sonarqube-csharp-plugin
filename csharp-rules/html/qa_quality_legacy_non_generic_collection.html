@@ -1,0 +1,15 @@
+<p><code>ArrayList</code> and <code>Hashtable</code> store everything as <code>object</code>, so every value type is boxed and every read needs a cast that the compiler cannot check. The generic collections introduced with .NET 2.0 keep the element type, avoid boxing, and catch type mistakes at compile time.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+var items = new ArrayList(); // Noncompliant
+items.Add("first");
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+var items = new List&lt;string&gt;();
+items.Add("first");
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/standard/generics/collections">Generic collections in .NET</a></li>
+</ul>

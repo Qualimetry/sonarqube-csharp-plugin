@@ -1,0 +1,21 @@
+<p>Duplicating a full type definition across assemblies creates ambiguous references and divergent fixes. Share one canonical type through a single class library instead.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+namespace Shared.Models
+{
+    public sealed class Customer
+    {
+        public string Name { get; set; }
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+namespace Shared.Models
+{
+    public sealed class Customer
+    {
+        public string Name { get; set; }
+    }
+}
+</pre>

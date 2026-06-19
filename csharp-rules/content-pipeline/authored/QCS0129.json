@@ -1,0 +1,16 @@
+{
+  "id": "QCS0129",
+  "title": "Public members should return a collection abstraction",
+  "tags": [
+    "design",
+    "api-design"
+  ],
+  "summary": [
+    "<p>Returning a concrete collection such as <code>List&lt;T&gt;</code> or <code>Dictionary&lt;TKey, TValue&gt;</code> from a public API leaks an implementation choice to every caller. Consumers may start to depend on members that the contract never promised, and the type can no longer be swapped for a different implementation without a breaking change.</p>",
+    "<p>Return an interface such as <code>IReadOnlyList&lt;T&gt;</code>, <code>IList&lt;T&gt;</code>, or <code>IEnumerable&lt;T&gt;</code> that expresses only what the contract guarantees.</p>"
+  ],
+  "messageFormat": "Return a collection interface instead of a concrete collection type.",
+  "noncompliant": "using System.Collections.Generic;\n\npublic class Catalog\n{\n    public List<string> GetNames() // Noncompliant\n    {\n        return new List<string> { \"a\", \"b\" };\n    }\n}",
+  "compliant": "using System.Collections.Generic;\n\npublic class Catalog\n{\n    public IReadOnlyList<string> GetNames()\n    {\n        return new List<string> { \"a\", \"b\" };\n    }\n}",
+  "ruleKey": "qa_quality_concrete_collection_return_type"
+}

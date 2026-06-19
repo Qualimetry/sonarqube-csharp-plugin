@@ -1,0 +1,15 @@
+{
+  "id": "QCS0026",
+  "title": "Hard-coded paths should not climb above the working directory",
+  "tags": [
+    "suspicious",
+    "portability"
+  ],
+  "messageFormat": "Avoid a hard-coded path that escapes the current directory with '..'; resolve the location from configuration instead.",
+  "summary": [
+    "<p>A literal file path that walks up the tree with <code>..</code> segments assumes a fixed layout outside the location the program controls. It breaks the moment the code runs from a different working directory, is deployed, or is packaged, and it can let input steer access to unintended locations. Resolve the base location from configuration or a well-defined root and build paths beneath it rather than reaching outside with parent-directory traversal.</p>"
+  ],
+  "noncompliant": "using System.IO;\n\npublic sealed class Loader\n{\n    public string Read() => File.ReadAllText(\"..\\\\..\\\\config\\\\settings.json\"); // Noncompliant\n}",
+  "compliant": "using System.IO;\n\npublic sealed class Loader\n{\n    private readonly string _root;\n\n    public Loader(string root) => _root = root;\n\n    public string Read() => File.ReadAllText(Path.Combine(_root, \"settings.json\"));\n}",
+  "ruleKey": "qa_quality_parent_directory_path_traversal"
+}

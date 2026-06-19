@@ -1,0 +1,23 @@
+{
+  "id": "QCS0132",
+  "title": "Read-only properties over a backing field should be getter-only auto-properties",
+  "tags": [
+    "convention",
+    "clarity",
+    "immutability"
+  ],
+  "messageFormat": "Replace property '{0}' and its backing field with a getter-only auto-property.",
+  "summary": [
+    "<p>A property that only returns a private readonly field, where that field is written nowhere but the constructor, is exactly what a getter-only auto-property provides. The explicit field and getter add boilerplate for no behaviour.</p>",
+    "<p>A getter-only auto-property keeps the same immutability while removing the hand-written backing field.</p>"
+  ],
+  "noncompliant": "public sealed class Point\n{\n    private readonly int _x;\n\n    public Point(int x) => _x = x;\n\n    public int X => _x; // Noncompliant\n}",
+  "compliant": "public sealed class Point\n{\n    public Point(int x) => X = x;\n\n    public int X { get; }\n}",
+  "seeAlso": [
+    {
+      "text": "Auto-implemented properties",
+      "href": "https://learn.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/auto-implemented-properties"
+    }
+  ],
+  "ruleKey": "qa_style_getter_only_auto_property"
+}

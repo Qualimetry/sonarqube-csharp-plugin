@@ -1,0 +1,15 @@
+{
+  "id": "QCS0182",
+  "title": "Null guards around a single call should use the null-conditional operator",
+  "tags": [
+    "clarity",
+    "convention"
+  ],
+  "messageFormat": "Use the null-conditional operator instead of guarding this single call with an if.",
+  "summary": [
+    "<p>An <code>if (x != null)</code> whose body is a single call on <code>x</code> restates a check the language already has. The null-conditional operator <code>?.</code> performs the same guarded call in one expression and makes the optional nature of the receiver obvious at the call site.</p>"
+  ],
+  "noncompliant": "public void Raise(System.Action handler)\n{\n    if (handler != null) // Noncompliant\n    {\n        handler();\n    }\n}",
+  "compliant": "public void Raise(System.Action handler)\n{\n    handler?.Invoke();\n}",
+  "ruleKey": "qa_style_null_guard_to_conditional"
+}

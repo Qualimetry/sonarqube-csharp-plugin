@@ -1,0 +1,15 @@
+{
+  "id": "QCS0002",
+  "title": "Types with only static members should be static",
+  "tags": [
+    "design",
+    "clarity"
+  ],
+  "messageFormat": "This type exposes only static members and no instance state; declare it static.",
+  "summary": [
+    "<p>A type that carries no instance state and exposes only static members is never meant to be instantiated. Leaving it as a normal class invites callers to create useless instances and hides the type's real intent. Marking it <code>static</code> makes the compiler enforce that no instance is ever created and signals at a glance that the type is a pure utility holder.</p>"
+  ],
+  "noncompliant": "public class MathHelpers // Noncompliant\n{\n    public static int Square(int value) => value * value;\n\n    public static int Cube(int value) => value * value * value;\n}",
+  "compliant": "public static class MathHelpers\n{\n    public static int Square(int value) => value * value;\n\n    public static int Cube(int value) => value * value * value;\n}",
+  "ruleKey": "qa_quality_stateless_type_should_be_static"
+}

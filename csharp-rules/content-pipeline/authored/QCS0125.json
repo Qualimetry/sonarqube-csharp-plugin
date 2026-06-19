@@ -1,0 +1,22 @@
+{
+  "id": "QCS0125",
+  "title": "Native handles should not be exposed as public fields",
+  "tags": [
+    "security",
+    "interop"
+  ],
+  "messageFormat": "Do not expose this native handle as a public field; wrap it behind a safe member.",
+  "summary": [
+    "<p>A publicly visible field of type <code>IntPtr</code> or <code>UIntPtr</code> hands a raw native pointer to every caller. They can overwrite it, copy it past the lifetime of the resource it points to, or pass it to unmanaged code, defeating any ownership or disposal guarantees the type tries to make.</p>",
+    "<p>Keep the handle private and offer a typed, validated member (a <code>SafeHandle</code>, a method, or a read-only property) instead.</p>"
+  ],
+  "noncompliant": "using System;\n\npublic class DeviceContext\n{\n    public IntPtr Handle; // Noncompliant\n}",
+  "compliant": "using System;\n\npublic class DeviceContext\n{\n    private IntPtr _handle;\n\n    public bool IsValid => _handle != IntPtr.Zero;\n}",
+  "seeAlso": [
+    {
+      "text": "SafeHandle (.NET API)",
+      "href": "https://learn.microsoft.com/dotnet/api/system.runtime.interopservices.safehandle"
+    }
+  ],
+  "ruleKey": "qa_quality_public_pointer_exposure"
+}

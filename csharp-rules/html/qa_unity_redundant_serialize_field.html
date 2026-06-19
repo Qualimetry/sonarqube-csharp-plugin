@@ -1,0 +1,22 @@
+<p>Unity serialises public fields of a serialisable type automatically. The <code>SerializeField</code> attribute exists to opt a non-public field into that same serialisation, so applying it to a field that is already <code>public</code> adds nothing the engine was not going to do anyway.</p>
+<p>The redundant attribute clutters the declaration and hints that the author was unsure of the serialisation rules. Drop the attribute from public fields, and keep it only where it changes behaviour, on private or internal fields you want serialised.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class PlayerStats : MonoBehaviour
+{
+    [SerializeField]
+    public int health; // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class PlayerStats : MonoBehaviour
+{
+    [SerializeField]
+    private int health;
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField (Unity scripting reference)</a></li>
+</ul>

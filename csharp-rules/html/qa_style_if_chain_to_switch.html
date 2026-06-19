@@ -1,0 +1,39 @@
+<p>A chain of <code>if</code>/<code>else if</code> branches that each compare the same variable to a constant is a <code>switch</code> written the verbose way. The repeated variable name on every line hides the fact that one value is being dispatched, and it is easy to test the wrong variable in one of the branches.</p>
+<p>A <code>switch</code> names the dispatched value once and lines the cases up so the full set of handled values is visible at a glance.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public string Name(int code)
+{
+    if (code == 1) // Noncompliant
+    {
+        return "one";
+    }
+    else if (code == 2)
+    {
+        return "two";
+    }
+    else if (code == 3)
+    {
+        return "three";
+    }
+
+    return "other";
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public string Name(int code)
+{
+    switch (code)
+    {
+        case 1:
+            return "one";
+        case 2:
+            return "two";
+        case 3:
+            return "three";
+        default:
+            return "other";
+    }
+}
+</pre>

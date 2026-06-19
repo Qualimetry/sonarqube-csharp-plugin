@@ -1,0 +1,20 @@
+<p>Methods such as <code>Thread.Abort</code>, <code>Thread.Suspend</code>, and <code>Thread.Resume</code> stop a thread at an arbitrary point. Locks may be left held, partial writes may be left behind, and finalizers may not run, which leaves shared state corrupted and the process prone to deadlock. These methods are unsupported on modern .NET and throw at run time.</p>
+<p>Signal a thread to stop cooperatively with a <code>CancellationToken</code>, and let the worker reach a safe point before it exits.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public void Stop(Thread worker)
+{
+    worker.Abort(); // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public void Stop(CancellationTokenSource cancellation)
+{
+    cancellation.Cancel();
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/standard/threading/cancellation-in-managed-threads">Cancellation in managed threads</a></li>
+</ul>

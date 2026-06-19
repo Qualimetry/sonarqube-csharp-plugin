@@ -1,0 +1,50 @@
+<p>A general <code>catch</code> with no exception type swallows everything, including the cancellation, out-of-memory, and stack-overflow conditions that the code is in no position to handle. The reader cannot tell which failure the author actually expected here.</p>
+<p>Name the specific exception type the clause handles. When a broad catch is genuinely intended, write <code>catch (Exception)</code> so the intent is explicit.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System;
+
+public class Worker
+{
+    public void Run()
+    {
+        try
+        {
+            Execute();
+        }
+        catch // Noncompliant
+        {
+        }
+    }
+
+    private void Execute()
+    {
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System;
+
+public class Worker
+{
+    public void Run()
+    {
+        try
+        {
+            Execute();
+        }
+        catch (InvalidOperationException)
+        {
+        }
+    }
+
+    private void Execute()
+    {
+    }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/fundamentals/exceptions/exception-handling">Exception handling (C# reference)</a></li>
+</ul>

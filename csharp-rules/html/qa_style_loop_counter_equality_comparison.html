@@ -1,0 +1,20 @@
+<p>Driving a counting <code>for</code> loop with an equality test such as <code>i != limit</code> assumes the counter lands exactly on the boundary. If the step ever skips past it, or the limit is recomputed, the loop runs far longer than intended.</p>
+<p>A relational comparison stops the loop as soon as the counter reaches the bound, which is the safe and conventional way to express the range.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+for (int i = 0; i != count; i += 2) // Noncompliant
+{
+    Process(i);
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+for (int i = 0; i &lt; count; i += 2)
+{
+    Process(i);
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/statements/iteration-statements#the-for-statement">The for statement (C# reference)</a></li>
+</ul>

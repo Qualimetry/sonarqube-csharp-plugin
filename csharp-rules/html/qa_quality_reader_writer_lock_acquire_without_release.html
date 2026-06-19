@@ -1,0 +1,51 @@
+<p>Acquiring a <code>ReaderWriterLock</code> with <code>AcquireReaderLock</code> or <code>AcquireWriterLock</code> and not releasing it in the same method leaves the lock held when control leaves through an exception or an early return. Subsequent readers and writers then block indefinitely.</p>
+<p>Release the lock in a <code>finally</code> within the same method so every acquisition is matched no matter how the method exits.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System.Threading;
+
+public class Store
+{
+    private readonly ReaderWriterLock _lock = new ReaderWriterLock();
+
+    public void Append()
+    {
+        _lock.AcquireWriterLock(1000); // Noncompliant
+        Write();
+    }
+
+    private void Write()
+    {
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System.Threading;
+
+public class Store
+{
+    private readonly ReaderWriterLock _lock = new ReaderWriterLock();
+
+    public void Append()
+    {
+        _lock.AcquireWriterLock(1000);
+        try
+        {
+            Write();
+        }
+        finally
+        {
+            _lock.ReleaseWriterLock();
+        }
+    }
+
+    private void Write()
+    {
+    }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/api/system.threading.readerwriterlockslim">ReaderWriterLockSlim (.NET API)</a></li>
+</ul>

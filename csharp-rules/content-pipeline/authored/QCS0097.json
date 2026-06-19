@@ -1,0 +1,22 @@
+{
+  "id": "QCS0097",
+  "title": "InitializeOnLoadMethod targets must be static and parameterless",
+  "tags": [
+    "unity",
+    "suspicious"
+  ],
+  "messageFormat": "Make this InitializeOnLoadMethod target static and parameterless.",
+  "summary": [
+    "<p>Unity calls a method decorated with <code>InitializeOnLoadMethod</code> (or <code>RuntimeInitializeOnLoadMethod</code>) automatically during load, with no instance and no arguments. The engine therefore only ever resolves a static, parameterless method; an instance method or one that declares parameters cannot be invoked this way.</p>",
+    "<p>A non-static or parameterised target is silently skipped, so the load-time setup the attribute promises never runs. Declare the method <code>static</code> and remove its parameters so the callback actually fires.</p>"
+  ],
+  "noncompliant": "public class Loader\n{\n    [InitializeOnLoadMethod]\n    void Register() // Noncompliant\n    {\n    }\n}",
+  "compliant": "public class Loader\n{\n    [InitializeOnLoadMethod]\n    static void Register()\n    {\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "InitializeOnLoadMethodAttribute (Unity scripting reference)",
+      "href": "https://docs.unity3d.com/ScriptReference/InitializeOnLoadMethodAttribute.html"
+    }
+  ],
+  "ruleKey": "qa_unity_initialize_on_load_method_signature"
+}
