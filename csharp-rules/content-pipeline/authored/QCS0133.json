@@ -1,0 +1,16 @@
+{
+  "id": "QCS0133",
+  "title": "Property getters should not modify object state",
+  "tags": [
+    "bug",
+    "suspicious"
+  ],
+  "summary": [
+    "<p>Callers expect reading a property to be free of side effects: they read it in the debugger, in logging, and in conditions without a second thought. A getter that increments a counter or reassigns a field changes behaviour depending on how often the property is observed, which produces defects that are extremely hard to reproduce.</p>",
+    "<p>Keep getters side-effect free. Move state changes into an explicitly named method.</p>"
+  ],
+  "messageFormat": "Move this state change out of the property getter; getters should not have side effects.",
+  "noncompliant": "public class Sequence\n{\n    private int _value;\n\n    public int Next\n    {\n        get\n        {\n            _value += 1; // Noncompliant\n            return _value;\n        }\n    }\n}",
+  "compliant": "public class Sequence\n{\n    private int _value;\n\n    public int Current => _value;\n\n    public int MoveNext()\n    {\n        _value += 1;\n        return _value;\n    }\n}",
+  "ruleKey": "qa_quality_property_getter_mutates_state"
+}

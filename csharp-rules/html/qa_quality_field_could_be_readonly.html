@@ -1,0 +1,33 @@
+<p>A private field that is only set in its declaration or in a constructor and is never written again can be declared <code>readonly</code>. The modifier documents the intent, lets the compiler reject accidental later assignments, and enables small optimizations.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class Connection
+{
+    private string _endpoint; // Noncompliant
+
+    public Connection(string endpoint)
+    {
+        _endpoint = endpoint;
+    }
+
+    public string Endpoint =&gt; _endpoint;
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class Connection
+{
+    private readonly string _endpoint;
+
+    public Connection(string endpoint)
+    {
+        _endpoint = endpoint;
+    }
+
+    public string Endpoint =&gt; _endpoint;
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/readonly">readonly (C# reference)</a></li>
+</ul>

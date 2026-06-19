@@ -1,0 +1,30 @@
+<p>When an auto-property exposes a writable setter but the value is only ever assigned inside a constructor, the broad setter advertises a mutation point that the type never uses. Narrowing the accessor to <code>private set</code> keeps the constructor assignment working while signalling to callers that the value is fixed once the instance is built.</p>
+<p>A tighter setter also protects the invariant: future code outside the constructor cannot quietly reassign the property, so the intended write-once shape stays enforced by the compiler.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class Account
+{
+    public decimal Balance { get; set; } // Noncompliant
+
+    public Account(decimal opening)
+    {
+        Balance = opening;
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class Account
+{
+    public decimal Balance { get; private set; }
+
+    public Account(decimal opening)
+    {
+        Balance = opening;
+    }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/properties">Properties (C# language reference)</a></li>
+</ul>

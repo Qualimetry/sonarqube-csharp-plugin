@@ -1,0 +1,22 @@
+{
+  "id": "QCS0090",
+  "title": "Declare exception types as public",
+  "tags": [
+    "design",
+    "error-handling"
+  ],
+  "messageFormat": "Make this exception type public so callers can catch it specifically.",
+  "summary": [
+    "<p>An exception that escapes an assembly but is declared <code>internal</code> (or otherwise non-public) cannot be named in a <code>catch</code> clause by the calling code. Consumers are forced to catch a broader base type, losing the ability to react to the specific failure.</p>",
+    "<p>Make any exception that can reach external callers <code>public</code>, or keep it private only if it is always caught within the same assembly.</p>"
+  ],
+  "noncompliant": "internal sealed class ImportFailedException : Exception // Noncompliant\n{\n    public ImportFailedException(string message) : base(message) { }\n}",
+  "compliant": "public sealed class ImportFailedException : Exception\n{\n    public ImportFailedException(string message) : base(message) { }\n}",
+  "seeAlso": [
+    {
+      "text": "Creating and throwing exceptions",
+      "href": "https://learn.microsoft.com/dotnet/standard/exceptions/how-to-create-user-defined-exceptions"
+    }
+  ],
+  "ruleKey": "qa_quality_non_public_exception_type"
+}

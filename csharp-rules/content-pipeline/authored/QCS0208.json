@@ -1,0 +1,15 @@
+{
+  "id": "QCS0208",
+  "title": "Types should not be defined in more than one assembly",
+  "tags": [
+    "architecture",
+    "duplication"
+  ],
+  "messageFormat": "Type '{0}' is defined in more than one assembly in this compilation.",
+  "summary": [
+    "<p>Duplicating a full type definition across assemblies creates ambiguous references and divergent fixes. Share one canonical type through a single class library instead.</p>"
+  ],
+  "noncompliant": "namespace Shared.Models\n{\n    public sealed class Customer\n    {\n        public string Name { get; set; }\n    }\n}",
+  "compliant": "namespace Shared.Models\n{\n    public sealed class Customer\n    {\n        public string Name { get; set; }\n    }\n}",
+  "ruleKey": "qa_quality_duplicate_type_across_assemblies"
+}

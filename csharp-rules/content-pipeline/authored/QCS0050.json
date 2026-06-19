@@ -1,0 +1,15 @@
+{
+  "id": "QCS0050",
+  "title": "Small immutable value holders are candidates to become structs",
+  "tags": [
+    "design",
+    "performance"
+  ],
+  "messageFormat": "This small immutable type holds only value data and no behaviour; consider declaring it a struct.",
+  "summary": [
+    "<p>A class with no base type, a handful of read-only members of value type, and no behaviour beyond construction is really a value, not an entity. Modelling it as a <code>struct</code> gives it value semantics, avoids a heap allocation and an extra reference indirection on every use, and removes the null state that a reference type carries for free. Keep it a class only if identity, inheritance, or reference sharing matters.</p>"
+  ],
+  "noncompliant": "public sealed class Point // Noncompliant\n{\n    public Point(int x, int y)\n    {\n        X = x;\n        Y = y;\n    }\n\n    public int X { get; }\n\n    public int Y { get; }\n}",
+  "compliant": "public readonly struct Point\n{\n    public Point(int x, int y)\n    {\n        X = x;\n        Y = y;\n    }\n\n    public int X { get; }\n\n    public int Y { get; }\n}",
+  "ruleKey": "qa_quality_class_candidate_for_struct"
+}

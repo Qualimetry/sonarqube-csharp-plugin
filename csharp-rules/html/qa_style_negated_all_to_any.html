@@ -1,0 +1,20 @@
+<p>Negating <code>All</code> asks the reader to invert a universal claim in their head: "not every element matches" really means "some element fails". Stating that directly with <code>Any</code> and the opposite predicate removes the double negative.</p>
+<p>The two forms return the same result, so the rewrite is purely about reading the intent of the query at a glance.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+if (!items.All(i =&gt; i.IsValid)) // Noncompliant
+{
+    Reject();
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+if (items.Any(i =&gt; !i.IsValid))
+{
+    Reject();
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/api/system.linq.enumerable.any">Enumerable.Any</a></li>
+</ul>

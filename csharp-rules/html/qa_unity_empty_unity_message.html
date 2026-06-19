@@ -1,0 +1,25 @@
+<p>The Unity runtime detects lifecycle callbacks such as <code>Update</code>, <code>FixedUpdate</code>, <code>LateUpdate</code> and <code>Awake</code> by name on a <code>MonoBehaviour</code> and adds every one it finds to its internal invocation lists. A callback with an empty body still pays that per-object dispatch cost on each frame or physics step while doing nothing.</p>
+<p>Deleting an empty lifecycle method removes it from the engine schedule entirely, which keeps frame and physics loops free of dead calls and makes it clear which callbacks the component actually relies on.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class Spinner : MonoBehaviour
+{
+    void Update() // Noncompliant
+    {
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class Spinner : MonoBehaviour
+{
+    void Update()
+    {
+        transform.Rotate(0f, 1f, 0f);
+    }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour lifecycle (Unity scripting reference)</a></li>
+</ul>

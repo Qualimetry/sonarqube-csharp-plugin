@@ -1,0 +1,23 @@
+{
+  "id": "QCS0033",
+  "title": "Methods should not be hard to maintain",
+  "tags": [
+    "metrics",
+    "complexity"
+  ],
+  "messageFormat": "Method '{0}' has a cyclomatic complexity of {1}, above the limit of {2}.",
+  "summary": [
+    "<p>Cyclomatic complexity counts the independent paths through a method by adding one for each branch point such as an <code>if</code>, loop, <code>case</code>, <code>catch</code>, conditional operator, or short-circuit boolean. A high count means more paths to understand and to cover with tests, and is a strong predictor of defects.</p>",
+    "<p>The complexity limit is configurable.</p>"
+  ],
+  "noncompliant": "public string Classify(int n)\n{\n    if (n < 0) return \"neg\";\n    if (n == 0) return \"zero\";\n    if (n < 10 && n > 0) return \"small\";\n    if (n < 100 || n == 500) return \"medium\";\n    return n > 1000 ? \"huge\" : \"large\";\n}",
+  "compliant": "public string Classify(int n)\n{\n    return _ranges.First(range => range.Contains(n)).Label;\n}",
+  "configuration": [
+    {
+      "parameter": "maxcomplexity",
+      "type": "int",
+      "default": "15"
+    }
+  ],
+  "ruleKey": "qa_metrics_high_cyclomatic_complexity"
+}

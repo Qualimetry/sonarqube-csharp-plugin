@@ -1,0 +1,22 @@
+{
+  "id": "QCS0123",
+  "title": "Overrides of Dispose(bool) should call the base implementation",
+  "tags": [
+    "bug",
+    "reliability"
+  ],
+  "messageFormat": "Call 'base.Dispose(disposing)' so the base type can release its own resources.",
+  "summary": [
+    "<p>The dispose pattern relies on every level of an inheritance chain releasing the resources it owns. When a type overrides <code>Dispose(bool)</code> but never invokes the base version, the resources held by base types are silently leaked, and the leak only surfaces under load when handles or memory run out.</p>",
+    "<p>An override of <code>Dispose(bool)</code> should forward the call to <code>base.Dispose(disposing)</code> on every path so the chain stays intact.</p>"
+  ],
+  "noncompliant": "public class CachingStream : MemoryStream\n{\n    protected override void Dispose(bool disposing) // Noncompliant\n    {\n        if (disposing)\n        {\n            _cache.Clear();\n        }\n    }\n\n    private readonly System.Collections.Generic.List<byte[]> _cache = new();\n}",
+  "compliant": "public class CachingStream : MemoryStream\n{\n    protected override void Dispose(bool disposing)\n    {\n        if (disposing)\n        {\n            _cache.Clear();\n        }\n\n        base.Dispose(disposing);\n    }\n\n    private readonly System.Collections.Generic.List<byte[]> _cache = new();\n}",
+  "seeAlso": [
+    {
+      "text": "Implement a Dispose method",
+      "href": "https://learn.microsoft.com/dotnet/standard/garbage-collection/implementing-dispose"
+    }
+  ],
+  "ruleKey": "qa_quality_override_does_not_call_base_dispose"
+}

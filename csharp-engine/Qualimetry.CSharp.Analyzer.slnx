@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Qualimetry.CSharp.Analyzer.CodeFixes/Qualimetry.CSharp.Analyzer.CodeFixes.csproj" />
+  <Project Path="Qualimetry.CSharp.Analyzer.Tests/Qualimetry.CSharp.Analyzer.Tests.csproj" />
+  <Project Path="Qualimetry.CSharp.Analyzer/Qualimetry.CSharp.Analyzer.csproj" />
+</Solution>

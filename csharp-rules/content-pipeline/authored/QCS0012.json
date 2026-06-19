@@ -1,0 +1,22 @@
+{
+  "id": "QCS0012",
+  "title": "Empty Unity lifecycle methods should be removed",
+  "tags": [
+    "unity",
+    "performance"
+  ],
+  "messageFormat": "Remove this empty Unity lifecycle method so the engine stops invoking it every frame.",
+  "summary": [
+    "<p>The Unity runtime detects lifecycle callbacks such as <code>Update</code>, <code>FixedUpdate</code>, <code>LateUpdate</code> and <code>Awake</code> by name on a <code>MonoBehaviour</code> and adds every one it finds to its internal invocation lists. A callback with an empty body still pays that per-object dispatch cost on each frame or physics step while doing nothing.</p>",
+    "<p>Deleting an empty lifecycle method removes it from the engine schedule entirely, which keeps frame and physics loops free of dead calls and makes it clear which callbacks the component actually relies on.</p>"
+  ],
+  "noncompliant": "public class Spinner : MonoBehaviour\n{\n    void Update() // Noncompliant\n    {\n    }\n}",
+  "compliant": "public class Spinner : MonoBehaviour\n{\n    void Update()\n    {\n        transform.Rotate(0f, 1f, 0f);\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "MonoBehaviour lifecycle (Unity scripting reference)",
+      "href": "https://docs.unity3d.com/ScriptReference/MonoBehaviour.html"
+    }
+  ],
+  "ruleKey": "qa_unity_empty_unity_message"
+}

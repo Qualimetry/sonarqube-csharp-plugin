@@ -1,0 +1,28 @@
+<p><code>System.Random</code> is a fast, statistically uniform generator, but its output is predictable: given a few observed values an attacker can recover the seed and reproduce the entire sequence. Using it to build a token, key, salt, nonce, or password therefore makes those secrets guessable.</p>
+<p>When the value feeds a security decision, generate it with a cryptographically secure source such as <code>RandomNumberGenerator</code>.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System;
+
+public sealed class Tokens
+{
+    public int Next()
+    {
+        var tokenSeed = new Random(); // Noncompliant
+        return tokenSeed.Next();
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System.Security.Cryptography;
+
+public sealed class Tokens
+{
+    public int Next() =&gt; RandomNumberGenerator.GetInt32(int.MaxValue);
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://cwe.mitre.org/data/definitions/338.html">CWE-338: Use of Cryptographically Weak Pseudo-Random Number Generator (PRNG)</a></li>
+</ul>

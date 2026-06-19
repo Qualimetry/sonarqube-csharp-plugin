@@ -1,0 +1,26 @@
+<p>Resolving a component through a <code>Type</code> or string argument forces a runtime cast at the call site and gives back a loosely typed result that the caller has to convert before use. It also defers any naming mistake to runtime, where it surfaces as a failed lookup rather than a compile error.</p>
+<p>The generic <code>GetComponent&lt;T&gt;()</code> overload returns the requested component already typed, so the cast disappears, the intent is explicit, and a wrong type name fails to compile rather than silently returning null.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class Mover : MonoBehaviour
+{
+    void Awake()
+    {
+        var body = GetComponent(typeof(Rigidbody)); // Noncompliant
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class Mover : MonoBehaviour
+{
+    void Awake()
+    {
+        var body = GetComponent&lt;Rigidbody&gt;();
+    }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://docs.unity3d.com/ScriptReference/Component.GetComponent.html">Component.GetComponent (Unity scripting reference)</a></li>
+</ul>

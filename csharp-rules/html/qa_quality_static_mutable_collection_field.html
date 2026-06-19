@@ -1,0 +1,20 @@
+<p>Declaring a static field with a mutable collection type such as <code>List&lt;T&gt;</code>, <code>Dictionary&lt;TKey, TValue&gt;</code>, or an array shares a single growable container across the whole process. Marking the field <code>readonly</code> only freezes the reference, not the contents, so any caller can still add, remove, or replace elements and corrupt state observed elsewhere.</p>
+<p>Expose the data through a read-only or immutable collection type so the shared state cannot be mutated after initialization.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class Registry
+{
+    private static readonly List&lt;string&gt; Names = new(); // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class Registry
+{
+    private static readonly IReadOnlyList&lt;string&gt; Names = new List&lt;string&gt;().AsReadOnly();
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/api/system.collections.immutable">Immutable collections</a></li>
+</ul>

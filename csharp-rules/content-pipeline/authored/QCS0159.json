@@ -1,0 +1,22 @@
+{
+  "id": "QCS0159",
+  "title": "Exceptions should not derive from ApplicationException",
+  "tags": [
+    "design",
+    "exceptions"
+  ],
+  "messageFormat": "Derive this exception from Exception rather than ApplicationException.",
+  "summary": [
+    "<p><code>ApplicationException</code> was meant to separate application errors from system errors, a distinction the framework itself never adopted. Deriving from it adds a layer that carries no behaviour and no meaning, so the guidance is to skip it entirely.</p>",
+    "<p>Derive custom exceptions directly from <code>Exception</code>, or from a more specific exception type when one fits.</p>"
+  ],
+  "noncompliant": "using System;\n\npublic class OrderFailedException : ApplicationException // Noncompliant\n{\n}",
+  "compliant": "using System;\n\npublic class OrderFailedException : Exception\n{\n}",
+  "seeAlso": [
+    {
+      "text": "CA1058 and exception base types",
+      "href": "https://learn.microsoft.com/dotnet/api/system.applicationexception"
+    }
+  ],
+  "ruleKey": "qa_quality_application_exception_base_type"
+}

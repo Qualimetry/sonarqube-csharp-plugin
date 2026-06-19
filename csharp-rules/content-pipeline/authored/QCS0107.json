@@ -1,0 +1,22 @@
+{
+  "id": "QCS0107",
+  "title": "Nested if statements without an else should be combined",
+  "tags": [
+    "convention",
+    "clarity"
+  ],
+  "messageFormat": "Combine this if statement with the nested one using the '&&' operator.",
+  "summary": [
+    "<p>When an <code>if</code> with no <code>else</code> contains nothing but another <code>if</code> that also has no <code>else</code>, both conditions must hold for the body to run. Two levels of nesting express a single combined condition.</p>",
+    "<p>Joining the tests with <code>&&</code> flattens the structure and puts the full entry condition in one place.</p>"
+  ],
+  "noncompliant": "if (user != null) // Noncompliant\n{\n    if (user.IsActive)\n    {\n        Grant();\n    }\n}",
+  "compliant": "if (user != null && user.IsActive)\n{\n    Grant();\n}",
+  "seeAlso": [
+    {
+      "text": "The if statement (C# reference)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/language-reference/statements/selection-statements#the-if-statement"
+    }
+  ],
+  "ruleKey": "qa_style_mergeable_nested_if"
+}

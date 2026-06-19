@@ -1,0 +1,21 @@
+{
+  "id": "QCS0007",
+  "title": "Attribute types should carry an 'Attribute' suffix",
+  "tags": [
+    "convention",
+    "naming"
+  ],
+  "messageFormat": "Rename attribute type '{0}' so its name ends with 'Attribute'.",
+  "summary": [
+    "<p>A type that derives from <code>System.Attribute</code> is consumed through the attribute usage syntax, where the compiler lets callers drop the trailing <code>Attribute</code> word. Keeping that word in the declared name is what makes the shorthand readable and keeps the declaration consistent with how the framework's own attributes are spelled.</p>"
+  ],
+  "noncompliant": "using System;\n\npublic sealed class Audited : Attribute // Noncompliant\n{\n}",
+  "compliant": "using System;\n\npublic sealed class AuditedAttribute : Attribute\n{\n}",
+  "seeAlso": [
+    {
+      "text": "Attribute class naming guidance",
+      "href": "https://learn.microsoft.com/dotnet/standard/design-guidelines/names-of-classes-structs-and-interfaces"
+    }
+  ],
+  "ruleKey": "qa_naming_attribute_type_suffix"
+}

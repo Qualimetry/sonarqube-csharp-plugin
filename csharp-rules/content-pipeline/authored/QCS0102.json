@@ -1,0 +1,22 @@
+{
+  "id": "QCS0102",
+  "title": "Counting loops should bound the counter with a relational comparison",
+  "tags": [
+    "convention",
+    "clarity"
+  ],
+  "messageFormat": "Use a relational comparison (< or >) rather than equality to bound this loop counter.",
+  "summary": [
+    "<p>Driving a counting <code>for</code> loop with an equality test such as <code>i != limit</code> assumes the counter lands exactly on the boundary. If the step ever skips past it, or the limit is recomputed, the loop runs far longer than intended.</p>",
+    "<p>A relational comparison stops the loop as soon as the counter reaches the bound, which is the safe and conventional way to express the range.</p>"
+  ],
+  "noncompliant": "for (int i = 0; i != count; i += 2) // Noncompliant\n{\n    Process(i);\n}",
+  "compliant": "for (int i = 0; i < count; i += 2)\n{\n    Process(i);\n}",
+  "seeAlso": [
+    {
+      "text": "The for statement (C# reference)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/language-reference/statements/iteration-statements#the-for-statement"
+    }
+  ],
+  "ruleKey": "qa_style_loop_counter_equality_comparison"
+}

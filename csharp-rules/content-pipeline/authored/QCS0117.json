@@ -1,0 +1,22 @@
+{
+  "id": "QCS0117",
+  "title": "Native methods container should be internal and static",
+  "tags": [
+    "interop",
+    "convention"
+  ],
+  "messageFormat": "Declare native interop class '{0}' as internal and static.",
+  "summary": [
+    "<p>A class that gathers platform invoke declarations is a private implementation detail of one assembly. Exposing it as <code>public</code> leaks the unmanaged surface to callers who should never reach native code directly, and leaving it instantiable invites pointless objects that carry no state.</p>",
+    "<p>Declaring the container <code>internal static</code> keeps the native entry points hidden behind the assembly boundary and signals that the type is a stateless gateway, not something to construct.</p>"
+  ],
+  "noncompliant": "public class NativeMethods // Noncompliant\n{\n}",
+  "compliant": "internal static class NativeMethods\n{\n}",
+  "seeAlso": [
+    {
+      "text": "Native interoperability best practices",
+      "href": "https://learn.microsoft.com/dotnet/standard/native-interop/best-practices"
+    }
+  ],
+  "ruleKey": "qa_interop_native_methods_container_modifiers"
+}

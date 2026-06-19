@@ -1,0 +1,21 @@
+{
+  "id": "QCS0155",
+  "title": "Private static fields should use an 's_' prefix",
+  "tags": [
+    "convention",
+    "naming"
+  ],
+  "messageFormat": "Rename static field '{0}' so it begins with 's_'.",
+  "summary": [
+    "<p>An <code>s_</code> prefix on a private static field marks shared state that outlives any single instance, so a reader spots at the assignment site that the write is process-wide rather than per-object. It keeps static state visually distinct from the underscore-prefixed instance fields and from constants.</p>"
+  ],
+  "noncompliant": "public class Counter\n{\n    private static int instances; // Noncompliant\n}",
+  "compliant": "public class Counter\n{\n    private static int s_instances;\n}",
+  "seeAlso": [
+    {
+      "text": "Field naming conventions",
+      "href": "https://learn.microsoft.com/dotnet/csharp/fundamentals/coding-style/identifier-names"
+    }
+  ],
+  "ruleKey": "qa_naming_static_field_prefix"
+}

@@ -1,0 +1,24 @@
+<p>A value type is copied on assignment, on every method call, and whenever it is boxed. A mutable struct therefore behaves unpredictably: writing to a copy leaves the original untouched, and mutating an element retrieved from a collection updates a throwaway copy. The result is bugs that look like the assignment simply did not happen.</p>
+<p>Make structs immutable by declaring fields <code>readonly</code> and exposing get-only or <code>init</code> properties, setting all state through the constructor.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public struct Point // Noncompliant
+{
+    public int X { get; set; }
+    public int Y { get; set; }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public struct Point
+{
+    public Point(int x, int y)
+    {
+        X = x;
+        Y = y;
+    }
+
+    public int X { get; }
+    public int Y { get; }
+}
+</pre>

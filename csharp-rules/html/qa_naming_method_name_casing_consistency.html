@@ -1,0 +1,23 @@
+<p>When two methods on the same type share a name that differs only in capitalization, callers cannot tell them apart at a glance and the pair is invalid for any consumer that treats identifiers case-insensitively. Picking one spelling removes the ambiguity and keeps the public surface predictable.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class Mailbox
+{
+    public void Send() { }
+
+    public void send() { } // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class Mailbox
+{
+    public void Send() { }
+
+    public void Receive() { }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/standard/design-guidelines/capitalization-conventions">Capitalization conventions</a></li>
+</ul>

@@ -1,0 +1,22 @@
+{
+  "id": "QCS0076",
+  "title": "ThreadStatic should only be applied to static fields",
+  "tags": [
+    "bug",
+    "concurrency"
+  ],
+  "messageFormat": "Apply 'ThreadStatic' only to static fields; on an instance field it has no effect.",
+  "summary": [
+    "<p>The <code>ThreadStatic</code> attribute gives each thread its own copy of a field, but the runtime only honors it on <code>static</code> fields. Placing it on an instance field compiles without complaint yet does nothing, so code that relies on per-thread isolation silently shares one value across threads.</p>",
+    "<p>Make the field <code>static</code> if per-thread storage is the intent, or remove the attribute if it was applied by mistake. For per-thread instance state, use <code>ThreadLocal&lt;T&gt;</code> instead.</p>"
+  ],
+  "noncompliant": "public class Context\n{\n    [ThreadStatic]\n    private int depth; // Noncompliant\n}",
+  "compliant": "public class Context\n{\n    [ThreadStatic]\n    private static int depth;\n}",
+  "seeAlso": [
+    {
+      "text": "ThreadStaticAttribute",
+      "href": "https://learn.microsoft.com/dotnet/api/system.threadstaticattribute"
+    }
+  ],
+  "ruleKey": "qa_quality_thread_static_on_instance_field"
+}

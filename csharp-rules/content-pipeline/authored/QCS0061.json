@@ -1,0 +1,22 @@
+{
+  "id": "QCS0061",
+  "title": "Disposable fields should be disposed",
+  "tags": [
+    "bug",
+    "resource-management"
+  ],
+  "messageFormat": "Dispose the field '{0}' in this type's Dispose method; it owns a disposable resource that is never released.",
+  "summary": [
+    "<p>A type that holds a field of a disposable type owns that resource for its lifetime. If the owning type implements <code>IDisposable</code> but its <code>Dispose</code> method never disposes the field, the wrapped resource leaks every time an instance is discarded.</p>",
+    "<p>Release each owned disposable field inside <code>Dispose</code>. If ownership is intentionally transferred elsewhere, make that transfer explicit so the field is not treated as owned here.</p>"
+  ],
+  "noncompliant": "public class Importer : IDisposable\n{\n    private readonly Resource resource = new(); // Noncompliant\n\n    public void Dispose()\n    {\n    }\n}",
+  "compliant": "public class Importer : IDisposable\n{\n    private readonly Resource resource = new();\n\n    public void Dispose()\n    {\n        resource.Dispose();\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "Implement a Dispose method",
+      "href": "https://learn.microsoft.com/dotnet/standard/garbage-collection/implementing-dispose"
+    }
+  ],
+  "ruleKey": "qa_quality_disposable_field_not_disposed"
+}

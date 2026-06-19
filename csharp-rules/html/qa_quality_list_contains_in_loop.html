@@ -1,0 +1,44 @@
+<p>Membership testing on a <code>List&lt;T&gt;</code> is a linear scan. Doing it inside a loop turns the surrounding work into a quadratic cost that is invisible on small inputs and crippling on large ones. When the same collection is searched repeatedly, build a <code>HashSet&lt;T&gt;</code> once and test against it, turning each lookup into a constant-time operation.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System.Collections.Generic;
+
+public sealed class Filter
+{
+    public int Count(List&lt;int&gt; known, IEnumerable&lt;int&gt; input)
+    {
+        var hits = 0;
+        foreach (var value in input)
+        {
+            if (known.Contains(value)) // Noncompliant
+            {
+                hits++;
+            }
+        }
+
+        return hits;
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System.Collections.Generic;
+
+public sealed class Filter
+{
+    public int Count(List&lt;int&gt; known, IEnumerable&lt;int&gt; input)
+    {
+        var lookup = new HashSet&lt;int&gt;(known);
+        var hits = 0;
+        foreach (var value in input)
+        {
+            if (lookup.Contains(value))
+            {
+                hits++;
+            }
+        }
+
+        return hits;
+    }
+}
+</pre>

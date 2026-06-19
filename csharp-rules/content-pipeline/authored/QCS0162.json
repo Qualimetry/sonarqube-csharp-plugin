@@ -1,0 +1,16 @@
+{
+  "id": "QCS0162",
+  "title": "Protected nested type in a sealed class should be private",
+  "tags": [
+    "design",
+    "clarity"
+  ],
+  "summary": [
+    "<p>A sealed class can never be inherited, so <code>protected</code> accessibility on anything it declares is meaningless: there is no derived type that could ever see the member. A <code>protected</code> nested type in a sealed class therefore signals an intent that the language cannot honour and only confuses the reader.</p>",
+    "<p>Declare the nested type <code>private</code>, which is its real effective accessibility.</p>"
+  ],
+  "messageFormat": "Make this nested type private; 'protected' has no effect inside a sealed type.",
+  "noncompliant": "public sealed class Cache\n{\n    protected class Entry // Noncompliant\n    {\n        public int Value { get; set; }\n    }\n}",
+  "compliant": "public sealed class Cache\n{\n    private sealed class Entry\n    {\n        public int Value { get; set; }\n    }\n}",
+  "ruleKey": "qa_quality_protected_nested_type_in_sealed_type"
+}

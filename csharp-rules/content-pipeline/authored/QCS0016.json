@@ -1,0 +1,15 @@
+{
+  "id": "QCS0016",
+  "title": "Distinct types should not share the same simple name",
+  "tags": [
+    "clarity",
+    "convention"
+  ],
+  "messageFormat": "Rename this type; another type in the compilation already uses the name '{0}'.",
+  "summary": [
+    "<p>When two unrelated types share a simple name and differ only by namespace, every file that needs both must alias one of them, error messages become ambiguous, and a reader cannot tell from an unqualified reference which type is meant. Reflection and serialization that key on the short name also become unreliable. Give each type a name that is unique within the codebase so references stay unambiguous without aliasing.</p>"
+  ],
+  "noncompliant": "namespace Billing\n{\n    public sealed class Account // Noncompliant\n    {\n    }\n}\n\nnamespace Identity\n{\n    public sealed class Account\n    {\n    }\n}",
+  "compliant": "namespace Billing\n{\n    public sealed class BillingAccount\n    {\n    }\n}\n\nnamespace Identity\n{\n    public sealed class UserAccount\n    {\n    }\n}",
+  "ruleKey": "qa_quality_duplicate_type_name"
+}

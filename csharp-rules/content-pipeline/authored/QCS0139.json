@@ -1,0 +1,22 @@
+{
+  "id": "QCS0139",
+  "title": "Fields should not be explicitly initialized to their default value",
+  "tags": [
+    "convention",
+    "clarity"
+  ],
+  "messageFormat": "Remove this redundant initialization to the field's default value.",
+  "summary": [
+    "<p>The runtime already zero-initialises every field before a constructor runs, so assigning <code>0</code>, <code>false</code>, or <code>null</code> in the declaration repeats work that has already happened.</p>",
+    "<p>Dropping the redundant initialiser leaves only the genuinely non-default values visible, so a reader can tell which fields are deliberately seeded.</p>"
+  ],
+  "noncompliant": "private int _retries = 0; // Noncompliant\nprivate bool _enabled = false; // Noncompliant",
+  "compliant": "private int _retries;\nprivate bool _enabled;",
+  "seeAlso": [
+    {
+      "text": "Fields (C# programming guide)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/fields"
+    }
+  ],
+  "ruleKey": "qa_style_redundant_default_field_initializer"
+}

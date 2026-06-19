@@ -1,0 +1,22 @@
+<p><code>ApplicationException</code> was meant to separate application errors from system errors, a distinction the framework itself never adopted. Deriving from it adds a layer that carries no behaviour and no meaning, so the guidance is to skip it entirely.</p>
+<p>Derive custom exceptions directly from <code>Exception</code>, or from a more specific exception type when one fits.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System;
+
+public class OrderFailedException : ApplicationException // Noncompliant
+{
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System;
+
+public class OrderFailedException : Exception
+{
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/api/system.applicationexception">CA1058 and exception base types</a></li>
+</ul>

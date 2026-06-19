@@ -1,0 +1,22 @@
+{
+  "id": "QCS0034",
+  "title": "Prefer the generic GetComponent overload",
+  "tags": [
+    "unity",
+    "clarity"
+  ],
+  "messageFormat": "Call the generic GetComponent overload instead of passing a Type or string argument.",
+  "summary": [
+    "<p>Resolving a component through a <code>Type</code> or string argument forces a runtime cast at the call site and gives back a loosely typed result that the caller has to convert before use. It also defers any naming mistake to runtime, where it surfaces as a failed lookup rather than a compile error.</p>",
+    "<p>The generic <code>GetComponent&lt;T&gt;()</code> overload returns the requested component already typed, so the cast disappears, the intent is explicit, and a wrong type name fails to compile rather than silently returning null.</p>"
+  ],
+  "noncompliant": "public class Mover : MonoBehaviour\n{\n    void Awake()\n    {\n        var body = GetComponent(typeof(Rigidbody)); // Noncompliant\n    }\n}",
+  "compliant": "public class Mover : MonoBehaviour\n{\n    void Awake()\n    {\n        var body = GetComponent<Rigidbody>();\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "Component.GetComponent (Unity scripting reference)",
+      "href": "https://docs.unity3d.com/ScriptReference/Component.GetComponent.html"
+    }
+  ],
+  "ruleKey": "qa_unity_non_generic_get_component"
+}

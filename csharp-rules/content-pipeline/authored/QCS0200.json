@@ -1,0 +1,15 @@
+{
+  "id": "QCS0200",
+  "title": "Types should not share a name with their containing namespace",
+  "tags": [
+    "clarity",
+    "convention"
+  ],
+  "messageFormat": "Rename type '{0}' so it does not match its containing namespace '{1}'.",
+  "summary": [
+    "<p>When a type and its containing namespace share the same identifier, unqualified references and generated documentation become ambiguous. Choose a distinct type name or rename the namespace segment.</p>"
+  ],
+  "noncompliant": "namespace Billing\n{\n    public sealed class Billing\n    {\n    }\n}",
+  "compliant": "namespace Billing\n{\n    public sealed class BillingService\n    {\n    }\n}",
+  "ruleKey": "qa_naming_type_conflicts_with_namespace"
+}

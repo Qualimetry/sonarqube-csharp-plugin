@@ -1,0 +1,19 @@
+<p>When a type and its containing namespace share the same identifier, unqualified references and generated documentation become ambiguous. Choose a distinct type name or rename the namespace segment.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+namespace Billing
+{
+    public sealed class Billing
+    {
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+namespace Billing
+{
+    public sealed class BillingService
+    {
+    }
+}
+</pre>

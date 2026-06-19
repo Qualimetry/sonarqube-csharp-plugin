@@ -1,0 +1,21 @@
+{
+  "id": "QCS0131",
+  "title": "Public collection members should have a plural name",
+  "tags": [
+    "convention",
+    "naming"
+  ],
+  "messageFormat": "Rename collection member '{0}' to a plural name.",
+  "summary": [
+    "<p>A public property or field whose type is an array or sequence holds many values, so a singular name misrepresents it to every caller. A plural name communicates the multiplicity at the use site and matches how the rest of the framework names its sequence-valued members.</p>"
+  ],
+  "noncompliant": "using System.Collections.Generic;\n\npublic class Order\n{\n    public List<string> Line { get; set; } // Noncompliant\n}",
+  "compliant": "using System.Collections.Generic;\n\npublic class Order\n{\n    public List<string> Lines { get; set; }\n}",
+  "seeAlso": [
+    {
+      "text": "Names of type members",
+      "href": "https://learn.microsoft.com/dotnet/standard/design-guidelines/names-of-type-members"
+    }
+  ],
+  "ruleKey": "qa_naming_collection_member_plural_name"
+}

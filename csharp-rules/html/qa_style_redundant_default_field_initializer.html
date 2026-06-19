@@ -1,0 +1,16 @@
+<p>The runtime already zero-initialises every field before a constructor runs, so assigning <code>0</code>, <code>false</code>, or <code>null</code> in the declaration repeats work that has already happened.</p>
+<p>Dropping the redundant initialiser leaves only the genuinely non-default values visible, so a reader can tell which fields are deliberately seeded.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+private int _retries = 0; // Noncompliant
+private bool _enabled = false; // Noncompliant
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+private int _retries;
+private bool _enabled;
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/fields">Fields (C# programming guide)</a></li>
+</ul>

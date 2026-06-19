@@ -1,0 +1,34 @@
+<p>A type that implements <code>ISerializable</code> promises to rebuild itself from a <code>SerializationInfo</code>, but that contract is only complete when the type also declares a constructor accepting <code>SerializationInfo</code> and <code>StreamingContext</code>. Without it the runtime cannot reconstruct an instance and throws at deserialization time.</p>
+<p>Declare the matching constructor (protected on an unsealed type, private on a sealed one) so the serialization round trip works for both the writing and the reading side.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+[Serializable]
+public class Money : ISerializable // Noncompliant
+{
+    public void GetObjectData(SerializationInfo info, StreamingContext context)
+    {
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+[Serializable]
+public class Money : ISerializable
+{
+    public Money()
+    {
+    }
+
+    protected Money(SerializationInfo info, StreamingContext context)
+    {
+    }
+
+    public void GetObjectData(SerializationInfo info, StreamingContext context)
+    {
+    }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/api/system.runtime.serialization.iserializable">ISerializable interface</a></li>
+</ul>

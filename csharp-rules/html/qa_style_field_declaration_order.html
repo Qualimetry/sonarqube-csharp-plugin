@@ -1,0 +1,24 @@
+<p>Keeping every field at the top of a type gives the reader the data a class holds before the behaviour that uses it. A field that appears after methods or properties is easy to miss and breaks the expected layout.</p>
+<p>A consistent member order lets anyone scanning the file find the state without hunting through the body.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public sealed class Counter
+{
+    public void Increment() =&gt; _value++;
+
+    private int _value; // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public sealed class Counter
+{
+    private int _value;
+
+    public void Increment() =&gt; _value++;
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/fundamentals/coding-style/coding-conventions">C# coding conventions</a></li>
+</ul>

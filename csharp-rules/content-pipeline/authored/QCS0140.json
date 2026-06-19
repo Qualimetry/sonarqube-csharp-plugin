@@ -1,0 +1,22 @@
+{
+  "id": "QCS0140",
+  "title": "Verbatim strings without escapes should be regular strings",
+  "tags": [
+    "convention",
+    "clarity"
+  ],
+  "messageFormat": "Use a regular string literal since this verbatim string contains nothing that requires the '@' prefix.",
+  "summary": [
+    "<p>The <code>@</code> prefix exists for strings that contain backslashes, embedded quotes, or line breaks. A verbatim literal whose content has none of these gains nothing from the prefix and just looks like it might.</p>",
+    "<p>Dropping the prefix on such literals keeps the verbatim form meaningful: where it appears, it signals that the text really does need it.</p>"
+  ],
+  "noncompliant": "var label = @\"Pending\"; // Noncompliant",
+  "compliant": "var label = \"Pending\";",
+  "seeAlso": [
+    {
+      "text": "String literals (C# reference)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/reference-types#string-literals"
+    }
+  ],
+  "ruleKey": "qa_style_unnecessary_verbatim_string"
+}

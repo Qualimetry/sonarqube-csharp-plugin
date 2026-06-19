@@ -1,0 +1,21 @@
+<p>The name <code>Dispose</code> is a strong signal that a type participates in the <code>IDisposable</code> pattern and that callers, including <code>using</code> statements, can release it deterministically. Putting a <code>Dispose</code> method on a type that does not implement <code>IDisposable</code> breaks that expectation: the method will not be called by <code>using</code> or by disposal-aware containers. Either implement the interface so the method is the real disposal entry point, or give the method a name that describes what it actually does.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public sealed class Buffer
+{
+    public void Dispose() // Noncompliant
+    {
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System;
+
+public sealed class Buffer : IDisposable
+{
+    public void Dispose()
+    {
+    }
+}
+</pre>

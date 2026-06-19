@@ -1,0 +1,15 @@
+<p>Parentheses wrapping a whole returned value that is already a single atomic expression, such as an identifier, literal or member access, add nothing to precedence or meaning. They make the reader pause to confirm there is no hidden grouping. Removing them leaves the intent unchanged and the line cleaner.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public int Current(int value)
+{
+    return (value); // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public int Current(int value)
+{
+    return value;
+}
+</pre>

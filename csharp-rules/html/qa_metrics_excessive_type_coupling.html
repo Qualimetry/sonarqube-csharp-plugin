@@ -1,0 +1,38 @@
+<p>A type whose members mention a large number of other types tends to sit at the centre of many responsibilities and is hard to change without ripple effects. Counting the distinct types named across a type's fields, properties, and method signatures gives a quick read on how tightly it is wired to the rest of the code base.</p>
+<p>The limit is configurable so that gateway or composition types, where a wide surface is expected, can be tuned separately.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public sealed class OrderProcessor
+{
+    private Catalog _catalog;
+    private Inventory _inventory;
+    private Pricing _pricing;
+    private Shipping _shipping;
+    private Billing _billing;
+    private Auditor _auditor;
+
+    public Receipt Handle(Cart cart, Customer customer, Coupon coupon)
+    {
+        return new Receipt();
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public sealed class OrderProcessor
+{
+    private readonly IOrderPipeline _pipeline;
+
+    public OrderProcessor(IOrderPipeline pipeline)
+    {
+        _pipeline = pipeline;
+    }
+
+    public Receipt Handle(Cart cart)
+    {
+        return _pipeline.Run(cart);
+    }
+}
+</pre>
+<h2>Parameters</h2>
+<p>This rule is configurable. Edit <code>maxcoupling</code> (default <code>20</code>) on the rule in your quality profile; SonarQube applies the value during analysis and synchronises it to connected IDEs.</p>

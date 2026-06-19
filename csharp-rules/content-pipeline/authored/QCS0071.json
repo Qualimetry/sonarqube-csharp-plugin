@@ -1,0 +1,15 @@
+{
+  "id": "QCS0071",
+  "title": "Methods named Dispose should belong to a disposable type",
+  "tags": [
+    "convention",
+    "clarity"
+  ],
+  "messageFormat": "Rename this method or implement IDisposable; 'Dispose' is reserved for the disposable pattern.",
+  "summary": [
+    "<p>The name <code>Dispose</code> is a strong signal that a type participates in the <code>IDisposable</code> pattern and that callers, including <code>using</code> statements, can release it deterministically. Putting a <code>Dispose</code> method on a type that does not implement <code>IDisposable</code> breaks that expectation: the method will not be called by <code>using</code> or by disposal-aware containers. Either implement the interface so the method is the real disposal entry point, or give the method a name that describes what it actually does.</p>"
+  ],
+  "noncompliant": "public sealed class Buffer\n{\n    public void Dispose() // Noncompliant\n    {\n    }\n}",
+  "compliant": "using System;\n\npublic sealed class Buffer : IDisposable\n{\n    public void Dispose()\n    {\n    }\n}",
+  "ruleKey": "qa_quality_dispose_method_without_i_disposable"
+}

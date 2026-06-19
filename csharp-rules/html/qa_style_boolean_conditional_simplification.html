@@ -1,0 +1,15 @@
+<p>A ternary of the shape <code>condition ? true : false</code> evaluates to exactly the condition, and <code>condition ? false : true</code> is just its negation. Writing the boolean expression directly is shorter and removes a needless branch for the reader to trace.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public bool CanProceed(int retries)
+{
+    return retries &lt; 3 ? true : false; // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public bool CanProceed(int retries)
+{
+    return retries &lt; 3;
+}
+</pre>

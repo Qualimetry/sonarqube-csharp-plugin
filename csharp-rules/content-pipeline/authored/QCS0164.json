@@ -1,0 +1,15 @@
+{
+  "id": "QCS0164",
+  "title": "Redundant 'ToString()' in string concatenation should be removed",
+  "tags": [
+    "clarity",
+    "redundancy"
+  ],
+  "messageFormat": "Remove this redundant 'ToString()' call; string concatenation already converts the operand.",
+  "summary": [
+    "<p>When an expression takes part in a string concatenation, the compiler already calls <code>ToString()</code> on each non-string operand. An explicit <code>ToString()</code> in that position is pure noise and, with a null operand, can even turn a safe empty result into a <code>NullReferenceException</code>.</p>"
+  ],
+  "noncompliant": "public string Label(int count)\n{\n    return \"Items: \" + count.ToString(); // Noncompliant\n}",
+  "compliant": "public string Label(int count)\n{\n    return \"Items: \" + count;\n}",
+  "ruleKey": "qa_style_redundant_to_string_in_concatenation"
+}

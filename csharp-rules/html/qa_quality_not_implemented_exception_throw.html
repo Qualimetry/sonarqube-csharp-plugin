@@ -1,0 +1,20 @@
+<p>Throwing <code>NotImplementedException</code> marks code as unfinished. When it ships, the member compiles and looks complete but fails at run time the first time it is exercised, often deep inside an unrelated feature where the cause is hard to find.</p>
+<p>Implement the member before release. If the operation is genuinely unsupported by design, throw <code>NotSupportedException</code> with a message that explains why, which is a permanent contract rather than a placeholder.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public decimal CalculateTax(decimal amount)
+{
+    throw new NotImplementedException(); // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public decimal CalculateTax(decimal amount)
+{
+    return amount * 0.2m;
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/api/system.notimplementedexception">NotImplementedException</a></li>
+</ul>

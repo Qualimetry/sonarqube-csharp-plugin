@@ -1,0 +1,22 @@
+<p>When a method name grows very long it often tries to describe a sequence of steps rather than a single intent. That is a hint that the method itself is doing too much, or that the name is restating information the type and parameters already give.</p>
+<p>The maximum length is configurable.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public sealed class Service
+{
+    public void LoadValidateTransformAndPersistAllIncomingCustomerRecords()
+    {
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public sealed class Service
+{
+    public void ImportCustomers()
+    {
+    }
+}
+</pre>
+<h2>Parameters</h2>
+<p>This rule is configurable. Edit <code>maxnamelength</code> (default <code>40</code>) on the rule in your quality profile; SonarQube applies the value during analysis and synchronises it to connected IDEs.</p>

@@ -1,0 +1,24 @@
+<p>A constant string passed to <code>IPAddress.Parse</code> is parsed when the line runs, not when it is written, so a typo in the literal stays hidden until that code path executes and then throws a <code>FormatException</code>. Because the value is fixed in source, the mistake can be caught immediately.</p>
+<p>Correct the literal so it is a well-formed IPv4 or IPv6 address.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System.Net;
+
+public sealed class Endpoint
+{
+    public IPAddress Address() =&gt; IPAddress.Parse("10.0.0.300"); // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System.Net;
+
+public sealed class Endpoint
+{
+    public IPAddress Address() =&gt; IPAddress.Parse("10.0.0.30");
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://cwe.mitre.org/data/definitions/20.html">CWE-20: Improper Input Validation</a></li>
+</ul>

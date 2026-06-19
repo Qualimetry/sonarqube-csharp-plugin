@@ -1,0 +1,106 @@
+name: CI (SonarQube Plugin)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    name: Build & Test
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.x'
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+
+      - name: Analyzer build + test
+        run: dotnet test csharp-engine/Qualimetry.CSharp.Analyzer.Tests/Qualimetry.CSharp.Analyzer.Tests.csproj -c Release
+
+      - name: Pack analyzer NuGet
+        run: pwsh scripts/pack-nuget.ps1 -Configuration Release
+
+      - name: Build embedded analyzer payload
+        run: pwsh scripts/build-analyzer-zip.ps1 -Configuration Release
+
+      - name: Package SonarQube plugin
+        run: mvn -f csharp-plugin/pom.xml clean verify --batch-mode --no-transfer-progress
+
+      - name: Upload plugin JAR
+        uses: actions/upload-artifact@v6
+        with:
+          name: qualimetry-csharp-plugin-jar
+          path: csharp-plugin/target/qualimetry-csharp-plugin-*.jar
+          retention-days: 30
+
+  release:
+    name: Create GitHub Release
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && startsWith(github.event.head_commit.message, 'release:')
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.x'
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+
+      - name: Read version
+        id: version
+        shell: bash
+        run: |
+          VERSION=$(cat VERSION | tr -d '[:space:]')
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Build release JAR
+        run: |
+          pwsh scripts/build-analyzer-zip.ps1 -Configuration Release
+          mvn -f csharp-plugin/pom.xml clean package --batch-mode --no-transfer-progress -DskipTests
+
+      - name: Extract release notes from CHANGELOG
+        shell: bash
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          if [ -f CHANGELOG.md ]; then
+            awk "/^## \[${VERSION}\]/{flag=1; next} /^## \[/{flag=0} flag" CHANGELOG.md > release-notes.md
+          fi
+          if [ ! -s release-notes.md ]; then
+            echo "Release ${VERSION}" > release-notes.md
+          fi
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: v${{ steps.version.outputs.version }}
+          body_path: release-notes.md
+          files: csharp-plugin/target/qualimetry-csharp-plugin-${{ steps.version.outputs.version }}.jar
+          draft: false
+          prerelease: false

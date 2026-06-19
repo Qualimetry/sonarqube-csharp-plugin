@@ -1,0 +1,15 @@
+{
+  "id": "QCS0065",
+  "title": "Enum members should not be named Reserved",
+  "tags": [
+    "convention",
+    "clarity"
+  ],
+  "messageFormat": "Rename this enum member; a name like 'Reserved' carries no meaning for callers.",
+  "summary": [
+    "<p>Naming an enum member <code>Reserved</code> bakes a placeholder into a public contract. It tells callers nothing about what the value means, yet it occupies a real numeric slot they can serialize, persist, and switch on. If a value is needed later, add it with a descriptive name then; reserving an ordinal in advance only leaves a meaningless option in every consumer's list.</p>"
+  ],
+  "noncompliant": "public enum Channel\n{\n    Email,\n    Sms,\n    Reserved // Noncompliant\n}",
+  "compliant": "public enum Channel\n{\n    Email,\n    Sms,\n    Push\n}",
+  "ruleKey": "qa_quality_reserved_enum_member_name"
+}

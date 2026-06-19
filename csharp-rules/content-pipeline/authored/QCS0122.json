@@ -1,0 +1,22 @@
+{
+  "id": "QCS0122",
+  "title": "Structs that override Equals should define the equality operator",
+  "tags": [
+    "bug",
+    "consistency"
+  ],
+  "messageFormat": "This struct overrides Equals but does not define operator ==, so the two can disagree.",
+  "summary": [
+    "<p>Overriding <code>Equals</code> on a value type signals that equality has been given real meaning. But <code>==</code> on a struct that defines no equality operator falls back to a different mechanism, so <code>a.Equals(b)</code> and <code>a == b</code> can return opposite answers for the same pair.</p>",
+    "<p>Provide a matching <code>operator ==</code> (and <code>operator !=</code>) so every form of equality on the type agrees.</p>"
+  ],
+  "noncompliant": "public struct Temperature\n{\n    public int Degrees;\n\n    public override bool Equals(object obj) => obj is Temperature t && t.Degrees == Degrees; // Noncompliant\n\n    public override int GetHashCode() => Degrees;\n}",
+  "compliant": "public struct Temperature\n{\n    public int Degrees;\n\n    public override bool Equals(object obj) => obj is Temperature t && t.Degrees == Degrees;\n\n    public override int GetHashCode() => Degrees;\n\n    public static bool operator ==(Temperature left, Temperature right) => left.Degrees == right.Degrees;\n\n    public static bool operator !=(Temperature left, Temperature right) => !(left == right);\n}",
+  "seeAlso": [
+    {
+      "text": "How to define value equality for a type",
+      "href": "https://learn.microsoft.com/dotnet/csharp/programming-guide/statements-expressions-operators/how-to-define-value-equality-for-a-type"
+    }
+  ],
+  "ruleKey": "qa_quality_value_type_equals_without_operator"
+}

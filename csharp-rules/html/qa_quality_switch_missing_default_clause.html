@@ -1,0 +1,42 @@
+<p>When a <code>switch</code> statement lists explicit cases but omits a <code>default</code> clause, any value that matches none of them falls straight through with no handling, which is rarely the author's intent and silently hides unexpected input.</p>
+<p>Declare a <code>default</code> clause that performs a deliberate action, even if that action is only to record or throw on the unexpected value.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public sealed class Router
+{
+    public string Resolve(int code)
+    {
+        switch (code) // Noncompliant
+        {
+            case 1:
+                return "one";
+            case 2:
+                return "two";
+        }
+
+        return "unknown";
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public sealed class Router
+{
+    public string Resolve(int code)
+    {
+        switch (code)
+        {
+            case 1:
+                return "one";
+            case 2:
+                return "two";
+            default:
+                return "unknown";
+        }
+    }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/statements/selection-statements#the-switch-statement">C# switch statement reference</a></li>
+</ul>

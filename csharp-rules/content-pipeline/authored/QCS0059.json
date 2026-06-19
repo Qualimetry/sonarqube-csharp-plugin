@@ -1,0 +1,22 @@
+{
+  "id": "QCS0059",
+  "title": "Types owning unmanaged resources should declare a finalizer",
+  "tags": [
+    "bug",
+    "resource-management"
+  ],
+  "messageFormat": "Add a finalizer (or use SafeHandle) so the unmanaged resource held by this type is released when Dispose is not called.",
+  "summary": [
+    "<p>A type that stores a raw handle such as an <code>IntPtr</code> and implements <code>IDisposable</code> owns an unmanaged resource. If a caller forgets to call <code>Dispose</code>, nothing reclaims that handle and the process leaks operating-system resources.</p>",
+    "<p>Provide a finalizer as a backstop that frees the handle during garbage collection, or, preferably, wrap the handle in a <code>SafeHandle</code> so the cleanup is guaranteed without writing a finalizer by hand.</p>"
+  ],
+  "noncompliant": "public class FileWrapper : IDisposable // Noncompliant\n{\n    private IntPtr handle;\n\n    public void Dispose()\n    {\n        Release(handle);\n    }\n\n    private static void Release(IntPtr h)\n    {\n    }\n}",
+  "compliant": "public class FileWrapper : IDisposable\n{\n    private IntPtr handle;\n\n    ~FileWrapper()\n    {\n        Release(handle);\n    }\n\n    public void Dispose()\n    {\n        Release(handle);\n        GC.SuppressFinalize(this);\n    }\n\n    private static void Release(IntPtr h)\n    {\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "Implement a Dispose method",
+      "href": "https://learn.microsoft.com/dotnet/standard/garbage-collection/implementing-dispose"
+    }
+  ],
+  "ruleKey": "qa_quality_unmanaged_resource_missing_finalizer"
+}

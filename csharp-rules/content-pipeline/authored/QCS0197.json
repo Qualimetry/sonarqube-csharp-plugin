@@ -1,0 +1,22 @@
+{
+  "id": "QCS0197",
+  "title": "Switch statements should declare a default clause",
+  "tags": [
+    "convention",
+    "suspicious"
+  ],
+  "messageFormat": "Add a default clause so this switch handles values that match none of the listed cases.",
+  "summary": [
+    "<p>When a <code>switch</code> statement lists explicit cases but omits a <code>default</code> clause, any value that matches none of them falls straight through with no handling, which is rarely the author's intent and silently hides unexpected input.</p>",
+    "<p>Declare a <code>default</code> clause that performs a deliberate action, even if that action is only to record or throw on the unexpected value.</p>"
+  ],
+  "noncompliant": "public sealed class Router\n{\n    public string Resolve(int code)\n    {\n        switch (code) // Noncompliant\n        {\n            case 1:\n                return \"one\";\n            case 2:\n                return \"two\";\n        }\n\n        return \"unknown\";\n    }\n}",
+  "compliant": "public sealed class Router\n{\n    public string Resolve(int code)\n    {\n        switch (code)\n        {\n            case 1:\n                return \"one\";\n            case 2:\n                return \"two\";\n            default:\n                return \"unknown\";\n        }\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "C# switch statement reference",
+      "href": "https://learn.microsoft.com/dotnet/csharp/language-reference/statements/selection-statements#the-switch-statement"
+    }
+  ],
+  "ruleKey": "qa_quality_switch_missing_default_clause"
+}

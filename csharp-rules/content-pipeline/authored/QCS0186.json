@@ -1,0 +1,21 @@
+{
+  "id": "QCS0186",
+  "title": "An interface's 'I' prefix should be followed by an uppercase letter",
+  "tags": [
+    "convention",
+    "naming"
+  ],
+  "messageFormat": "Rename interface '{0}'; the 'I' prefix should be followed by an uppercase letter.",
+  "summary": [
+    "<p>The interface convention treats the leading <code>I</code> as a one-letter prefix in front of a PascalCase name, so the second character should be uppercase. A name where the <code>I</code> runs straight into a lowercase letter reads as an ordinary word that merely starts with <code>I</code>, which defeats the prefix and misleads the reader.</p>"
+  ],
+  "noncompliant": "public interface Itemizer // Noncompliant\n{\n    void Run();\n}",
+  "compliant": "public interface IItemizer\n{\n    void Run();\n}",
+  "seeAlso": [
+    {
+      "text": "Names of classes, structs, and interfaces",
+      "href": "https://learn.microsoft.com/dotnet/standard/design-guidelines/names-of-classes-structs-and-interfaces"
+    }
+  ],
+  "ruleKey": "qa_naming_interface_prefix_casing"
+}

@@ -1,0 +1,19 @@
+<p>A <code>sealed</code> type can never be inherited, so a <code>protected</code> member on it is reachable from nowhere that <code>private</code> would not also serve. The wider modifier is misleading and the compiler even warns about it. Declaring the field <code>private</code> states the real scope.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public sealed class Cache
+{
+    protected int _size; // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public sealed class Cache
+{
+    private int _size;
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/sealed">sealed (C# reference)</a></li>
+</ul>

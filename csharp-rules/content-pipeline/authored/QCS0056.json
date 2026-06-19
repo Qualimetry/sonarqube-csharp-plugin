@@ -1,0 +1,22 @@
+{
+  "id": "QCS0056",
+  "title": "Constructors should not call overridable members",
+  "tags": [
+    "bug",
+    "design"
+  ],
+  "messageFormat": "Do not call the overridable member '{0}' from a constructor; the derived override runs before the subclass is initialized.",
+  "summary": [
+    "<p>When a constructor calls a virtual or abstract member, the most derived override executes before the derived class constructor has run. The override then observes fields that are still at their default values, which leads to subtle bugs or a <code>NullReferenceException</code> that is hard to trace back to the base constructor.</p>",
+    "<p>Keep constructors free of overridable calls. Do the work with non-virtual logic, or move it to an initialization method the caller invokes once the object is fully constructed.</p>"
+  ],
+  "noncompliant": "public abstract class Document\n{\n    protected Document()\n    {\n        Render(); // Noncompliant\n    }\n\n    protected abstract void Render();\n}",
+  "compliant": "public abstract class Document\n{\n    protected Document()\n    {\n    }\n\n    public void Initialize() => Render();\n\n    protected abstract void Render();\n}",
+  "seeAlso": [
+    {
+      "text": "Virtual members (C# reference)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/virtual"
+    }
+  ],
+  "ruleKey": "qa_quality_virtual_call_in_constructor"
+}

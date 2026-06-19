@@ -1,0 +1,24 @@
+<p>When the <code>CommandText</code> of a database command, or the SQL passed to a command constructor, is assembled from string concatenation, interpolation, or <code>string.Format</code>, any value that reaches it becomes part of the executed statement. An attacker who controls that value can change the meaning of the query, read data they should not see, or destroy it.</p>
+<p>Keep the SQL text constant and pass every runtime value as a command parameter so the database treats it strictly as data.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public void Find(System.Data.IDbCommand command, string name)
+{
+    command.CommandText = "SELECT * FROM Users WHERE Name = '" + name + "'"; // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public void Find(System.Data.IDbCommand command, string name)
+{
+    command.CommandText = "SELECT * FROM Users WHERE Name = @name";
+    var parameter = command.CreateParameter();
+    parameter.ParameterName = "@name";
+    parameter.Value = name;
+    command.Parameters.Add(parameter);
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://cwe.mitre.org/data/definitions/89.html">CWE-89: Improper Neutralization of Special Elements used in an SQL Command</a></li>
+</ul>

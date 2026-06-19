@@ -1,0 +1,15 @@
+{
+  "id": "QCS0209",
+  "title": "Assemblies should not be referenced at multiple versions",
+  "tags": [
+    "reliability",
+    "dependencies"
+  ],
+  "messageFormat": "Assembly '{0}' is referenced at multiple versions ({1}).",
+  "summary": [
+    "<p>Loading two versions of the same assembly in one application causes binding conflicts and subtle runtime failures. Align package references to a single version.</p>"
+  ],
+  "noncompliant": "public class App\n{\n}",
+  "compliant": "public class App\n{\n}",
+  "ruleKey": "qa_quality_assembly_multiple_versions"
+}

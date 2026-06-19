@@ -1,0 +1,21 @@
+{
+  "id": "QCS0058",
+  "title": "Controller types should carry a 'Controller' suffix",
+  "tags": [
+    "convention",
+    "naming"
+  ],
+  "messageFormat": "Rename controller type '{0}' so its name ends with 'Controller'.",
+  "summary": [
+    "<p>Web frameworks discover and route to controllers by convention, and tooling, logs, and routes all read better when a controller is named for what it is. A type that derives from a controller base but omits the <code>Controller</code> word hides its role and can fall outside convention-based discovery.</p>"
+  ],
+  "noncompliant": "public class ControllerBase\n{\n}\n\npublic class Account : ControllerBase // Noncompliant\n{\n}",
+  "compliant": "public class ControllerBase\n{\n}\n\npublic class AccountController : ControllerBase\n{\n}",
+  "seeAlso": [
+    {
+      "text": "ASP.NET Core controllers",
+      "href": "https://learn.microsoft.com/aspnet/core/mvc/controllers/actions"
+    }
+  ],
+  "ruleKey": "qa_naming_controller_type_suffix"
+}

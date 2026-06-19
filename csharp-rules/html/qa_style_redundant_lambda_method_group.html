@@ -1,0 +1,23 @@
+<p>A lambda whose body does nothing but call another method with the same parameters, in the same order, adds a layer of indirection that the reader has to unwind. Passing the method group directly states the intent more plainly and removes the throwaway parameter names.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public IEnumerable&lt;string&gt; Describe(IEnumerable&lt;int&gt; numbers)
+{
+    return numbers.Select(n =&gt; Format(n)); // Noncompliant
+}
+
+private static string Format(int value) =&gt; value.ToString();
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public IEnumerable&lt;string&gt; Describe(IEnumerable&lt;int&gt; numbers)
+{
+    return numbers.Select(Format);
+}
+
+private static string Format(int value) =&gt; value.ToString();
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/operators/delegate-operator">Method group conversions (C# language reference)</a></li>
+</ul>

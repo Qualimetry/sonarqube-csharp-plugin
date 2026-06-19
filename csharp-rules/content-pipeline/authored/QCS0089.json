@@ -1,0 +1,21 @@
+{
+  "id": "QCS0089",
+  "title": "Exception types should carry an 'Exception' suffix",
+  "tags": [
+    "convention",
+    "naming"
+  ],
+  "messageFormat": "Rename exception type '{0}' so its name ends with 'Exception'.",
+  "summary": [
+    "<p>A type that ultimately derives from <code>System.Exception</code> shows up in <code>catch</code> clauses, stack traces, and logs. Ending its name with <code>Exception</code> signals at every one of those sites that the type represents a failure, and keeps it consistent with the framework's own exception types.</p>"
+  ],
+  "noncompliant": "using System;\n\npublic class PaymentFailed : Exception // Noncompliant\n{\n}",
+  "compliant": "using System;\n\npublic class PaymentFailedException : Exception\n{\n}",
+  "seeAlso": [
+    {
+      "text": "Names of exceptions",
+      "href": "https://learn.microsoft.com/dotnet/standard/design-guidelines/names-of-classes-structs-and-interfaces"
+    }
+  ],
+  "ruleKey": "qa_naming_exception_type_suffix"
+}

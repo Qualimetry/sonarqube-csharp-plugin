@@ -1,0 +1,23 @@
+<p>A type that hides a private constructor behind a static <code>Instance</code> accessor builds global mutable state into the type itself. Every consumer reaches for it implicitly, which makes dependencies invisible, couples code to a single concrete instance, and makes the type almost impossible to substitute in a test. Register the type with a container and inject it, so its lifetime is explicit and a fake can take its place where needed.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public sealed class ConfigStore // Noncompliant
+{
+    private static readonly ConfigStore _instance = new ConfigStore();
+
+    private ConfigStore()
+    {
+    }
+
+    public static ConfigStore Instance =&gt; _instance;
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public sealed class ConfigStore
+{
+    public ConfigStore()
+    {
+    }
+}
+</pre>

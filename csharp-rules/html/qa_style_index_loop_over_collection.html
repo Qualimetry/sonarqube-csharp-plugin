@@ -1,0 +1,28 @@
+<p>A <code>for</code> loop that starts at zero, runs while the counter is below a collection's <code>Length</code> or <code>Count</code>, increments by one, and only uses the counter to index that collection is a manual <code>foreach</code>. The index adds an off-by-one risk and obscures the simple intent of visiting each element.</p>
+<p>When the index itself is not needed, <code>foreach</code> states the loop's purpose directly and cannot run past the end of the sequence.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public int Sum(int[] items)
+{
+    var total = 0;
+    for (int i = 0; i &lt; items.Length; i++) // Noncompliant
+    {
+        total += items[i];
+    }
+
+    return total;
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public int Sum(int[] items)
+{
+    var total = 0;
+    foreach (var item in items)
+    {
+        total += item;
+    }
+
+    return total;
+}
+</pre>

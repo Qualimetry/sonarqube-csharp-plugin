@@ -1,0 +1,22 @@
+{
+  "id": "QCS0152",
+  "title": "Newly created disposables should not be discarded",
+  "tags": [
+    "bug",
+    "resource-leak"
+  ],
+  "messageFormat": "This disposable object is created and immediately discarded without being disposed.",
+  "summary": [
+    "<p>Constructing an <code>IDisposable</code> as a standalone statement and ignoring the result leaks whatever it holds: a file handle, socket, or native buffer stays open until finalization, if it is reclaimed at all. The allocation had a side effect that is never undone.</p>",
+    "<p>Capture the instance in a <code>using</code> declaration or statement so it is disposed deterministically when the scope ends.</p>"
+  ],
+  "noncompliant": "using System.IO;\n\npublic class Loader\n{\n    public void Touch(string path)\n    {\n        new StreamReader(path); // Noncompliant\n    }\n}",
+  "compliant": "using System.IO;\n\npublic class Loader\n{\n    public string Touch(string path)\n    {\n        using var reader = new StreamReader(path);\n        return reader.ReadToEnd();\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "using statement (C# reference)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/language-reference/statements/using"
+    }
+  ],
+  "ruleKey": "qa_quality_undisposed_local_object"
+}
