@@ -1,0 +1,51 @@
+<p>A <code>Monitor.Enter</code> or <code>Monitor.TryEnter</code> that is not balanced by a <code>Monitor.Exit</code> in the same method leaks the lock: any exception, early return, or simple oversight leaves the monitor held forever and the next thread deadlocks.</p>
+<p>Keep the acquire and release together, with the release in a <code>finally</code>, or prefer a <code>lock</code> statement which guarantees the pairing.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System.Threading;
+
+public class Cache
+{
+    private readonly object _gate = new object();
+
+    public void Add()
+    {
+        Monitor.Enter(_gate); // Noncompliant
+        Mutate();
+    }
+
+    private void Mutate()
+    {
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System.Threading;
+
+public class Cache
+{
+    private readonly object _gate = new object();
+
+    public void Add()
+    {
+        Monitor.Enter(_gate);
+        try
+        {
+            Mutate();
+        }
+        finally
+        {
+            Monitor.Exit(_gate);
+        }
+    }
+
+    private void Mutate()
+    {
+    }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/api/system.threading.monitor">Monitor class (.NET API)</a></li>
+</ul>

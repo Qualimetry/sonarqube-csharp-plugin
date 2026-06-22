@@ -1,0 +1,26 @@
+<p>A parameter that is never read inside a private method is dead weight on the signature. Every caller is forced to compute and pass a value that has no effect, and the unused parameter often hides a bug where the value was meant to be used but never was.</p>
+<p>Remove the parameter, or use it in the method body as intended.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class Mailer
+{
+    public void Send(string to) =&gt; Format(to, true);
+
+    private string Format(string to, bool html) // Noncompliant
+    {
+        return to.Trim();
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class Mailer
+{
+    public void Send(string to) =&gt; Format(to);
+
+    private string Format(string to)
+    {
+        return to.Trim();
+    }
+}
+</pre>

@@ -1,0 +1,16 @@
+{
+  "id": "QCS0166",
+  "title": "Attributes should restrict the targets they apply to",
+  "tags": [
+    "design",
+    "clarity"
+  ],
+  "summary": [
+    "<p>An attribute declared with <code>AttributeTargets.All</code> can be placed on assemblies, classes, methods, parameters, return values, and more. Almost no attribute is meaningful in every one of those positions, so the broad target list lets the attribute be applied where it does nothing and hides genuine misuse from the compiler.</p>",
+    "<p>List only the program elements the attribute is designed for in its <code>AttributeUsage</code>.</p>"
+  ],
+  "messageFormat": "Restrict this attribute to the program elements it actually supports instead of 'AttributeTargets.All'.",
+  "noncompliant": "using System;\n\n[AttributeUsage(AttributeTargets.All)] // Noncompliant\npublic sealed class AuditAttribute : Attribute\n{\n}",
+  "compliant": "using System;\n\n[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]\npublic sealed class AuditAttribute : Attribute\n{\n}",
+  "ruleKey": "qa_quality_attribute_usage_all_targets"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "QCS0106",
+  "title": "ISerializable implementers should carry SerializableAttribute",
+  "tags": [
+    "bug",
+    "serialization"
+  ],
+  "messageFormat": "Apply [Serializable] to this type, which implements ISerializable.",
+  "summary": [
+    "<p>Implementing <code>ISerializable</code> states an intent to participate in serialization, but the runtime only treats a type as serializable when it also carries <code>[Serializable]</code>. Without the attribute the custom <code>GetObjectData</code> is never reached and serialization fails at run time.</p>",
+    "<p>Mark the type <code>[Serializable]</code> so the declared contract and the runtime behaviour agree.</p>"
+  ],
+  "noncompliant": "using System.Runtime.Serialization;\n\n#pragma warning disable SYSLIB0051\npublic class Ticket : ISerializable // Noncompliant\n{\n    public void GetObjectData(SerializationInfo info, StreamingContext context)\n    {\n    }\n}",
+  "compliant": "using System;\nusing System.Runtime.Serialization;\n\n#pragma warning disable SYSLIB0051\n[Serializable]\npublic class Ticket : ISerializable\n{\n    public void GetObjectData(SerializationInfo info, StreamingContext context)\n    {\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "SerializableAttribute (.NET API)",
+      "href": "https://learn.microsoft.com/dotnet/api/system.serializableattribute"
+    }
+  ],
+  "ruleKey": "qa_quality_serializable_interface_missing_attribute"
+}

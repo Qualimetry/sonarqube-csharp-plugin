@@ -1,0 +1,16 @@
+{
+  "id": "QCS0128",
+  "title": "Private nested type is never used",
+  "tags": [
+    "unused",
+    "clarity"
+  ],
+  "messageFormat": "Remove this unused private nested type or reference it where it is needed.",
+  "summary": [
+    "<p>A private nested type is only visible inside the type that declares it. When nothing in that enclosing type refers to it, the nested type is dead code: it adds surface area and maintenance cost without contributing to any behaviour.</p>",
+    "<p>Remove the nested type, or use it from the enclosing type that was meant to depend on it.</p>"
+  ],
+  "noncompliant": "public class Scheduler\n{\n    public void Run() { }\n\n    private sealed class PendingJob // Noncompliant\n    {\n        public int Id { get; set; }\n    }\n}",
+  "compliant": "public class Scheduler\n{\n    private readonly PendingJob _next = new();\n\n    public void Run() => _next.Id++;\n\n    private sealed class PendingJob\n    {\n        public int Id { get; set; }\n    }\n}",
+  "ruleKey": "qa_quality_unused_private_nested_type"
+}

@@ -1,0 +1,23 @@
+<p>An expression-bodied method that returns a value built only from its inputs, without calling other methods, constructing objects, or assigning to any state, is observably pure. Annotating such a method with <code>[Pure]</code> documents that contract for callers and lets analysers reason about safe caching and reordering.</p>
+<p>The annotation is a no-op at runtime, so adding it never changes behaviour; it only records an invariant that the method already satisfies.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class Geometry
+{
+    public int Square(int n) =&gt; n * n; // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System.Diagnostics.Contracts;
+
+public class Geometry
+{
+    [Pure]
+    public int Square(int n) =&gt; n * n;
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/api/system.diagnostics.contracts.pureattribute">PureAttribute (System.Diagnostics.Contracts)</a></li>
+</ul>

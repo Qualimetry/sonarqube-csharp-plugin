@@ -1,0 +1,20 @@
+<p>Negating <code>Any</code> reads as "there is no element that matches", which is the same as "every element fails the condition". Writing it as <code>All</code> with the inverted predicate makes that universal statement explicit.</p>
+<p>Both expressions evaluate identically; the change only clarifies what the query is really asserting.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+if (!items.Any(i =&gt; i.IsExpired)) // Noncompliant
+{
+    KeepAll();
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+if (items.All(i =&gt; !i.IsExpired))
+{
+    KeepAll();
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/api/system.linq.enumerable.all">Enumerable.All</a></li>
+</ul>

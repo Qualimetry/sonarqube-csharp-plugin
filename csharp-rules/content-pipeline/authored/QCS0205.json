@@ -1,0 +1,15 @@
+{
+  "id": "QCS0205",
+  "title": "Types in the same directory should share one namespace",
+  "tags": [
+    "clarity",
+    "convention"
+  ],
+  "messageFormat": "Directory '{0}' contains types declared in more than one namespace.",
+  "summary": [
+    "<p>Mixing namespaces inside one folder makes it hard to tell which feature owns the code on disk. Align the namespace of every type in a directory.</p>"
+  ],
+  "noncompliant": "namespace Company.Product\n{\n    public sealed class Alpha\n    {\n    }\n}",
+  "compliant": "namespace Company.Product\n{\n    public sealed class Alpha\n    {\n    }\n\n    public sealed class Beta\n    {\n    }\n}",
+  "ruleKey": "qa_naming_directory_spans_namespaces"
+}

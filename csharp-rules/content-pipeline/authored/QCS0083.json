@@ -1,0 +1,22 @@
+{
+  "id": "QCS0083",
+  "title": "System.Random should not produce security-sensitive values",
+  "tags": [
+    "security",
+    "cryptography"
+  ],
+  "messageFormat": "Generate this security-sensitive value with a cryptographic random number generator instead of System.Random.",
+  "summary": [
+    "<p><code>System.Random</code> is a fast, statistically uniform generator, but its output is predictable: given a few observed values an attacker can recover the seed and reproduce the entire sequence. Using it to build a token, key, salt, nonce, or password therefore makes those secrets guessable.</p>",
+    "<p>When the value feeds a security decision, generate it with a cryptographically secure source such as <code>RandomNumberGenerator</code>.</p>"
+  ],
+  "noncompliant": "using System;\n\npublic sealed class Tokens\n{\n    public int Next()\n    {\n        var tokenSeed = new Random(); // Noncompliant\n        return tokenSeed.Next();\n    }\n}",
+  "compliant": "using System.Security.Cryptography;\n\npublic sealed class Tokens\n{\n    public int Next() => RandomNumberGenerator.GetInt32(int.MaxValue);\n}",
+  "seeAlso": [
+    {
+      "text": "CWE-338: Use of Cryptographically Weak Pseudo-Random Number Generator (PRNG)",
+      "href": "https://cwe.mitre.org/data/definitions/338.html"
+    }
+  ],
+  "ruleKey": "qa_reliability_insecure_random_for_security"
+}

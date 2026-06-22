@@ -1,0 +1,26 @@
+<p>Throwing <code>Exception</code>, <code>SystemException</code>, or <code>ApplicationException</code> forces every caller that wants to react to this failure to catch the broadest base type. That handler then also swallows unrelated errors, so the program either over-reacts or hides bugs it should have surfaced.</p>
+<p>Throw the most specific type that fits the failure, or define a purpose-built exception for the domain, so callers can catch exactly the condition they know how to handle.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public void Connect(string host)
+{
+    if (string.IsNullOrEmpty(host))
+    {
+        throw new Exception("Host is required."); // Noncompliant
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public void Connect(string host)
+{
+    if (string.IsNullOrEmpty(host))
+    {
+        throw new ArgumentException("Host is required.", nameof(host));
+    }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/standard/design-guidelines/exception-throwing">Exception throwing guidelines</a></li>
+</ul>

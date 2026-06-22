@@ -1,0 +1,15 @@
+{
+  "id": "QCS0024",
+  "title": "Members should not be more accessible than their containing type",
+  "tags": [
+    "design",
+    "encapsulation"
+  ],
+  "messageFormat": "This member is declared public but its containing type is not publicly visible; lower its accessibility.",
+  "summary": [
+    "<p>Marking a member <code>public</code> inside a type that is itself <code>internal</code> or otherwise non-public is misleading: the member can never be reached from outside the assembly because the type that holds it cannot. The wider modifier suggests an external contract that does not exist and hides the member's real reach. Declare the member with accessibility that matches how far it can actually be used.</p>"
+  ],
+  "noncompliant": "internal sealed class Cache\n{\n    public void Evict() // Noncompliant\n    {\n    }\n}",
+  "compliant": "internal sealed class Cache\n{\n    internal void Evict()\n    {\n    }\n}",
+  "ruleKey": "qa_quality_public_method_in_non_public_type"
+}

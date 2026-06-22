@@ -1,0 +1,23 @@
+<p>A <code>protected</code> method exists so that derived types can call or override it. In a <code>sealed</code> type there are no derived types, so the modifier is meaningless and only widens the apparent contract. Declaring the method <code>private</code> matches its real reachability.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public sealed class Report
+{
+    protected void Render() // Noncompliant
+    {
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public sealed class Report
+{
+    private void Render()
+    {
+    }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers">Access Modifiers (C# guide)</a></li>
+</ul>

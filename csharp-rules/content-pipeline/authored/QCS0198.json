@@ -1,0 +1,22 @@
+{
+  "id": "QCS0198",
+  "title": "Constructed exceptions should be thrown, not discarded",
+  "tags": [
+    "bug",
+    "error-handling"
+  ],
+  "messageFormat": "Throw or remove this '{0}' instance; creating it on its own has no effect.",
+  "summary": [
+    "<p>Creating an exception object as a stand-alone statement does nothing useful: the instance is constructed and then immediately discarded, so the error it was meant to report never surfaces. This is almost always a forgotten <code>throw</code>, which means a failure path silently continues as if nothing went wrong.</p>",
+    "<p>Either <code>throw</code> the exception so the caller is notified, or delete the dead construction if it was left behind by mistake.</p>"
+  ],
+  "noncompliant": "using System;\n\npublic class Validator\n{\n    public void Check(int value)\n    {\n        if (value < 0)\n        {\n            new ArgumentOutOfRangeException(nameof(value)); // Noncompliant\n        }\n    }\n}",
+  "compliant": "using System;\n\npublic class Validator\n{\n    public void Check(int value)\n    {\n        if (value < 0)\n        {\n            throw new ArgumentOutOfRangeException(nameof(value));\n        }\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "throw statement (C# language reference)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/language-reference/statements/exception-handling-statements"
+    }
+  ],
+  "ruleKey": "qa_quality_discarded_exception_instance"
+}

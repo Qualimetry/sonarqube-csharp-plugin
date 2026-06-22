@@ -1,0 +1,21 @@
+{
+  "id": "QCS0188",
+  "title": "Lambdas that only forward their arguments should be method groups",
+  "tags": [
+    "convention",
+    "clarity"
+  ],
+  "messageFormat": "Replace this lambda with the method group it simply forwards to.",
+  "summary": [
+    "<p>A lambda whose body does nothing but call another method with the same parameters, in the same order, adds a layer of indirection that the reader has to unwind. Passing the method group directly states the intent more plainly and removes the throwaway parameter names.</p>"
+  ],
+  "noncompliant": "public IEnumerable<string> Describe(IEnumerable<int> numbers)\n{\n    return numbers.Select(n => Format(n)); // Noncompliant\n}\n\nprivate static string Format(int value) => value.ToString();",
+  "compliant": "public IEnumerable<string> Describe(IEnumerable<int> numbers)\n{\n    return numbers.Select(Format);\n}\n\nprivate static string Format(int value) => value.ToString();",
+  "seeAlso": [
+    {
+      "text": "Method group conversions (C# language reference)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/language-reference/operators/delegate-operator"
+    }
+  ],
+  "ruleKey": "qa_style_redundant_lambda_method_group"
+}

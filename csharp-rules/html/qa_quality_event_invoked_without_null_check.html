@@ -1,0 +1,24 @@
+<p>An event with no subscribers is <code>null</code>. Invoking it directly throws a <code>NullReferenceException</code> the moment a handler is absent. A separate <code>if</code> null check before the call is also unsafe, because the last subscriber can unsubscribe on another thread between the check and the invocation.</p>
+<p>Raise the event with the null-conditional operator, <code>Handler?.Invoke(...)</code>. The compiler captures the delegate into a temporary and calls it only when it is non-null, which is both concise and thread-safe.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public event EventHandler? Changed;
+
+protected void OnChanged()
+{
+    Changed(this, EventArgs.Empty); // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public event EventHandler? Changed;
+
+protected void OnChanged()
+{
+    Changed?.Invoke(this, EventArgs.Empty);
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/programming-guide/events/how-to-raise-base-class-events-in-derived-classes">How to raise base class events</a></li>
+</ul>

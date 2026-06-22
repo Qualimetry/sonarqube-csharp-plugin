@@ -1,0 +1,18 @@
+<p>A field that holds a reference or user-defined type and is left writable invites callers and later code to swap the whole object out, which makes the owning instance's state harder to reason about. Marking such fields <code>readonly</code> pins the reference at construction and keeps mutation inside the object itself. Counting the writable complex-typed fields gives a tunable budget for how much of this looseness a type may keep.</p>
+<p>The limit is configurable; set it to zero to require every complex field to be readonly.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public sealed class Cache
+{
+    private Store _store = new Store(); // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public sealed class Cache
+{
+    private readonly Store _store = new Store();
+}
+</pre>
+<h2>Parameters</h2>
+<p>This rule is configurable. Edit <code>maxmutablecomplexfields</code> (default <code>0</code>) on the rule in your quality profile; SonarQube applies the value during analysis and synchronises it to connected IDEs.</p>

@@ -1,0 +1,26 @@
+<p>Some exception types are reserved for the runtime to signal conditions it detects itself, such as <code>NullReferenceException</code>, <code>IndexOutOfRangeException</code>, or <code>OutOfMemoryException</code>. Throwing them from application code impersonates the runtime, so a handler can no longer tell a real fault from a deliberate one.</p>
+<p>Throw an exception that describes the actual problem, for example <code>ArgumentNullException</code> for a missing argument or <code>ArgumentOutOfRangeException</code> for an out-of-bounds value, so callers can react to the real cause.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public void Validate(string value)
+{
+    if (value == null)
+    {
+        throw new NullReferenceException(); // Noncompliant
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public void Validate(string value)
+{
+    if (value == null)
+    {
+        throw new ArgumentNullException(nameof(value));
+    }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/standard/design-guidelines/exception-throwing">Exception throwing guidelines</a></li>
+</ul>

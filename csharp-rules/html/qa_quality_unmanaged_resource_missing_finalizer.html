@@ -1,0 +1,44 @@
+<p>A type that stores a raw handle such as an <code>IntPtr</code> and implements <code>IDisposable</code> owns an unmanaged resource. If a caller forgets to call <code>Dispose</code>, nothing reclaims that handle and the process leaks operating-system resources.</p>
+<p>Provide a finalizer as a backstop that frees the handle during garbage collection, or, preferably, wrap the handle in a <code>SafeHandle</code> so the cleanup is guaranteed without writing a finalizer by hand.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class FileWrapper : IDisposable // Noncompliant
+{
+    private IntPtr handle;
+
+    public void Dispose()
+    {
+        Release(handle);
+    }
+
+    private static void Release(IntPtr h)
+    {
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class FileWrapper : IDisposable
+{
+    private IntPtr handle;
+
+    ~FileWrapper()
+    {
+        Release(handle);
+    }
+
+    public void Dispose()
+    {
+        Release(handle);
+        GC.SuppressFinalize(this);
+    }
+
+    private static void Release(IntPtr h)
+    {
+    }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/standard/garbage-collection/implementing-dispose">Implement a Dispose method</a></li>
+</ul>

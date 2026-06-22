@@ -1,0 +1,22 @@
+{
+  "id": "QCS0116",
+  "title": "Platform invoke declarations should live in a dedicated native methods class",
+  "tags": [
+    "interop",
+    "design"
+  ],
+  "messageFormat": "Move this platform invoke declaration into a dedicated 'NativeMethods' class.",
+  "summary": [
+    "<p>Each <code>extern</code> method carrying a <code>DllImport</code> attribute crosses the managed boundary and runs unmanaged code with no verification. Scattering these declarations across ordinary business classes hides the unsafe surface and makes it hard to audit which calls reach native libraries.</p>",
+    "<p>Grouping every platform invoke into a class whose name ends with <code>NativeMethods</code> keeps the native surface in one reviewable place, so security and lifetime concerns can be reasoned about together rather than chased through unrelated types.</p>"
+  ],
+  "noncompliant": "using System;\nusing System.Runtime.InteropServices;\n\npublic static class FileService\n{\n    [DllImport(\"kernel32.dll\", SetLastError = true)]\n    public static extern bool CloseHandle(IntPtr handle); // Noncompliant\n}",
+  "compliant": "using System;\nusing System.Runtime.InteropServices;\n\ninternal static class NativeMethods\n{\n    [DllImport(\"kernel32.dll\", SetLastError = true)]\n    internal static extern bool CloseHandle(IntPtr handle);\n}",
+  "seeAlso": [
+    {
+      "text": "Native interoperability best practices",
+      "href": "https://learn.microsoft.com/dotnet/standard/native-interop/best-practices"
+    }
+  ],
+  "ruleKey": "qa_interop_platform_invoke_in_native_methods"
+}

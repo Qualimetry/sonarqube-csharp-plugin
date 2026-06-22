@@ -1,0 +1,16 @@
+{
+  "id": "QCS0126",
+  "title": "Private field is never used",
+  "tags": [
+    "unused",
+    "clarity"
+  ],
+  "messageFormat": "Remove this unused private field or reference it where it is needed.",
+  "summary": [
+    "<p>A private field that is never referenced anywhere in its declaring type is dead state: it consumes memory on every instance, suggests behaviour that does not exist, and makes the type harder to reason about. Because the field is private, the compiler and reader can be certain no other type depends on it.</p>",
+    "<p>Delete the field, or wire it into the logic it was meant to support.</p>"
+  ],
+  "noncompliant": "public class OrderProcessor\n{\n    private int _retryCount; // Noncompliant\n\n    public void Process(Order order)\n    {\n        order.Submit();\n    }\n}",
+  "compliant": "public class OrderProcessor\n{\n    public void Process(Order order)\n    {\n        order.Submit();\n    }\n}",
+  "ruleKey": "qa_quality_unused_private_field"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "QCS0189",
+  "title": "Fold Where into the following LINQ operator",
+  "tags": [
+    "clarity",
+    "performance"
+  ],
+  "summary": [
+    "<p>Operators such as <code>Any</code>, <code>Count</code>, <code>First</code>, and <code>Single</code> accept a predicate directly. Calling <code>Where</code> immediately before a parameterless one of them creates an extra iterator for no benefit and reads as two steps where one would do.</p>",
+    "<p>Pass the predicate to the terminal operator and drop the <code>Where</code> call.</p>"
+  ],
+  "messageFormat": "Move this predicate into the following operator and remove the redundant 'Where' call.",
+  "noncompliant": "using System.Collections.Generic;\nusing System.Linq;\n\npublic class Inventory\n{\n    public bool HasExpensive(IEnumerable<int> prices)\n    {\n        return prices.Where(p => p > 100).Any(); // Noncompliant\n    }\n}",
+  "compliant": "using System.Collections.Generic;\nusing System.Linq;\n\npublic class Inventory\n{\n    public bool HasExpensive(IEnumerable<int> prices)\n    {\n        return prices.Any(p => p > 100);\n    }\n}",
+  "ruleKey": "qa_quality_redundant_where_clause"
+}

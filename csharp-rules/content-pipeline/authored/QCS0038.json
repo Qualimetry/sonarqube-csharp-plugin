@@ -1,0 +1,22 @@
+{
+  "id": "QCS0038",
+  "title": "Serializable types must provide a deserialization constructor",
+  "tags": [
+    "bug",
+    "serialization"
+  ],
+  "messageFormat": "Add a deserialization constructor taking 'SerializationInfo' and 'StreamingContext' to this type.",
+  "summary": [
+    "<p>A type that implements <code>ISerializable</code> promises to rebuild itself from a <code>SerializationInfo</code>, but that contract is only complete when the type also declares a constructor accepting <code>SerializationInfo</code> and <code>StreamingContext</code>. Without it the runtime cannot reconstruct an instance and throws at deserialization time.</p>",
+    "<p>Declare the matching constructor (protected on an unsealed type, private on a sealed one) so the serialization round trip works for both the writing and the reading side.</p>"
+  ],
+  "noncompliant": "[Serializable]\npublic class Money : ISerializable // Noncompliant\n{\n    public void GetObjectData(SerializationInfo info, StreamingContext context)\n    {\n    }\n}",
+  "compliant": "[Serializable]\npublic class Money : ISerializable\n{\n    public Money()\n    {\n    }\n\n    protected Money(SerializationInfo info, StreamingContext context)\n    {\n    }\n\n    public void GetObjectData(SerializationInfo info, StreamingContext context)\n    {\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "ISerializable interface",
+      "href": "https://learn.microsoft.com/dotnet/api/system.runtime.serialization.iserializable"
+    }
+  ],
+  "ruleKey": "qa_quality_serializable_missing_constructor"
+}

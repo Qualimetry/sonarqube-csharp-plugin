@@ -1,0 +1,19 @@
+<p>The interface convention treats the leading <code>I</code> as a one-letter prefix in front of a PascalCase name, so the second character should be uppercase. A name where the <code>I</code> runs straight into a lowercase letter reads as an ordinary word that merely starts with <code>I</code>, which defeats the prefix and misleads the reader.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public interface Itemizer // Noncompliant
+{
+    void Run();
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public interface IItemizer
+{
+    void Run();
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/standard/design-guidelines/names-of-classes-structs-and-interfaces">Names of classes, structs, and interfaces</a></li>
+</ul>

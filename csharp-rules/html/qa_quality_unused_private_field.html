@@ -1,0 +1,24 @@
+<p>A private field that is never referenced anywhere in its declaring type is dead state: it consumes memory on every instance, suggests behaviour that does not exist, and makes the type harder to reason about. Because the field is private, the compiler and reader can be certain no other type depends on it.</p>
+<p>Delete the field, or wire it into the logic it was meant to support.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class OrderProcessor
+{
+    private int _retryCount; // Noncompliant
+
+    public void Process(Order order)
+    {
+        order.Submit();
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class OrderProcessor
+{
+    public void Process(Order order)
+    {
+        order.Submit();
+    }
+}
+</pre>

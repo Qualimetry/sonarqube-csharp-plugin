@@ -1,0 +1,27 @@
+<p>The <code>InitializeOnLoad</code> attribute tells the editor to run a type's static initialisation as soon as the project loads. Unity triggers that initialisation by invoking the type's static constructor, so a class carrying the attribute with no static constructor declares an intent it cannot honour.</p>
+<p>Either add the static constructor that holds the load-time setup, or drop the attribute if no editor-load behaviour is needed. Leaving the attribute without a static constructor is dead intent that misleads the next reader.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+[InitializeOnLoad]
+public class EditorBootstrap // Noncompliant
+{
+    public static bool Ready;
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+[InitializeOnLoad]
+public class EditorBootstrap
+{
+    public static bool Ready;
+
+    static EditorBootstrap()
+    {
+        Ready = true;
+    }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://docs.unity3d.com/ScriptReference/InitializeOnLoadAttribute.html">InitializeOnLoadAttribute (Unity scripting reference)</a></li>
+</ul>

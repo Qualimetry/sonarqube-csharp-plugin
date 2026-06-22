@@ -1,0 +1,25 @@
+<p>The <code>readonly</code> modifier on a field only freezes the reference, not what it points at. A <code>readonly</code> array therefore advertises immutability it does not have: callers can replace, clear, or rewrite its elements while the field reference itself never changes.</p>
+<p>Return a copy, or expose the data through <code>IReadOnlyList&lt;T&gt;</code> or <code>ReadOnlyCollection&lt;T&gt;</code>, so the contents are genuinely protected.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class Palette
+{
+    private readonly string[] _colors = { "red", "green", "blue" };
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
+public class Palette
+{
+    private readonly string[] _colors = { "red", "green", "blue" };
+
+    public IReadOnlyList&lt;string&gt; Colors =&gt; new ReadOnlyCollection&lt;string&gt;(_colors);
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca2105">CA2105: Array fields should not be read only</a></li>
+</ul>

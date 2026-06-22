@@ -1,0 +1,22 @@
+<p>A struct that publishes mutable fields or settable properties copies its state on every assignment, argument pass, and collection access, so a mutation often lands on a hidden copy and is silently lost. A type whose contract is to hold changeable state is almost always clearer and safer as a class, where the reference semantics match the intent.</p>
+<p>Value types are best reserved for small, immutable bundles of data. When mutability is required, a class avoids the copy traps that mutable structs are notorious for.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public struct Cursor // Noncompliant
+{
+    public int Line;
+    public int Column;
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public sealed class Cursor
+{
+    public int Line { get; set; }
+    public int Column { get; set; }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/standard/design-guidelines/choosing-between-class-and-struct">Choosing between class and struct</a></li>
+</ul>

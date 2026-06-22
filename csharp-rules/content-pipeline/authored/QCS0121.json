@@ -1,0 +1,22 @@
+{
+  "id": "QCS0121",
+  "title": "Fields should be declared before other members",
+  "tags": [
+    "convention",
+    "clarity"
+  ],
+  "messageFormat": "Move this field declaration above the methods, properties and constructors of the type.",
+  "summary": [
+    "<p>Keeping every field at the top of a type gives the reader the data a class holds before the behaviour that uses it. A field that appears after methods or properties is easy to miss and breaks the expected layout.</p>",
+    "<p>A consistent member order lets anyone scanning the file find the state without hunting through the body.</p>"
+  ],
+  "noncompliant": "public sealed class Counter\n{\n    public void Increment() => _value++;\n\n    private int _value; // Noncompliant\n}",
+  "compliant": "public sealed class Counter\n{\n    private int _value;\n\n    public void Increment() => _value++;\n}",
+  "seeAlso": [
+    {
+      "text": "C# coding conventions",
+      "href": "https://learn.microsoft.com/dotnet/csharp/fundamentals/coding-style/coding-conventions"
+    }
+  ],
+  "ruleKey": "qa_style_field_declaration_order"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "QCS0032",
+  "title": "Types should not declare too many methods",
+  "tags": [
+    "metrics",
+    "design"
+  ],
+  "messageFormat": "This type declares {0} methods, above the limit of {1}.",
+  "summary": [
+    "<p>A type with a very long list of methods is often a hub that has accumulated behaviour belonging to several collaborators. Counting the methods it declares is a quick way to spot types that have drifted past a single responsibility.</p>",
+    "<p>The method limit is configurable.</p>"
+  ],
+  "noncompliant": "public sealed class Manager\n{\n    public void One() { }\n    public void Two() { }\n    public void Three() { }\n    public void Four() { }\n    public void Five() { }\n}",
+  "compliant": "public sealed class Coordinator\n{\n    public void Start() { }\n    public void Stop() { }\n}",
+  "configuration": [
+    {
+      "parameter": "maxmethods",
+      "type": "int",
+      "default": "20"
+    }
+  ],
+  "ruleKey": "qa_metrics_excessive_method_count"
+}

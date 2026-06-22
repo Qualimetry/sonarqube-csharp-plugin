@@ -1,0 +1,26 @@
+<p>A publicly visible field of type <code>IntPtr</code> or <code>UIntPtr</code> hands a raw native pointer to every caller. They can overwrite it, copy it past the lifetime of the resource it points to, or pass it to unmanaged code, defeating any ownership or disposal guarantees the type tries to make.</p>
+<p>Keep the handle private and offer a typed, validated member (a <code>SafeHandle</code>, a method, or a read-only property) instead.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System;
+
+public class DeviceContext
+{
+    public IntPtr Handle; // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System;
+
+public class DeviceContext
+{
+    private IntPtr _handle;
+
+    public bool IsValid =&gt; _handle != IntPtr.Zero;
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/api/system.runtime.interopservices.safehandle">SafeHandle (.NET API)</a></li>
+</ul>

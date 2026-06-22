@@ -1,0 +1,16 @@
+{
+  "id": "QCS0154",
+  "title": "Compound 'if' conditions joined by '&&' may read better as nested ifs",
+  "tags": [
+    "clarity",
+    "convention"
+  ],
+  "messageFormat": "Consider splitting this '&&' condition into nested 'if' statements for clarity.",
+  "summary": [
+    "<p>An <code>if</code> whose condition chains several requirements with <code>&amp;&amp;</code> packs every precondition onto one line. When a branch has no <code>else</code>, splitting the conjunction into nested <code>if</code> statements lets each guard stand on its own and gives a natural place to attach an early exit or comment per step.</p>",
+    "<p>This is a readability option, not a correctness fix; teams that prefer flat conditions can leave it disabled.</p>"
+  ],
+  "noncompliant": "public void Save(string name, bool dirty)\n{\n    if (name != null && dirty) // Noncompliant\n    {\n        Persist(name);\n    }\n}",
+  "compliant": "public void Save(string name, bool dirty)\n{\n    if (name != null)\n    {\n        if (dirty)\n        {\n            Persist(name);\n        }\n    }\n}",
+  "ruleKey": "qa_style_splittable_conjunction_if"
+}

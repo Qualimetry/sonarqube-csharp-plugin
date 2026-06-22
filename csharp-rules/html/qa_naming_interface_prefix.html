@@ -1,0 +1,19 @@
+<p>The leading <code>I</code> is the one signal at a use site that distinguishes an interface from a class or struct, since both appear in the same positions. An interface without it forces the reader to look up the declaration to know whether they are programming against a contract or a concrete type.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public interface Repository // Noncompliant
+{
+    void Save();
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public interface IRepository
+{
+    void Save();
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/standard/design-guidelines/names-of-classes-structs-and-interfaces">Names of classes, structs, and interfaces</a></li>
+</ul>

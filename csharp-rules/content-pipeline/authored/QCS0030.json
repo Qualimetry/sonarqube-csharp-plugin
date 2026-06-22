@@ -1,0 +1,23 @@
+{
+  "id": "QCS0030",
+  "title": "Type names should not be excessively long",
+  "tags": [
+    "metrics",
+    "readability"
+  ],
+  "messageFormat": "Type name '{0}' is {1} characters long, above the limit of {2}.",
+  "summary": [
+    "<p>A type name that runs very long usually folds its namespace, its role, and several qualifiers into one identifier. Shorter names that lean on the namespace for context read better at every use site.</p>",
+    "<p>The maximum length is configurable.</p>"
+  ],
+  "noncompliant": "public sealed class GenericRepositoryFactoryConfigurationProviderBuilder\n{\n}",
+  "compliant": "public sealed class RepositoryBuilder\n{\n}",
+  "configuration": [
+    {
+      "parameter": "maxnamelength",
+      "type": "int",
+      "default": "40"
+    }
+  ],
+  "ruleKey": "qa_metrics_long_type_name"
+}

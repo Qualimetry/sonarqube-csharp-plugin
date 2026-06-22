@@ -1,0 +1,28 @@
+<p>An API marked with <code>[Obsolete]</code> has been retired by its author: it may behave differently than expected, carry known defects, or disappear entirely in a future version. Continuing to call it ties new code to a contract that is already on its way out.</p>
+<p>Move to the replacement the attribute points to, or drop the dependency on the deprecated member, so the code stays aligned with the surface its libraries actually support.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class Report
+{
+    [System.Obsolete("Use BuildV2 instead.")]
+    public string Build() =&gt; "v1";
+
+    public string Render() =&gt; Build(); // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class Report
+{
+    [System.Obsolete("Use BuildV2 instead.")]
+    public string Build() =&gt; "v1";
+
+    public string BuildV2() =&gt; "v2";
+
+    public string Render() =&gt; BuildV2();
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/api/system.obsoleteattribute">ObsoleteAttribute (.NET API)</a></li>
+</ul>

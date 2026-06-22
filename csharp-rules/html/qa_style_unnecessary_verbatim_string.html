@@ -1,0 +1,14 @@
+<p>The <code>@</code> prefix exists for strings that contain backslashes, embedded quotes, or line breaks. A verbatim literal whose content has none of these gains nothing from the prefix and just looks like it might.</p>
+<p>Dropping the prefix on such literals keeps the verbatim form meaningful: where it appears, it signals that the text really does need it.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+var label = @"Pending"; // Noncompliant
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+var label = "Pending";
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/reference-types#string-literals">String literals (C# reference)</a></li>
+</ul>

@@ -1,0 +1,24 @@
+<p><code>ICloneable</code> has a single <code>Clone()</code> member that returns <code>object</code> and never states whether the copy is deep or shallow. Callers cannot tell what they get back and must cast the result, so the contract carries no useful guarantee.</p>
+<p>Provide an explicit, strongly typed copy operation (for example a copy constructor or a <code>Copy()</code> method that returns the concrete type) and document its depth.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public sealed class Box : ICloneable // Noncompliant
+{
+    public int Value { get; set; }
+
+    public object Clone() =&gt; new Box { Value = Value };
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public sealed class Box
+{
+    public int Value { get; set; }
+
+    public Box Copy() =&gt; new Box { Value = Value };
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/api/system.icloneable">ICloneable Interface</a></li>
+</ul>

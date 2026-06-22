@@ -1,0 +1,22 @@
+{
+  "id": "QCS0112",
+  "title": "Methods marked pure must not mutate observable state",
+  "tags": [
+    "reliability",
+    "suspicious"
+  ],
+  "messageFormat": "Method '{0}' is marked pure but writes to shared state; remove the side effect or remove the attribute.",
+  "summary": [
+    "<p>Applying <code>[Pure]</code> tells callers and tooling that a method computes a result without changing any observable state, which makes it safe to elide, reorder, or cache. A pure method that assigns to a field or property of its type, or to static state, breaks that promise: callers that rely on the annotation will silently drop the side effect and behave incorrectly.</p>",
+    "<p>Either remove the mutation so the method honours its contract, or remove the <code>[Pure]</code> attribute so the side effect is visible to everyone reading the signature.</p>"
+  ],
+  "noncompliant": "using System.Diagnostics.Contracts;\n\npublic class Counter\n{\n    private int _count;\n\n    [Pure]\n    public int Next() // Noncompliant\n    {\n        _count++;\n        return _count;\n    }\n}",
+  "compliant": "using System.Diagnostics.Contracts;\n\npublic class Calculator\n{\n    [Pure]\n    public int Add(int a, int b)\n    {\n        return a + b;\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "PureAttribute (System.Diagnostics.Contracts)",
+      "href": "https://learn.microsoft.com/dotnet/api/system.diagnostics.contracts.pureattribute"
+    }
+  ],
+  "ruleKey": "qa_contract_pure_method_must_not_mutate_state"
+}

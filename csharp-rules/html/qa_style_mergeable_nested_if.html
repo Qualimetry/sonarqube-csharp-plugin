@@ -1,0 +1,23 @@
+<p>When an <code>if</code> with no <code>else</code> contains nothing but another <code>if</code> that also has no <code>else</code>, both conditions must hold for the body to run. Two levels of nesting express a single combined condition.</p>
+<p>Joining the tests with <code>&&</code> flattens the structure and puts the full entry condition in one place.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+if (user != null) // Noncompliant
+{
+    if (user.IsActive)
+    {
+        Grant();
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+if (user != null &amp;&amp; user.IsActive)
+{
+    Grant();
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/statements/selection-statements#the-if-statement">The if statement (C# reference)</a></li>
+</ul>

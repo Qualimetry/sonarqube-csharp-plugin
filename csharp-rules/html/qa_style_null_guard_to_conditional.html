@@ -1,0 +1,18 @@
+<p>An <code>if (x != null)</code> whose body is a single call on <code>x</code> restates a check the language already has. The null-conditional operator <code>?.</code> performs the same guarded call in one expression and makes the optional nature of the receiver obvious at the call site.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public void Raise(System.Action handler)
+{
+    if (handler != null) // Noncompliant
+    {
+        handler();
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public void Raise(System.Action handler)
+{
+    handler?.Invoke();
+}
+</pre>

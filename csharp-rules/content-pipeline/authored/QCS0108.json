@@ -1,0 +1,22 @@
+{
+  "id": "QCS0108",
+  "title": "Avoid exposing concrete XmlNode return types",
+  "tags": [
+    "design",
+    "api-design"
+  ],
+  "messageFormat": "Return an abstraction instead of a concrete XmlNode-derived type.",
+  "summary": [
+    "<p>Returning a concrete <code>XmlNode</code>, <code>XmlElement</code>, or <code>XmlDocument</code> ties every caller to the legacy DOM implementation and to the mutable object graph behind it. The API can no longer switch to a different XML representation without breaking consumers.</p>",
+    "<p>Expose a reader, a projected model, or an interface that conveys only what the caller needs.</p>"
+  ],
+  "noncompliant": "public XmlElement LoadConfig() // Noncompliant\n{\n    var document = new XmlDocument();\n    document.LoadXml(\"<config/>\");\n    return document.DocumentElement;\n}",
+  "compliant": "public XmlReader LoadConfig()\n{\n    return XmlReader.Create(new StringReader(\"<config/>\"));\n}",
+  "seeAlso": [
+    {
+      "text": "XML processing in .NET",
+      "href": "https://learn.microsoft.com/dotnet/standard/data/xml/"
+    }
+  ],
+  "ruleKey": "qa_quality_concrete_xml_node_return_type"
+}

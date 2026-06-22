@@ -1,0 +1,21 @@
+{
+  "id": "QCS0119",
+  "title": "Avoid publicly visible nested types",
+  "tags": [
+    "design",
+    "api-design"
+  ],
+  "messageFormat": "Move this nested type to namespace scope or reduce its visibility.",
+  "summary": [
+    "<p>A <code>public</code> or <code>protected</code> nested type is awkward for consumers: it must be referenced through its containing type, complicates discovery, and usually signals that an independent concept was placed inside another type by accident. Promote it to namespace scope, or keep it nested but make it private when it is an implementation detail.</p>"
+  ],
+  "noncompliant": "public class Parser\n{\n    public class Options // Noncompliant\n    {\n        public bool Strict { get; set; }\n    }\n}",
+  "compliant": "public class ParserOptions\n{\n    public bool Strict { get; set; }\n}\n\npublic class Parser\n{\n}",
+  "seeAlso": [
+    {
+      "text": "Nested Types (C# guide)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/nested-types"
+    }
+  ],
+  "ruleKey": "qa_quality_visible_nested_type"
+}

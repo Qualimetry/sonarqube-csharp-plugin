@@ -1,0 +1,22 @@
+<p>Creating an object and then setting its members one statement at a time scatters a single logical construction across several lines and leaves the instance in a half-built state in between. An object initializer keeps the whole shape of the new value in one expression.</p>
+<p>This rule flags a local that is assigned a freshly created object and immediately followed by member assignments on that same local.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public Widget Build()
+{
+    var widget = new Widget(); // Noncompliant
+    widget.Width = 10;
+    return widget;
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public Widget Build()
+{
+    var widget = new Widget
+    {
+        Width = 10,
+    };
+    return widget;
+}
+</pre>

@@ -1,0 +1,25 @@
+<p>The number of source lines a type occupies is a rough but useful proxy for how much responsibility it carries. A type that runs to many hundreds of lines is hard to hold in the head and is often hiding several smaller types that want to be extracted.</p>
+<p>The line limit is configurable.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public sealed class Everything
+{
+    // ... hundreds of lines of unrelated members ...
+    public void A() { }
+    public void B() { }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public sealed class Orders
+{
+    public void Place() { }
+}
+
+public sealed class Invoices
+{
+    public void Issue() { }
+}
+</pre>
+<h2>Parameters</h2>
+<p>This rule is configurable. Edit <code>maxlines</code> (default <code>400</code>) on the rule in your quality profile; SonarQube applies the value during analysis and synchronises it to connected IDEs.</p>

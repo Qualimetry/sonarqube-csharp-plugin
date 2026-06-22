@@ -1,0 +1,23 @@
+{
+  "id": "QCS0099",
+  "title": "Types should not hold too much instance state",
+  "tags": [
+    "metrics",
+    "design"
+  ],
+  "messageFormat": "Instances of this type carry {0} pieces of state, above the limit of {1}.",
+  "summary": [
+    "<p>The amount of state an instance carries is the sum of its instance fields and its instance auto-implemented properties. A type that holds a large number of these slots tends to be a grab-bag of loosely related data and is a candidate for splitting into smaller, more focused objects.</p>",
+    "<p>The state limit is configurable.</p>"
+  ],
+  "noncompliant": "public sealed class Profile\n{\n    private int _a;\n    private int _b;\n    public int C { get; set; }\n    public int D { get; set; }\n    public int E { get; set; }\n    public int F { get; set; }\n}",
+  "compliant": "public sealed class Profile\n{\n    public Name Name { get; set; }\n    public Address Address { get; set; }\n}",
+  "configuration": [
+    {
+      "parameter": "maxinstancefields",
+      "type": "int",
+      "default": "15"
+    }
+  ],
+  "ruleKey": "qa_metrics_excessive_instance_state"
+}

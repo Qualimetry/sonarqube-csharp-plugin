@@ -1,0 +1,22 @@
+<p>Change notification fires often, and creating a fresh <code>PropertyChangedEventArgs</code> on every raise allocates a short-lived object whose only content is a property name that never varies for a given property.</p>
+<p>Holding one instance per property in a static readonly field reuses the same arguments on each notification and keeps the hot path allocation-free.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+protected void OnNameChanged()
+{
+    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name")); // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+private static readonly PropertyChangedEventArgs NameChangedArgs = new("Name");
+
+protected void OnNameChanged()
+{
+    PropertyChanged?.Invoke(this, NameChangedArgs);
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/api/system.componentmodel.propertychangedeventargs">PropertyChangedEventArgs</a></li>
+</ul>

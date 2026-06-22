@@ -1,0 +1,22 @@
+{
+  "id": "QCS0135",
+  "title": "Readonly array fields can still be mutated",
+  "tags": [
+    "bug",
+    "encapsulation"
+  ],
+  "messageFormat": "This readonly array can be reassigned element by element; expose a read-only view instead.",
+  "summary": [
+    "<p>The <code>readonly</code> modifier on a field only freezes the reference, not what it points at. A <code>readonly</code> array therefore advertises immutability it does not have: callers can replace, clear, or rewrite its elements while the field reference itself never changes.</p>",
+    "<p>Return a copy, or expose the data through <code>IReadOnlyList&lt;T&gt;</code> or <code>ReadOnlyCollection&lt;T&gt;</code>, so the contents are genuinely protected.</p>"
+  ],
+  "noncompliant": "public class Palette\n{\n    private readonly string[] _colors = { \"red\", \"green\", \"blue\" };\n}",
+  "compliant": "using System.Collections.Generic;\nusing System.Collections.ObjectModel;\n\npublic class Palette\n{\n    private readonly string[] _colors = { \"red\", \"green\", \"blue\" };\n\n    public IReadOnlyList<string> Colors => new ReadOnlyCollection<string>(_colors);\n}",
+  "seeAlso": [
+    {
+      "text": "CA2105: Array fields should not be read only",
+      "href": "https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca2105"
+    }
+  ],
+  "ruleKey": "qa_quality_public_readonly_array_field"
+}

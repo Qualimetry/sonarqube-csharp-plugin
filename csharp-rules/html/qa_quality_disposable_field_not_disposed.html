@@ -1,0 +1,29 @@
+<p>A type that holds a field of a disposable type owns that resource for its lifetime. If the owning type implements <code>IDisposable</code> but its <code>Dispose</code> method never disposes the field, the wrapped resource leaks every time an instance is discarded.</p>
+<p>Release each owned disposable field inside <code>Dispose</code>. If ownership is intentionally transferred elsewhere, make that transfer explicit so the field is not treated as owned here.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class Importer : IDisposable
+{
+    private readonly Resource resource = new(); // Noncompliant
+
+    public void Dispose()
+    {
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class Importer : IDisposable
+{
+    private readonly Resource resource = new();
+
+    public void Dispose()
+    {
+        resource.Dispose();
+    }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/standard/garbage-collection/implementing-dispose">Implement a Dispose method</a></li>
+</ul>

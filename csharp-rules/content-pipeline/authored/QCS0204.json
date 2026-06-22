@@ -1,0 +1,15 @@
+{
+  "id": "QCS0204",
+  "title": "Types in the same namespace should live in the same directory",
+  "tags": [
+    "clarity",
+    "convention"
+  ],
+  "messageFormat": "Namespace '{0}' is split across multiple directories.",
+  "summary": [
+    "<p>When one namespace spans several folders, navigation and ownership become unclear. Keep all types for a namespace under one directory.</p>"
+  ],
+  "noncompliant": "namespace Company.Product\n{\n    public sealed class Alpha\n    {\n    }\n}",
+  "compliant": "namespace Company.Product\n{\n    public sealed class Alpha\n    {\n    }\n\n    public sealed class Beta\n    {\n    }\n}",
+  "ruleKey": "qa_naming_namespace_spans_directories"
+}

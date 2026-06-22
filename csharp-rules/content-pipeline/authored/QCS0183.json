@@ -1,0 +1,16 @@
+{
+  "id": "QCS0183",
+  "title": "String literals with only escaped backslashes should be verbatim",
+  "tags": [
+    "clarity",
+    "convention"
+  ],
+  "messageFormat": "Use a verbatim string so the backslashes do not need escaping.",
+  "summary": [
+    "<p>A regular string literal whose backslashes are all doubled, such as a file path or a regular-expression pattern, is hard to read because each real backslash appears twice. A verbatim string prefixed with <code>@</code> takes backslashes literally, so the text matches what the value actually is.</p>",
+    "<p>This rule only flags literals whose sole escape sequences are doubled backslashes, where switching to a verbatim string preserves the value exactly.</p>"
+  ],
+  "noncompliant": "public string LogPath()\n{\n    return \"C:\\\\logs\\\\app.txt\"; // Noncompliant\n}",
+  "compliant": "public string LogPath()\n{\n    return @\"C:\\logs\\app.txt\";\n}",
+  "ruleKey": "qa_style_prefer_verbatim_string"
+}

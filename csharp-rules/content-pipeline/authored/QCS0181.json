@@ -1,0 +1,15 @@
+{
+  "id": "QCS0181",
+  "title": "if/else assigning one variable should use the conditional operator",
+  "tags": [
+    "clarity",
+    "convention"
+  ],
+  "messageFormat": "Assign this variable once with a conditional operator instead of in both branches.",
+  "summary": [
+    "<p>An <code>if</code>/<code>else</code> whose only job is to assign the same variable in each branch spreads a single decision over several lines and repeats the assignment target twice. The conditional operator expresses the same choice as one assignment, making it obvious that exactly one value is produced.</p>"
+  ],
+  "noncompliant": "public int Clamp(bool high)\n{\n    int limit;\n    if (high) // Noncompliant\n    {\n        limit = 100;\n    }\n    else\n    {\n        limit = 10;\n    }\n\n    return limit;\n}",
+  "compliant": "public int Clamp(bool high)\n{\n    int limit = high ? 100 : 10;\n    return limit;\n}",
+  "ruleKey": "qa_style_conditional_assignment_opportunity"
+}

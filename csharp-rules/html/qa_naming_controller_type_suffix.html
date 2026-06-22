@@ -1,0 +1,25 @@
+<p>Web frameworks discover and route to controllers by convention, and tooling, logs, and routes all read better when a controller is named for what it is. A type that derives from a controller base but omits the <code>Controller</code> word hides its role and can fall outside convention-based discovery.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class ControllerBase
+{
+}
+
+public class Account : ControllerBase // Noncompliant
+{
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class ControllerBase
+{
+}
+
+public class AccountController : ControllerBase
+{
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/aspnet/core/mvc/controllers/actions">ASP.NET Core controllers</a></li>
+</ul>

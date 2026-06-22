@@ -1,0 +1,22 @@
+{
+  "id": "QCS0196",
+  "title": "Regular expression literals should compile",
+  "tags": [
+    "bug",
+    "suspicious"
+  ],
+  "messageFormat": "This regular expression pattern is invalid and will throw when the regex is built.",
+  "summary": [
+    "<p>A constant regular expression pattern is only validated when the <code>Regex</code> is constructed at runtime, so an unbalanced group, a dangling quantifier, or an unterminated character class surfaces as an <code>ArgumentException</code> rather than at the point the pattern was written.</p>",
+    "<p>Correct the pattern so it is a syntactically valid regular expression.</p>"
+  ],
+  "noncompliant": "using System.Text.RegularExpressions;\n\npublic sealed class Matcher\n{\n    public Regex Build() => new Regex(\"(unclosed\"); // Noncompliant\n}",
+  "compliant": "using System.Text.RegularExpressions;\n\npublic sealed class Matcher\n{\n    public Regex Build() => new Regex(\"(closed)\");\n}",
+  "seeAlso": [
+    {
+      "text": ".NET regular expression language reference",
+      "href": "https://learn.microsoft.com/dotnet/standard/base-types/regular-expression-language-quick-reference"
+    }
+  ],
+  "ruleKey": "qa_reliability_invalid_regex_pattern"
+}

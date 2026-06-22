@@ -1,0 +1,22 @@
+{
+  "id": "QCS0055",
+  "title": "Prefer 'string.Empty' over an empty string literal",
+  "tags": [
+    "convention",
+    "clarity"
+  ],
+  "messageFormat": "Replace this empty string literal with 'string.Empty'.",
+  "summary": [
+    "<p>An empty string literal <code>\"\"</code> is easy to confuse with a single space or to overlook entirely in a dense expression. The named member <code>string.Empty</code> states the intent unambiguously.</p>",
+    "<p>Reserving <code>string.Empty</code> for the deliberate empty value also makes a genuine literal stand out as carrying real text.</p>"
+  ],
+  "noncompliant": "public string Prefix { get; set; } = \"\"; // Noncompliant",
+  "compliant": "public string Prefix { get; set; } = string.Empty;",
+  "seeAlso": [
+    {
+      "text": "String.Empty field",
+      "href": "https://learn.microsoft.com/dotnet/api/system.string.empty"
+    }
+  ],
+  "ruleKey": "qa_style_prefer_string_empty"
+}

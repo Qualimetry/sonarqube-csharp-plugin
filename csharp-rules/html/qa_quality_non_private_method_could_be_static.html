@@ -1,0 +1,22 @@
+<p>A method that never touches <code>this</code>, an instance field, or an instance member does not depend on the object it is called on. Leaving it as an instance method hides that fact, forces callers to hold an instance they do not need, and adds an avoidable <code>this</code> argument to every call.</p>
+<p>Mark the method <code>static</code> to state that it is independent of instance state. Members that implement an interface or override a base member are excluded.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class Calculator
+{
+    public int Square(int value) // Noncompliant
+    {
+        return value * value;
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class Calculator
+{
+    public static int Square(int value)
+    {
+        return value * value;
+    }
+}
+</pre>

@@ -1,0 +1,23 @@
+<p>Mixing namespaces inside one folder makes it hard to tell which feature owns the code on disk. Align the namespace of every type in a directory.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+namespace Company.Product
+{
+    public sealed class Alpha
+    {
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+namespace Company.Product
+{
+    public sealed class Alpha
+    {
+    }
+
+    public sealed class Beta
+    {
+    }
+}
+</pre>

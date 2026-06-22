@@ -1,0 +1,23 @@
+{
+  "id": "QCS0014",
+  "title": "Field names should not be excessively long",
+  "tags": [
+    "metrics",
+    "readability"
+  ],
+  "messageFormat": "Field name '{0}' is {1} characters long, above the limit of {2}.",
+  "summary": [
+    "<p>An identifier that runs on for dozens of characters is usually a sign that the name is encoding context that the surrounding type or namespace already supplies. Long field names slow reading and push lines past comfortable widths.</p>",
+    "<p>The maximum length is configurable so teams can match their own house style.</p>"
+  ],
+  "noncompliant": "public sealed class Report\n{\n    private int theTotalNumberOfProcessedRecordsAcrossEveryBatch;\n}",
+  "compliant": "public sealed class Report\n{\n    private int processedRecordCount;\n}",
+  "configuration": [
+    {
+      "parameter": "maxnamelength",
+      "type": "int",
+      "default": "40"
+    }
+  ],
+  "ruleKey": "qa_metrics_long_field_name"
+}

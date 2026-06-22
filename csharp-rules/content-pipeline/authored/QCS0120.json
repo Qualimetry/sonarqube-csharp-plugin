@@ -1,0 +1,22 @@
+{
+  "id": "QCS0120",
+  "title": "Remove or make static classes that can never be instantiated",
+  "tags": [
+    "design",
+    "dead-code"
+  ],
+  "messageFormat": "This class only has private constructors and no static members, so it can never be used.",
+  "summary": [
+    "<p>A non-static class whose only constructors are private, and which exposes no static members, cannot be instantiated from anywhere and offers no usable surface. It is either dead code or was meant to be a <code>static</code> utility class.</p>",
+    "<p>Mark it <code>static</code>, give it an accessible constructor, or delete it.</p>"
+  ],
+  "noncompliant": "public class StringTools // Noncompliant\n{\n    private StringTools()\n    {\n    }\n}",
+  "compliant": "public static class StringTools\n{\n    public static string Reverse(string value) => value;\n}",
+  "seeAlso": [
+    {
+      "text": "Static Classes (C# guide)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/static-classes-and-static-class-members"
+    }
+  ],
+  "ruleKey": "qa_quality_uninstantiable_class"
+}

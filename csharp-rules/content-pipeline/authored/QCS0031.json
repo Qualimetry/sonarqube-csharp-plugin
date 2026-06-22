@@ -1,0 +1,23 @@
+{
+  "id": "QCS0031",
+  "title": "Types should not declare too many fields",
+  "tags": [
+    "metrics",
+    "design"
+  ],
+  "messageFormat": "This type declares {0} fields, above the limit of {1}.",
+  "summary": [
+    "<p>A type carrying a large number of fields is usually holding several distinct pieces of state that change for different reasons. Counting the declared fields highlights types whose data wants to be grouped into smaller, more cohesive structures.</p>",
+    "<p>The field limit is configurable.</p>"
+  ],
+  "noncompliant": "public sealed class Widget\n{\n    private int _a;\n    private int _b;\n    private int _c;\n    private int _d;\n    private int _e;\n    private int _f;\n}",
+  "compliant": "public sealed class Widget\n{\n    private Position _position;\n    private Style _style;\n}",
+  "configuration": [
+    {
+      "parameter": "maxfields",
+      "type": "int",
+      "default": "15"
+    }
+  ],
+  "ruleKey": "qa_metrics_excessive_field_count"
+}

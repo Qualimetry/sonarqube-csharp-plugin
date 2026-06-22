@@ -1,0 +1,23 @@
+{
+  "id": "QCS0021",
+  "title": "Methods should not have too many overloads",
+  "tags": [
+    "metrics",
+    "design"
+  ],
+  "messageFormat": "Method '{0}' has {1} overloads, above the limit of {2}.",
+  "summary": [
+    "<p>A large family of overloads for one method name pushes the burden of choosing the right entry point onto every caller and tends to hide subtle behavioural differences between near-identical signatures. Counting the overloads of each name surfaces APIs that might be better served by optional parameters, a builder, or a single options object.</p>",
+    "<p>The overload limit is configurable.</p>"
+  ],
+  "noncompliant": "public sealed class Logger\n{\n    public void Log(string message) { }\n    public void Log(string message, int level) { }\n    public void Log(string message, int level, string category) { }\n    public void Log(string message, int level, string category, bool toFile) { }\n    public void Log(string message, int level, string category, bool toFile, bool toConsole) { }\n}",
+  "compliant": "public sealed class Logger\n{\n    public void Log(LogEntry entry)\n    {\n    }\n}",
+  "configuration": [
+    {
+      "parameter": "maxoverloads",
+      "type": "int",
+      "default": "6"
+    }
+  ],
+  "ruleKey": "qa_metrics_excessive_method_overloads"
+}

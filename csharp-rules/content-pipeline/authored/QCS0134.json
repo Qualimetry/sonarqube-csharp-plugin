@@ -1,0 +1,22 @@
+{
+  "id": "QCS0134",
+  "title": "PropertyChangedEventArgs should be cached rather than allocated per notification",
+  "tags": [
+    "convention",
+    "performance"
+  ],
+  "messageFormat": "Cache this PropertyChangedEventArgs instance instead of allocating a new one for each notification.",
+  "summary": [
+    "<p>Change notification fires often, and creating a fresh <code>PropertyChangedEventArgs</code> on every raise allocates a short-lived object whose only content is a property name that never varies for a given property.</p>",
+    "<p>Holding one instance per property in a static readonly field reuses the same arguments on each notification and keeps the hot path allocation-free.</p>"
+  ],
+  "noncompliant": "protected void OnNameChanged()\n{\n    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(\"Name\")); // Noncompliant\n}",
+  "compliant": "private static readonly PropertyChangedEventArgs NameChangedArgs = new(\"Name\");\n\nprotected void OnNameChanged()\n{\n    PropertyChanged?.Invoke(this, NameChangedArgs);\n}",
+  "seeAlso": [
+    {
+      "text": "PropertyChangedEventArgs",
+      "href": "https://learn.microsoft.com/dotnet/api/system.componentmodel.propertychangedeventargs"
+    }
+  ],
+  "ruleKey": "qa_style_property_changed_event_args_allocation"
+}

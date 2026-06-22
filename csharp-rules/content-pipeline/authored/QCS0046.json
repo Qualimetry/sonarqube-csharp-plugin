@@ -1,0 +1,23 @@
+{
+  "id": "QCS0046",
+  "title": "Events should be raised through a null-conditional invocation",
+  "tags": [
+    "bug",
+    "concurrency",
+    "exception-handling"
+  ],
+  "messageFormat": "Raise this event with '?.Invoke' so it is not invoked when no handler is attached.",
+  "summary": [
+    "<p>An event with no subscribers is <code>null</code>. Invoking it directly throws a <code>NullReferenceException</code> the moment a handler is absent. A separate <code>if</code> null check before the call is also unsafe, because the last subscriber can unsubscribe on another thread between the check and the invocation.</p>",
+    "<p>Raise the event with the null-conditional operator, <code>Handler?.Invoke(...)</code>. The compiler captures the delegate into a temporary and calls it only when it is non-null, which is both concise and thread-safe.</p>"
+  ],
+  "noncompliant": "public event EventHandler? Changed;\n\nprotected void OnChanged()\n{\n    Changed(this, EventArgs.Empty); // Noncompliant\n}",
+  "compliant": "public event EventHandler? Changed;\n\nprotected void OnChanged()\n{\n    Changed?.Invoke(this, EventArgs.Empty);\n}",
+  "seeAlso": [
+    {
+      "text": "How to raise base class events",
+      "href": "https://learn.microsoft.com/dotnet/csharp/programming-guide/events/how-to-raise-base-class-events-in-derived-classes"
+    }
+  ],
+  "ruleKey": "qa_quality_event_invoked_without_null_check"
+}

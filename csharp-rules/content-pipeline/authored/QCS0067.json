@@ -1,0 +1,22 @@
+{
+  "id": "QCS0067",
+  "title": "General exception types should not be thrown",
+  "tags": [
+    "code-smell",
+    "exception-handling"
+  ],
+  "messageFormat": "Throw a specific exception type instead of the general '{0}'.",
+  "summary": [
+    "<p>Throwing <code>Exception</code>, <code>SystemException</code>, or <code>ApplicationException</code> forces every caller that wants to react to this failure to catch the broadest base type. That handler then also swallows unrelated errors, so the program either over-reacts or hides bugs it should have surfaced.</p>",
+    "<p>Throw the most specific type that fits the failure, or define a purpose-built exception for the domain, so callers can catch exactly the condition they know how to handle.</p>"
+  ],
+  "noncompliant": "public void Connect(string host)\n{\n    if (string.IsNullOrEmpty(host))\n    {\n        throw new Exception(\"Host is required.\"); // Noncompliant\n    }\n}",
+  "compliant": "public void Connect(string host)\n{\n    if (string.IsNullOrEmpty(host))\n    {\n        throw new ArgumentException(\"Host is required.\", nameof(host));\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "Exception throwing guidelines",
+      "href": "https://learn.microsoft.com/dotnet/standard/design-guidelines/exception-throwing"
+    }
+  ],
+  "ruleKey": "qa_quality_general_exception_type_thrown"
+}

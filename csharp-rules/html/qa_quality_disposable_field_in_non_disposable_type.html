@@ -1,0 +1,31 @@
+<p>When a type keeps an <code>IDisposable</code> in an instance field, it owns that resource for the life of the instance. If the type itself is not disposable, there is no point at which the held resource can be released, so it survives until finalization or leaks outright.</p>
+<p>Implement <code>IDisposable</code> on the owning type and dispose the field in <code>Dispose</code>.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System.IO;
+
+public class Recorder // Noncompliant
+{
+    private readonly MemoryStream _stream = new MemoryStream();
+
+    public long Size =&gt; _stream.Length;
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System;
+using System.IO;
+
+public class Recorder : IDisposable
+{
+    private readonly MemoryStream _stream = new MemoryStream();
+
+    public long Size =&gt; _stream.Length;
+
+    public void Dispose() =&gt; _stream.Dispose();
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/standard/garbage-collection/implementing-dispose">Implement a Dispose method</a></li>
+</ul>

@@ -1,0 +1,22 @@
+{
+  "id": "QCS0064",
+  "title": "Members should not hide inherited members",
+  "tags": [
+    "bug",
+    "design"
+  ],
+  "messageFormat": "Avoid hiding the inherited member '{0}' with 'new'; override it or give this member a distinct name.",
+  "summary": [
+    "<p>Declaring a member with the <code>new</code> modifier hides the inherited one rather than overriding it. The member that runs then depends on the compile-time type of the reference, so the same object behaves differently when seen through the base type versus the derived type. That split is a frequent source of bugs that only appear through polymorphism.</p>",
+    "<p>If the intent is to specialize behavior, mark the base member <code>virtual</code> and <code>override</code> it so dispatch is consistent. If the members are genuinely unrelated, give the new one a distinct name.</p>"
+  ],
+  "noncompliant": "public class Animal\n{\n    public virtual string Describe() => \"animal\";\n}\n\npublic class Dog : Animal\n{\n    public new string Describe() => \"dog\"; // Noncompliant\n}",
+  "compliant": "public class Animal\n{\n    public virtual string Describe() => \"animal\";\n}\n\npublic class Dog : Animal\n{\n    public override string Describe() => \"dog\";\n}",
+  "seeAlso": [
+    {
+      "text": "new modifier (C# reference)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/new-modifier"
+    }
+  ],
+  "ruleKey": "qa_quality_hidden_base_method"
+}

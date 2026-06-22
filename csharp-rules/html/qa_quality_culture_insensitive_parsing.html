@@ -1,0 +1,25 @@
+<p>The culture-free overloads of <code>Parse</code> and <code>TryParse</code> on <code>double</code>, <code>float</code>, <code>decimal</code>, <code>DateTime</code> and <code>DateTimeOffset</code> read the thread's current culture. The same string then parses differently on two machines: a decimal comma, a date order, or a grouping separator silently changes the result or fails outright.</p>
+<p>State the intent explicitly. Use <code>CultureInfo.InvariantCulture</code> for machine-readable data, or the specific user culture when the value really is locale dependent.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System;
+
+public class Money
+{
+    public decimal Read(string text) =&gt; decimal.Parse(text); // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System;
+using System.Globalization;
+
+public class Money
+{
+    public decimal Read(string text) =&gt; decimal.Parse(text, CultureInfo.InvariantCulture);
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1305">CA1305: Specify IFormatProvider</a></li>
+</ul>
