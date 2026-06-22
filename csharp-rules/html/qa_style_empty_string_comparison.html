@@ -1,0 +1,20 @@
+<p>Comparing a string to <code>""</code> tests only for an empty value and silently treats <code>null</code> as different, which is rarely what the author meant. The intent of "is there any text here" is clearer through a dedicated check.</p>
+<p>Using <code>string.IsNullOrEmpty</code> or comparing the length states the question directly and handles the null case explicitly.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+if (name == "") // Noncompliant
+{
+    UseDefault();
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+if (string.IsNullOrEmpty(name))
+{
+    UseDefault();
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/api/system.string.isnullorempty">String.IsNullOrEmpty</a></li>
+</ul>

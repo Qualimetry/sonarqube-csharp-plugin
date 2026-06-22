@@ -1,0 +1,22 @@
+{
+  "id": "QCS0157",
+  "title": "SerializeField is redundant on a public field",
+  "tags": [
+    "unity",
+    "redundancy"
+  ],
+  "messageFormat": "Remove the redundant SerializeField attribute; public fields are already serialised.",
+  "summary": [
+    "<p>Unity serialises public fields of a serialisable type automatically. The <code>SerializeField</code> attribute exists to opt a non-public field into that same serialisation, so applying it to a field that is already <code>public</code> adds nothing the engine was not going to do anyway.</p>",
+    "<p>The redundant attribute clutters the declaration and hints that the author was unsure of the serialisation rules. Drop the attribute from public fields, and keep it only where it changes behaviour, on private or internal fields you want serialised.</p>"
+  ],
+  "noncompliant": "public class PlayerStats : MonoBehaviour\n{\n    [SerializeField]\n    public int health; // Noncompliant\n}",
+  "compliant": "public class PlayerStats : MonoBehaviour\n{\n    [SerializeField]\n    private int health;\n}",
+  "seeAlso": [
+    {
+      "text": "SerializeField (Unity scripting reference)",
+      "href": "https://docs.unity3d.com/ScriptReference/SerializeField.html"
+    }
+  ],
+  "ruleKey": "qa_unity_redundant_serialize_field"
+}

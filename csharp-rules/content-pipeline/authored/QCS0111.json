@@ -1,0 +1,21 @@
+{
+  "id": "QCS0111",
+  "title": "Make methods static when they use no instance state",
+  "tags": [
+    "design",
+    "performance"
+  ],
+  "messageFormat": "This method does not use any instance state; declare it static.",
+  "summary": [
+    "<p>A private method that never touches <code>this</code>, an instance field, or an instance member does not depend on the object it is declared on. Marking it <code>static</code> makes that independence explicit, avoids passing an unused receiver, and clarifies that the method has no per-instance side effects.</p>"
+  ],
+  "noncompliant": "public class Geometry\n{\n    private int Area(int width, int height) // Noncompliant\n    {\n        return width * height;\n    }\n}",
+  "compliant": "public class Geometry\n{\n    private static int Area(int width, int height)\n    {\n        return width * height;\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "static (C# reference)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/static"
+    }
+  ],
+  "ruleKey": "qa_quality_instance_method_could_be_static"
+}

@@ -1,0 +1,28 @@
+<p>The static <code>Regex.IsMatch</code> overloads parse and build the pattern on every call. In a hot path or a loop that repeated work is wasted: the pattern is constant but the engine recompiles it each time.</p>
+<p>Promoting the pattern to a shared <code>Regex</code> instance (optionally <code>RegexOptions.Compiled</code>) parses it once and reuses the automaton for every match.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System.Text.RegularExpressions;
+
+public class Validator
+{
+    public bool IsCode(string input)
+    {
+        return Regex.IsMatch(input, "^[A-Z]{3}$"); // Noncompliant
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System.Text.RegularExpressions;
+
+public class Validator
+{
+    private static readonly Regex CodePattern = new Regex("^[A-Z]{3}$");
+
+    public bool IsCode(string input)
+    {
+        return CodePattern.IsMatch(input);
+    }
+}
+</pre>

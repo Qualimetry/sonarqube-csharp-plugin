@@ -1,0 +1,21 @@
+{
+  "id": "QCS0074",
+  "title": "Certificate validation must not be disabled",
+  "tags": [
+    "security",
+    "suspicious"
+  ],
+  "messageFormat": "Do not accept all certificates; validate the certificate and chain before trusting the connection.",
+  "summary": [
+    "<p>Assigning a certificate-validation callback that always returns <code>true</code> turns off transport security: the connection will trust any certificate, including a forged or expired one, which opens the door to man-in-the-middle interception. The callback must inspect the certificate, the chain, and the policy errors and reject anything it cannot verify.</p>"
+  ],
+  "noncompliant": "client.ServerCertificateCustomValidationCallback =\n    (request, cert, chain, errors) => true; // Noncompliant",
+  "compliant": "client.ServerCertificateCustomValidationCallback =\n    (request, cert, chain, errors) => errors == SslPolicyErrors.None;",
+  "seeAlso": [
+    {
+      "text": "CWE-295: Improper Certificate Validation",
+      "href": "https://cwe.mitre.org/data/definitions/295.html"
+    }
+  ],
+  "ruleKey": "qa_reliability_certificate_validation_disabled"
+}

@@ -1,0 +1,19 @@
+<p>An <code>s_</code> prefix on a private static field marks shared state that outlives any single instance, so a reader spots at the assignment site that the write is process-wide rather than per-object. It keeps static state visually distinct from the underscore-prefixed instance fields and from constants.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class Counter
+{
+    private static int instances; // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class Counter
+{
+    private static int s_instances;
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/fundamentals/coding-style/identifier-names">Field naming conventions</a></li>
+</ul>

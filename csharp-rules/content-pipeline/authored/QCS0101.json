@@ -1,0 +1,22 @@
+{
+  "id": "QCS0101",
+  "title": "Argument exceptions should name a real parameter",
+  "tags": [
+    "bug",
+    "clarity"
+  ],
+  "messageFormat": "The parameter name passed to this argument exception does not match any parameter in scope.",
+  "summary": [
+    "<p>The <code>paramName</code> argument of <code>ArgumentException</code> and its relatives is what tooling, logs and callers use to find the offending input. When the literal passed there is misspelled or stale, the diagnostic points at a parameter that does not exist and the real culprit stays hidden.</p>",
+    "<p>Use <code>nameof(parameter)</code> so the compiler keeps the name correct through every rename.</p>"
+  ],
+  "noncompliant": "using System;\n\npublic class Account\n{\n    public void Withdraw(decimal amount)\n    {\n        if (amount <= 0)\n        {\n            throw new ArgumentOutOfRangeException(\"ammount\"); // Noncompliant\n        }\n    }\n}",
+  "compliant": "using System;\n\npublic class Account\n{\n    public void Withdraw(decimal amount)\n    {\n        if (amount <= 0)\n        {\n            throw new ArgumentOutOfRangeException(nameof(amount));\n        }\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "nameof expression (C# reference)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/language-reference/operators/nameof"
+    }
+  ],
+  "ruleKey": "qa_quality_argument_exception_parameter_name"
+}

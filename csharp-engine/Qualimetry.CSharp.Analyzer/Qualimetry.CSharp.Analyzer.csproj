@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <DevelopmentDependency>true</DevelopmentDependency>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Package">
+    <PackageId>Qualimetry.CSharp.Analyzer</PackageId>
+    <Version>1.0.12</Version>
+    <Title>Qualimetry C#</Title>
+    <Description>Qualimetry C# code-quality analyzers. A set of Roslyn diagnostics that enforce naming, style, design, reliability, and maintainability conventions, with code fixes where a safe correction exists.</Description>
+    <PackageTags>roslyn;analyzers;codequality;csharp</PackageTags>
+    <IncludeSymbols>false</IncludeSymbols>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Qualimetry.CSharp.Analyzer.CodeFixes\Qualimetry.CSharp.Analyzer.CodeFixes.csproj" ReferenceOutputAssembly="false" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup Label="Analyzer packaging">
+    <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="..\Qualimetry.CSharp.Analyzer.CodeFixes\bin\$(Configuration)\netstandard2.0\Qualimetry.CSharp.Analyzer.CodeFixes.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="build\Qualimetry.CSharp.Analyzer.props" Pack="true" PackagePath="build" />
+    <None Include="config\analyzers.globalconfig" Pack="true" PackagePath="config" />
+    <None Include="..\..\README-nuget.md" Pack="true" PackagePath="\README.md" Condition="Exists('..\..\README-nuget.md')" />
+  </ItemGroup>
+
+</Project>

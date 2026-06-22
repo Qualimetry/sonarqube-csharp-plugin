@@ -1,0 +1,14 @@
+{
+  "id": "QCS0041",
+  "title": "Avoid List.Contains lookups inside loops",
+  "tags": [
+    "performance"
+  ],
+  "messageFormat": "This List.Contains call runs on every loop iteration; use a set for repeated membership tests.",
+  "summary": [
+    "<p>Membership testing on a <code>List&lt;T&gt;</code> is a linear scan. Doing it inside a loop turns the surrounding work into a quadratic cost that is invisible on small inputs and crippling on large ones. When the same collection is searched repeatedly, build a <code>HashSet&lt;T&gt;</code> once and test against it, turning each lookup into a constant-time operation.</p>"
+  ],
+  "noncompliant": "using System.Collections.Generic;\n\npublic sealed class Filter\n{\n    public int Count(List<int> known, IEnumerable<int> input)\n    {\n        var hits = 0;\n        foreach (var value in input)\n        {\n            if (known.Contains(value)) // Noncompliant\n            {\n                hits++;\n            }\n        }\n\n        return hits;\n    }\n}",
+  "compliant": "using System.Collections.Generic;\n\npublic sealed class Filter\n{\n    public int Count(List<int> known, IEnumerable<int> input)\n    {\n        var lookup = new HashSet<int>(known);\n        var hits = 0;\n        foreach (var value in input)\n        {\n            if (lookup.Contains(value))\n            {\n                hits++;\n            }\n        }\n\n        return hits;\n    }\n}",
+  "ruleKey": "qa_quality_list_contains_in_loop"
+}

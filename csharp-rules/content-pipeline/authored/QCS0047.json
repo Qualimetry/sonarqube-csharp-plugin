@@ -1,0 +1,23 @@
+{
+  "id": "QCS0047",
+  "title": "Classes should not sit too deep in the inheritance hierarchy",
+  "tags": [
+    "metrics",
+    "design"
+  ],
+  "messageFormat": "Class '{0}' is {1} levels deep in its inheritance hierarchy, above the limit of {2}.",
+  "summary": [
+    "<p>Each level of inheritance adds context a reader must carry to understand a class: inherited state, virtual members that may be overridden, and constructor chaining. A deep chain makes behaviour hard to predict from any single file. Measuring the distance from a class to the root of its base chain flags hierarchies that have grown unwieldy and might be better expressed through composition.</p>",
+    "<p>The depth limit is configurable.</p>"
+  ],
+  "noncompliant": "public class A { }\npublic class B : A { }\npublic class C : B { }\npublic class D : C { }\npublic class E : D { } // Noncompliant",
+  "compliant": "public class Animal { }\npublic class Dog : Animal { }",
+  "configuration": [
+    {
+      "parameter": "maxdepth",
+      "type": "int",
+      "default": "5"
+    }
+  ],
+  "ruleKey": "qa_metrics_deep_inheritance"
+}

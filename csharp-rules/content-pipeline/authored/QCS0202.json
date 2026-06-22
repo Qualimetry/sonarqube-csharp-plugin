@@ -1,0 +1,15 @@
+{
+  "id": "QCS0202",
+  "title": "Types should be declared inside a namespace",
+  "tags": [
+    "clarity",
+    "convention"
+  ],
+  "messageFormat": "Move type '{0}' into a namespace declaration.",
+  "summary": [
+    "<p>Types declared in the global namespace pollute the root scope and collide easily with other libraries. Place every type in a namespace that reflects its ownership and feature area.</p>"
+  ],
+  "noncompliant": "public sealed class GlobalWidget\n{\n}",
+  "compliant": "namespace Company.Product\n{\n    public sealed class Widget\n    {\n    }\n}",
+  "ruleKey": "qa_quality_type_without_namespace"
+}

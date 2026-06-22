@@ -1,0 +1,21 @@
+{
+  "id": "QCS0093",
+  "title": "Lower the visibility of protected fields in sealed types",
+  "tags": [
+    "design",
+    "encapsulation"
+  ],
+  "messageFormat": "Declare this field private; a sealed type cannot be derived from, so protected grants no extra access.",
+  "summary": [
+    "<p>A <code>sealed</code> type can never be inherited, so a <code>protected</code> member on it is reachable from nowhere that <code>private</code> would not also serve. The wider modifier is misleading and the compiler even warns about it. Declaring the field <code>private</code> states the real scope.</p>"
+  ],
+  "noncompliant": "public sealed class Cache\n{\n    protected int _size; // Noncompliant\n}",
+  "compliant": "public sealed class Cache\n{\n    private int _size;\n}",
+  "seeAlso": [
+    {
+      "text": "sealed (C# reference)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/sealed"
+    }
+  ],
+  "ruleKey": "qa_quality_protected_field_in_sealed_type"
+}

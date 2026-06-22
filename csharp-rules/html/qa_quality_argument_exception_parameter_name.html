@@ -1,0 +1,36 @@
+<p>The <code>paramName</code> argument of <code>ArgumentException</code> and its relatives is what tooling, logs and callers use to find the offending input. When the literal passed there is misspelled or stale, the diagnostic points at a parameter that does not exist and the real culprit stays hidden.</p>
+<p>Use <code>nameof(parameter)</code> so the compiler keeps the name correct through every rename.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System;
+
+public class Account
+{
+    public void Withdraw(decimal amount)
+    {
+        if (amount &lt;= 0)
+        {
+            throw new ArgumentOutOfRangeException("ammount"); // Noncompliant
+        }
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System;
+
+public class Account
+{
+    public void Withdraw(decimal amount)
+    {
+        if (amount &lt;= 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(amount));
+        }
+    }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/operators/nameof">nameof expression (C# reference)</a></li>
+</ul>

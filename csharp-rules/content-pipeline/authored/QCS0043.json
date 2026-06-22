@@ -1,0 +1,23 @@
+{
+  "id": "QCS0043",
+  "title": "A negated 'Any' query should be written as 'All'",
+  "tags": [
+    "convention",
+    "clarity",
+    "linq"
+  ],
+  "messageFormat": "Express this negated 'Any' call as an 'All' call with the opposite condition.",
+  "summary": [
+    "<p>Negating <code>Any</code> reads as \"there is no element that matches\", which is the same as \"every element fails the condition\". Writing it as <code>All</code> with the inverted predicate makes that universal statement explicit.</p>",
+    "<p>Both expressions evaluate identically; the change only clarifies what the query is really asserting.</p>"
+  ],
+  "noncompliant": "if (!items.Any(i => i.IsExpired)) // Noncompliant\n{\n    KeepAll();\n}",
+  "compliant": "if (items.All(i => !i.IsExpired))\n{\n    KeepAll();\n}",
+  "seeAlso": [
+    {
+      "text": "Enumerable.All",
+      "href": "https://learn.microsoft.com/dotnet/api/system.linq.enumerable.all"
+    }
+  ],
+  "ruleKey": "qa_style_negated_any_to_all"
+}

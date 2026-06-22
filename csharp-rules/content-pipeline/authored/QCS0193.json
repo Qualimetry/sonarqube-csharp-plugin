@@ -1,0 +1,22 @@
+{
+  "id": "QCS0193",
+  "title": "Catch clauses should name an exception type",
+  "tags": [
+    "clarity",
+    "exceptions"
+  ],
+  "messageFormat": "Declare the exception type this catch clause is meant to handle.",
+  "summary": [
+    "<p>A general <code>catch</code> with no exception type swallows everything, including the cancellation, out-of-memory, and stack-overflow conditions that the code is in no position to handle. The reader cannot tell which failure the author actually expected here.</p>",
+    "<p>Name the specific exception type the clause handles. When a broad catch is genuinely intended, write <code>catch (Exception)</code> so the intent is explicit.</p>"
+  ],
+  "noncompliant": "using System;\n\npublic class Worker\n{\n    public void Run()\n    {\n        try\n        {\n            Execute();\n        }\n        catch // Noncompliant\n        {\n        }\n    }\n\n    private void Execute()\n    {\n    }\n}",
+  "compliant": "using System;\n\npublic class Worker\n{\n    public void Run()\n    {\n        try\n        {\n            Execute();\n        }\n        catch (InvalidOperationException)\n        {\n        }\n    }\n\n    private void Execute()\n    {\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "Exception handling (C# reference)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/fundamentals/exceptions/exception-handling"
+    }
+  ],
+  "ruleKey": "qa_quality_catch_without_exception_type"
+}

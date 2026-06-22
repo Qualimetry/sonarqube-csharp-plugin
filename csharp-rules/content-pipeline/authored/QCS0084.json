@@ -1,0 +1,22 @@
+{
+  "id": "QCS0084",
+  "title": "Avoid reflection calls inside loops",
+  "tags": [
+    "performance",
+    "suspicious"
+  ],
+  "messageFormat": "Move this reflection call out of the loop or cache its result to avoid repeated reflection overhead.",
+  "summary": [
+    "<p>Reflection lookups and invocations such as <code>MethodInfo.Invoke</code>, <code>PropertyInfo.GetValue</code>, or <code>Activator.CreateInstance</code> are far slower than direct calls. Performing them on every iteration of a loop multiplies that cost and often dominates the loop body.</p>",
+    "<p>Resolve the member once before the loop and reuse it, cache a compiled delegate, or replace the reflection with a direct call where the type is known.</p>"
+  ],
+  "noncompliant": "foreach (var item in items)\n{\n    var value = property.GetValue(item); // Noncompliant\n    Process(value);\n}",
+  "compliant": "foreach (var item in items)\n{\n    var value = item.Value;\n    Process(value);\n}",
+  "seeAlso": [
+    {
+      "text": "Reflection in .NET",
+      "href": "https://learn.microsoft.com/dotnet/fundamentals/reflection/reflection"
+    }
+  ],
+  "ruleKey": "qa_quality_reflection_inside_loop"
+}

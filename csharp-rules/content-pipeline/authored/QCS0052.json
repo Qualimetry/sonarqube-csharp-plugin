@@ -1,0 +1,23 @@
+{
+  "id": "QCS0052",
+  "title": "Types should not expose too many mutable reference-typed fields",
+  "tags": [
+    "metrics",
+    "immutability"
+  ],
+  "messageFormat": "This type has {0} non-readonly fields of a reference or user-defined type, above the limit of {1}.",
+  "summary": [
+    "<p>A field that holds a reference or user-defined type and is left writable invites callers and later code to swap the whole object out, which makes the owning instance's state harder to reason about. Marking such fields <code>readonly</code> pins the reference at construction and keeps mutation inside the object itself. Counting the writable complex-typed fields gives a tunable budget for how much of this looseness a type may keep.</p>",
+    "<p>The limit is configurable; set it to zero to require every complex field to be readonly.</p>"
+  ],
+  "noncompliant": "public sealed class Cache\n{\n    private Store _store = new Store(); // Noncompliant\n}",
+  "compliant": "public sealed class Cache\n{\n    private readonly Store _store = new Store();\n}",
+  "configuration": [
+    {
+      "parameter": "maxmutablecomplexfields",
+      "type": "int",
+      "default": "0"
+    }
+  ],
+  "ruleKey": "qa_metrics_mutable_complex_field"
+}

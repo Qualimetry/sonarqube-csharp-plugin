@@ -1,0 +1,16 @@
+{
+  "id": "QCS0173",
+  "title": "Index-based 'for' loops over a collection should prefer 'foreach'",
+  "tags": [
+    "clarity",
+    "convention"
+  ],
+  "messageFormat": "Use a 'foreach' loop to iterate this collection instead of an index-based 'for'.",
+  "summary": [
+    "<p>A <code>for</code> loop that starts at zero, runs while the counter is below a collection's <code>Length</code> or <code>Count</code>, increments by one, and only uses the counter to index that collection is a manual <code>foreach</code>. The index adds an off-by-one risk and obscures the simple intent of visiting each element.</p>",
+    "<p>When the index itself is not needed, <code>foreach</code> states the loop's purpose directly and cannot run past the end of the sequence.</p>"
+  ],
+  "noncompliant": "public int Sum(int[] items)\n{\n    var total = 0;\n    for (int i = 0; i < items.Length; i++) // Noncompliant\n    {\n        total += items[i];\n    }\n\n    return total;\n}",
+  "compliant": "public int Sum(int[] items)\n{\n    var total = 0;\n    foreach (var item in items)\n    {\n        total += item;\n    }\n\n    return total;\n}",
+  "ruleKey": "qa_style_index_loop_over_collection"
+}

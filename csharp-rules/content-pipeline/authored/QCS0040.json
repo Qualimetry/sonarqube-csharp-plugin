@@ -1,0 +1,22 @@
+{
+  "id": "QCS0040",
+  "title": "Catch blocks should not be empty",
+  "tags": [
+    "bug",
+    "exception-handling"
+  ],
+  "messageFormat": "Handle, rethrow, or log the caught exception instead of swallowing it silently.",
+  "summary": [
+    "<p>An empty <code>catch</code> block discards an exception with no record that anything went wrong. The program continues in an unknown state, and the original failure becomes invisible to operators and to whoever later debugs the resulting corruption.</p>",
+    "<p>Do something deliberate in the handler: recover, translate the exception, log it with context, or rethrow. If catching is genuinely intentional, narrow the clause to the specific exception type and document why it is safe to continue.</p>"
+  ],
+  "noncompliant": "try\n{\n    File.Delete(path);\n}\ncatch (IOException) // Noncompliant\n{\n}",
+  "compliant": "try\n{\n    File.Delete(path);\n}\ncatch (IOException ex)\n{\n    logger.LogWarning(ex, \"Could not delete {Path}\", path);\n}",
+  "seeAlso": [
+    {
+      "text": "Exception handling (C# programming guide)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/fundamentals/exceptions/"
+    }
+  ],
+  "ruleKey": "qa_quality_empty_catch_block"
+}

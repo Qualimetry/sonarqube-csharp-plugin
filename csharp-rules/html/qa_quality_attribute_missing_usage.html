@@ -1,0 +1,18 @@
+<p>Without an <code>[AttributeUsage]</code> declaration an attribute defaults to being valid on every program element and non-repeatable. Stating the intended targets (and whether it may be applied more than once or is inherited) prevents misuse and documents the design.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public sealed class AuditAttribute : Attribute // Noncompliant
+{
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+[AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
+public sealed class AuditAttribute : Attribute
+{
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/api/system.attributeusageattribute">AttributeUsageAttribute Class</a></li>
+</ul>

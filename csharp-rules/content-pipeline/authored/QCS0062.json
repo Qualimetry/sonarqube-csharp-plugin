@@ -1,0 +1,22 @@
+{
+  "id": "QCS0062",
+  "title": "Methods should not throw NotImplementedException",
+  "tags": [
+    "bug",
+    "exception-handling"
+  ],
+  "messageFormat": "Provide a real implementation instead of throwing 'NotImplementedException'.",
+  "summary": [
+    "<p>Throwing <code>NotImplementedException</code> marks code as unfinished. When it ships, the member compiles and looks complete but fails at run time the first time it is exercised, often deep inside an unrelated feature where the cause is hard to find.</p>",
+    "<p>Implement the member before release. If the operation is genuinely unsupported by design, throw <code>NotSupportedException</code> with a message that explains why, which is a permanent contract rather than a placeholder.</p>"
+  ],
+  "noncompliant": "public decimal CalculateTax(decimal amount)\n{\n    throw new NotImplementedException(); // Noncompliant\n}",
+  "compliant": "public decimal CalculateTax(decimal amount)\n{\n    return amount * 0.2m;\n}",
+  "seeAlso": [
+    {
+      "text": "NotImplementedException",
+      "href": "https://learn.microsoft.com/dotnet/api/system.notimplementedexception"
+    }
+  ],
+  "ruleKey": "qa_quality_not_implemented_exception_throw"
+}

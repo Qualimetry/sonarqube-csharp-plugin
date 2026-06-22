@@ -1,0 +1,45 @@
+<p>When a type has both a finalizer and a <code>Dispose</code> method, calling <code>Dispose</code> already releases everything. If <code>Dispose</code> does not tell the runtime to skip finalization, the object is still placed on the finalizer queue, which delays its reclamation by a full garbage-collection cycle and runs cleanup code a second time.</p>
+<p>Call <code>GC.SuppressFinalize(this)</code> at the end of <code>Dispose</code> so the now-cleaned object bypasses the finalizer.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class Connection : IDisposable
+{
+    ~Connection()
+    {
+        Close();
+    }
+
+    public void Dispose() // Noncompliant
+    {
+        Close();
+    }
+
+    private void Close()
+    {
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class Connection : IDisposable
+{
+    ~Connection()
+    {
+        Close();
+    }
+
+    public void Dispose()
+    {
+        Close();
+        GC.SuppressFinalize(this);
+    }
+
+    private void Close()
+    {
+    }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/api/system.gc.suppressfinalize">GC.SuppressFinalize</a></li>
+</ul>

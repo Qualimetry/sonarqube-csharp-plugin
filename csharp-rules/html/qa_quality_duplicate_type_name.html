@@ -1,0 +1,33 @@
+<p>When two unrelated types share a simple name and differ only by namespace, every file that needs both must alias one of them, error messages become ambiguous, and a reader cannot tell from an unqualified reference which type is meant. Reflection and serialization that key on the short name also become unreliable. Give each type a name that is unique within the codebase so references stay unambiguous without aliasing.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+namespace Billing
+{
+    public sealed class Account // Noncompliant
+    {
+    }
+}
+
+namespace Identity
+{
+    public sealed class Account
+    {
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+namespace Billing
+{
+    public sealed class BillingAccount
+    {
+    }
+}
+
+namespace Identity
+{
+    public sealed class UserAccount
+    {
+    }
+}
+</pre>

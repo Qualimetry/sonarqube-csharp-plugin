@@ -1,0 +1,15 @@
+<p>Assigning a certificate-validation callback that always returns <code>true</code> turns off transport security: the connection will trust any certificate, including a forged or expired one, which opens the door to man-in-the-middle interception. The callback must inspect the certificate, the chain, and the policy errors and reject anything it cannot verify.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+client.ServerCertificateCustomValidationCallback =
+    (request, cert, chain, errors) =&gt; true; // Noncompliant
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+client.ServerCertificateCustomValidationCallback =
+    (request, cert, chain, errors) =&gt; errors == SslPolicyErrors.None;
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://cwe.mitre.org/data/definitions/295.html">CWE-295: Improper Certificate Validation</a></li>
+</ul>

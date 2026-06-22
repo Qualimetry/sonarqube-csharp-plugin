@@ -1,0 +1,23 @@
+{
+  "id": "QCS0104",
+  "title": "Local variables that never change should be declared const",
+  "tags": [
+    "convention",
+    "clarity",
+    "immutability"
+  ],
+  "messageFormat": "Declare local variable '{0}' as const since it holds a constant value that never changes.",
+  "summary": [
+    "<p>A local initialised with a compile-time constant and never reassigned is a constant in everything but declaration. Marking it <code>const</code> records that fact and lets the compiler reject any later attempt to change it.</p>",
+    "<p>The reader then knows the value is fixed for the whole method without scanning for reassignments.</p>"
+  ],
+  "noncompliant": "void Render()\n{\n    int margin = 8; // Noncompliant\n    Apply(margin);\n}",
+  "compliant": "void Render()\n{\n    const int margin = 8;\n    Apply(margin);\n}",
+  "seeAlso": [
+    {
+      "text": "const (C# reference)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/const"
+    }
+  ],
+  "ruleKey": "qa_style_local_can_be_const"
+}

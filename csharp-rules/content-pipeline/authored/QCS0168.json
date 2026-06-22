@@ -1,0 +1,16 @@
+{
+  "id": "QCS0168",
+  "title": "Private method has an unused parameter",
+  "tags": [
+    "unused",
+    "clarity"
+  ],
+  "summary": [
+    "<p>A parameter that is never read inside a private method is dead weight on the signature. Every caller is forced to compute and pass a value that has no effect, and the unused parameter often hides a bug where the value was meant to be used but never was.</p>",
+    "<p>Remove the parameter, or use it in the method body as intended.</p>"
+  ],
+  "messageFormat": "Remove this unused parameter or reference it in the method body.",
+  "noncompliant": "public class Mailer\n{\n    public void Send(string to) => Format(to, true);\n\n    private string Format(string to, bool html) // Noncompliant\n    {\n        return to.Trim();\n    }\n}",
+  "compliant": "public class Mailer\n{\n    public void Send(string to) => Format(to);\n\n    private string Format(string to)\n    {\n        return to.Trim();\n    }\n}",
+  "ruleKey": "qa_quality_unused_parameter"
+}

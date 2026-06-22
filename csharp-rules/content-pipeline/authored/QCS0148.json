@@ -1,0 +1,22 @@
+{
+  "id": "QCS0148",
+  "title": "Database command text should not be built by string concatenation",
+  "tags": [
+    "security",
+    "sql"
+  ],
+  "messageFormat": "Use a parameterized query instead of building this command text from concatenated or interpolated values.",
+  "summary": [
+    "<p>When the <code>CommandText</code> of a database command, or the SQL passed to a command constructor, is assembled from string concatenation, interpolation, or <code>string.Format</code>, any value that reaches it becomes part of the executed statement. An attacker who controls that value can change the meaning of the query, read data they should not see, or destroy it.</p>",
+    "<p>Keep the SQL text constant and pass every runtime value as a command parameter so the database treats it strictly as data.</p>"
+  ],
+  "noncompliant": "public void Find(System.Data.IDbCommand command, string name)\n{\n    command.CommandText = \"SELECT * FROM Users WHERE Name = '\" + name + \"'\"; // Noncompliant\n}",
+  "compliant": "public void Find(System.Data.IDbCommand command, string name)\n{\n    command.CommandText = \"SELECT * FROM Users WHERE Name = @name\";\n    var parameter = command.CreateParameter();\n    parameter.ParameterName = \"@name\";\n    parameter.Value = name;\n    command.Parameters.Add(parameter);\n}",
+  "seeAlso": [
+    {
+      "text": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command",
+      "href": "https://cwe.mitre.org/data/definitions/89.html"
+    }
+  ],
+  "ruleKey": "qa_reliability_sql_command_injection"
+}

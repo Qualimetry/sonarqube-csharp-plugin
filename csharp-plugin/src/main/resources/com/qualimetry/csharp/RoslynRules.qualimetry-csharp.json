@@ -1,0 +1,858 @@
+{
+  "pluginKey": "qualimetrycsharp",
+  "pluginVersion": "1.0.12",
+  "repositoryKey": "roslyn.qualimetry-csharp",
+  "language": "cs",
+  "analyzerId": "Qualimetry.CSharp.Analyzer",
+  "ruleNamespace": "Qualimetry.CSharp.Analyzer",
+  "nugetPackageId": "Qualimetry.CSharp.Analyzer",
+  "nugetPackageVersion": "1.0.12",
+  "staticResourceName": "Qualimetry.CSharp.Analyzer.zip",
+  "globalConfig": "analyzers.globalconfig",
+  "analyzerAssemblies": [
+    "analyzers/dotnet/cs/Qualimetry.CSharp.Analyzer.dll",
+    "analyzers/dotnet/cs/Qualimetry.CSharp.Analyzer.CodeFixes.dll"
+  ],
+  "rules": [
+    {
+      "ruleKey": "qa_architecture_namespace_dependency_cycle",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_contract_immutable_struct_should_be_readonly",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_contract_pure_method_must_not_mutate_state",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_contract_pure_method_should_be_marked_pure",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_interop_native_methods_container_modifiers",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_interop_platform_invoke_in_native_methods",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_metrics_deep_inheritance",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_metrics_excessive_field_count",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_metrics_excessive_instance_state",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_metrics_excessive_method_count",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_metrics_excessive_method_overloads",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_metrics_excessive_parameter_count",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_metrics_excessive_type_coupling",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_metrics_field_assigned_from_many_methods",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_metrics_high_cyclomatic_complexity",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_metrics_large_interface",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_metrics_large_type",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_metrics_long_field_name",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_metrics_long_method",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_metrics_long_method_name",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_metrics_long_type_name",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_metrics_mutable_complex_field",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_metrics_type_poor_cohesion",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_naming_abstract_base_class_suffix",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_naming_attribute_type_suffix",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_naming_collection_member_plural_name",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_naming_controller_type_suffix",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_naming_directory_spans_namespaces",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_naming_exception_type_suffix",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_naming_instance_field_underscore",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_naming_interface_prefix",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_naming_interface_prefix_casing",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_naming_method_name_casing_consistency",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_naming_method_name_upper_case",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_naming_namespace_folder_mismatch",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_naming_namespace_spans_directories",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_naming_static_field_prefix",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_naming_type_conflicts_with_namespace",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_naming_type_name_upper_case",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_abstract_type_constructor_accessibility",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_abstract_type_public_constructor",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_application_exception_base_type",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_argument_exception_parameter_name",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_assembly_multiple_versions",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_attribute_missing_usage",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_attribute_type_should_be_sealed",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_attribute_usage_all_targets",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_base_type_references_derived",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_boxing_conversion",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_catch_without_exception_type",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_class_candidate_for_struct",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_cloneable_implementation",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_concrete_collection_return_type",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_concrete_xml_node_return_type",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_culture_insensitive_parsing",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_custom_delegate_declaration",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_dangerous_thread_method",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_discarded_exception_instance",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_disposable_field_in_non_disposable_type",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_disposable_field_not_disposed",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_dispose_method_without_i_disposable",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_dispose_missing_suppress_finalize",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_duplicate_type_across_assemblies",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_duplicate_type_name",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_empty_catch_block",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_empty_finalizer",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_empty_interface",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_empty_method_summary",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_empty_static_constructor",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_event_invoked_without_null_check",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_explicit_thread_creation",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_external_field_assignment",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_field_could_be_readonly",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_field_hides_base_field",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_garbage_collector_collect_call",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_garbage_collector_collect_without_wait",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_general_exception_type_thrown",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_hidden_base_method",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_instance_method_could_be_static",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_legacy_non_generic_collection",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_list_contains_in_loop",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_monitor_enter_without_exit",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_multiple_types_per_file",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_mutable_collection_property_setter",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_mutable_record_property",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_mutable_struct",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_nested_type_masks_outer_static_member",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_non_private_method_could_be_static",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_non_public_exception_type",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_non_readonly_static_field",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_non_standard_enum_underlying_type",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_not_implemented_exception_throw",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_obsolete_member_usage",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_overexposed_nested_type",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_override_does_not_call_base_dispose",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_parent_directory_path_traversal",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_property_getter_mutates_state",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_protected_field_in_sealed_type",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_protected_method_in_sealed_type",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_protected_nested_type_in_sealed_type",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_public_constant_field",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_public_event_handler_exposed",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_public_event_handler_method",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_public_field_declaration",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_public_method_in_non_public_type",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_public_platform_invoke",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_public_pointer_exposure",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_public_readonly_array_field",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_reader_writer_lock_acquire_without_release",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_readonly_mutable_reference_field",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_redundant_where_clause",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_reflection_inside_loop",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_reserved_enum_member_name",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_reserved_exception_type_thrown",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_sealable_interface_implementation",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_sealable_internal_class",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_serializable_interface_missing_attribute",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_serializable_missing_constructor",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_singleton_pattern",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_stateless_type_should_be_static",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_static_field_assigned_from_instance_method",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_static_mutable_collection_field",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_string_concatenation_in_loop",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_string_format_argument_count",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_switch_missing_default_clause",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_thread_static_on_instance_field",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_throw_in_static_constructor",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_try_method_return_type",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_type_without_namespace",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_undisposed_disposable_local",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_undisposed_local_object",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_uninstantiable_class",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_unmanaged_resource_missing_finalizer",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_unused_parameter",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_unused_private_field",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_unused_private_method",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_unused_private_nested_type",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_uri_member_as_string",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_use_name_of_for_parameter_name",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_use_var_for_obvious_type",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_value_type_equals_without_operator",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_virtual_call_in_constructor",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_virtual_property_access_in_constructor",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_quality_visible_nested_type",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_xml_doc_nonexistent_parameter",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_quality_xml_document_base_type",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_reliability_certificate_validation_disabled",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_reliability_com_security_initialization",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_reliability_data_adapter_injection",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_reliability_insecure_random_for_security",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_reliability_invalid_ip_address_literal",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_reliability_invalid_json_literal",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_reliability_invalid_regex_pattern",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_reliability_invalid_uri_literal",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_reliability_sql_command_injection",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_reliability_type_initialization_cycle",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_reliability_weak_block_cipher",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_style_async_method_name_suffix",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_async_suffix_on_sync_method",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_boolean_conditional_simplification",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_boolean_literal_comparison",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_boolean_return_via_if",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_style_commented_out_code",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_conditional_assignment_opportunity",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_style_console_composite_format",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_empty_initializer",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_empty_string_comparison",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_explicit_backing_field_property",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_expression_body_opportunity",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_extension_method_invocation_style",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_field_can_be_readonly",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_field_declaration_order",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_getter_only_auto_property",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_if_chain_to_switch",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_index_loop_over_collection",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_local_can_be_const",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_loop_counter_equality_comparison",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_mergeable_nested_if",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_missing_configure_await",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_mutable_struct_should_be_class",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_negated_all_to_any",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_negated_any_to_all",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_null_guard_to_conditional",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_numeric_literal_digit_separator",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_object_initializer_opportunity",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_style_prefer_string_empty",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_prefer_verbatim_string",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_private_set_candidate",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_property_changed_event_args_allocation",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_redundant_default_field_initializer",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_redundant_else_after_jump",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_redundant_lambda_method_group",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_redundant_to_string_in_concatenation",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_splittable_conjunction_if",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_static_regex_is_match",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_string_format_interpolation",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_switch_section_braces",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_trailing_whitespace",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_unnecessary_return_parentheses",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_unnecessary_verbatim_string",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_unused_constructor_parameter",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_style_unused_private_method",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_unity_empty_unity_message",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_unity_fixed_delta_time_in_update",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_unity_initialize_on_load_method_signature",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_unity_initialize_on_load_static_constructor",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_unity_non_generic_get_component",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_unity_prefer_set_pixels32",
+      "defaultActive": true
+    },
+    {
+      "ruleKey": "qa_unity_redundant_serialize_field",
+      "defaultActive": false
+    },
+    {
+      "ruleKey": "qa_unity_scriptable_object_create_instance",
+      "defaultActive": true
+    }
+  ]
+}

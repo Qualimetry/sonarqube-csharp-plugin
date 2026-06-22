@@ -1,0 +1,22 @@
+{
+  "id": "QCS0080",
+  "title": "Dangerous thread control methods should not be used",
+  "tags": [
+    "bug",
+    "concurrency"
+  ],
+  "messageFormat": "Avoid the dangerous thread control method '{0}'; use cooperative cancellation instead.",
+  "summary": [
+    "<p>Methods such as <code>Thread.Abort</code>, <code>Thread.Suspend</code>, and <code>Thread.Resume</code> stop a thread at an arbitrary point. Locks may be left held, partial writes may be left behind, and finalizers may not run, which leaves shared state corrupted and the process prone to deadlock. These methods are unsupported on modern .NET and throw at run time.</p>",
+    "<p>Signal a thread to stop cooperatively with a <code>CancellationToken</code>, and let the worker reach a safe point before it exits.</p>"
+  ],
+  "noncompliant": "public void Stop(Thread worker)\n{\n    worker.Abort(); // Noncompliant\n}",
+  "compliant": "public void Stop(CancellationTokenSource cancellation)\n{\n    cancellation.Cancel();\n}",
+  "seeAlso": [
+    {
+      "text": "Cancellation in managed threads",
+      "href": "https://learn.microsoft.com/dotnet/standard/threading/cancellation-in-managed-threads"
+    }
+  ],
+  "ruleKey": "qa_quality_dangerous_thread_method"
+}

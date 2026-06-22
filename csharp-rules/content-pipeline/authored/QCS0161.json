@@ -1,0 +1,16 @@
+{
+  "id": "QCS0161",
+  "title": "Nested type should not be more accessible than its container",
+  "tags": [
+    "design",
+    "api-design"
+  ],
+  "summary": [
+    "<p>A nested type can never be reached more widely than the type that contains it, so declaring it <code>public</code> inside an <code>internal</code> or otherwise non-public container is misleading. The declared accessibility promises a reach the type does not have, and a reader has to trace the enclosing type to learn its true scope.</p>",
+    "<p>Lower the nested type to match what its container actually allows, typically <code>private</code> or <code>internal</code>.</p>"
+  ],
+  "messageFormat": "Lower this nested type's accessibility; it cannot be reached more widely than its container.",
+  "noncompliant": "internal class Pipeline\n{\n    public class Stage // Noncompliant\n    {\n        public int Order { get; set; }\n    }\n}",
+  "compliant": "internal class Pipeline\n{\n    private sealed class Stage\n    {\n        public int Order { get; set; }\n    }\n}",
+  "ruleKey": "qa_quality_overexposed_nested_type"
+}

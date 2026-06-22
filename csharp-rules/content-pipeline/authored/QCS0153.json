@@ -1,0 +1,15 @@
+{
+  "id": "QCS0153",
+  "title": "Conditional expressions yielding boolean literals should be simplified",
+  "tags": [
+    "clarity",
+    "convention"
+  ],
+  "messageFormat": "Replace this conditional expression with the boolean condition itself.",
+  "summary": [
+    "<p>A ternary of the shape <code>condition ? true : false</code> evaluates to exactly the condition, and <code>condition ? false : true</code> is just its negation. Writing the boolean expression directly is shorter and removes a needless branch for the reader to trace.</p>"
+  ],
+  "noncompliant": "public bool CanProceed(int retries)\n{\n    return retries < 3 ? true : false; // Noncompliant\n}",
+  "compliant": "public bool CanProceed(int retries)\n{\n    return retries < 3;\n}",
+  "ruleKey": "qa_style_boolean_conditional_simplification"
+}

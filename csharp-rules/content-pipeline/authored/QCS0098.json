@@ -1,0 +1,21 @@
+{
+  "id": "QCS0098",
+  "title": "Private instance fields should start with an underscore",
+  "tags": [
+    "convention",
+    "naming"
+  ],
+  "messageFormat": "Rename instance field '{0}' so it begins with an underscore.",
+  "summary": [
+    "<p>A leading underscore on a private instance field distinguishes backing state from parameters and local variables of the same word, so an assignment inside a constructor or method reads unambiguously without a <code>this.</code> qualifier. The convention applies only to private instance fields; public members follow PascalCase instead.</p>"
+  ],
+  "noncompliant": "public class Cache\n{\n    private int count; // Noncompliant\n}",
+  "compliant": "public class Cache\n{\n    private int _count;\n}",
+  "seeAlso": [
+    {
+      "text": "Field naming conventions",
+      "href": "https://learn.microsoft.com/dotnet/csharp/fundamentals/coding-style/identifier-names"
+    }
+  ],
+  "ruleKey": "qa_naming_instance_field_underscore"
+}

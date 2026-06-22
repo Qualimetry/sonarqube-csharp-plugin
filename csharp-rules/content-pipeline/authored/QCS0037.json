@@ -1,0 +1,22 @@
+{
+  "id": "QCS0037",
+  "title": "Base classes should not reference their derived types",
+  "tags": [
+    "design",
+    "coupling"
+  ],
+  "messageFormat": "Remove this reference to a derived type from its base class; the dependency direction is inverted.",
+  "summary": [
+    "<p>When a base class names one of its own subclasses, the inheritance hierarchy depends on itself in both directions. The base type can no longer be understood, tested, or extended without dragging in the very types that are supposed to depend on it, and adding a new subclass risks breaking the parent.</p>",
+    "<p>Keep the base type unaware of its descendants. Express variation through virtual members, interfaces, or a factory supplied from the outside rather than constructing or casting to a concrete subclass inside the base.</p>"
+  ],
+  "noncompliant": "public class Widget\n{\n    public Widget CreateDefault()\n    {\n        return new Button(); // Noncompliant\n    }\n}\n\npublic class Button : Widget\n{\n}",
+  "compliant": "public class Widget\n{\n    public virtual Widget CreateDefault()\n    {\n        return new Widget();\n    }\n}\n\npublic class Button : Widget\n{\n}",
+  "seeAlso": [
+    {
+      "text": "Inheritance (C# programming guide)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/fundamentals/object-oriented/inheritance"
+    }
+  ],
+  "ruleKey": "qa_quality_base_type_references_derived"
+}

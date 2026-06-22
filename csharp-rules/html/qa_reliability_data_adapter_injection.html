@@ -1,0 +1,22 @@
+<p>A data adapter constructed with a SQL string that is assembled from concatenation, interpolation, or <code>string.Format</code> carries the same injection risk as a raw command: the runtime values become part of the statement the adapter runs to fill or update a dataset.</p>
+<p>Build the adapter from a command whose text is constant and whose runtime values are supplied as parameters.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public Adapter Build(string status)
+{
+    return new Adapter("SELECT * FROM Orders WHERE Status = '" + status + "'", _connection); // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public Adapter Build(string status)
+{
+    var command = new Command("SELECT * FROM Orders WHERE Status = @status", _connection);
+    command.AddParameter("@status", status);
+    return new Adapter(command);
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://cwe.mitre.org/data/definitions/89.html">CWE-89: Improper Neutralization of Special Elements used in an SQL Command</a></li>
+</ul>

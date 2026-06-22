@@ -1,0 +1,38 @@
+<p>Reading a <code>virtual</code> or <code>abstract</code> property from a constructor dispatches to the most-derived override, which executes while the derived constructor has not run yet. The override sees fields that are still at their default values and can return a wrong answer or throw.</p>
+<p>Read a non-virtual member, pass the value in as a constructor argument, or defer the work to an initialization step that runs after construction completes.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public abstract class View
+{
+    private readonly string _label;
+
+    protected View()
+    {
+        _label = Caption; // Noncompliant
+    }
+
+    public string Label =&gt; _label;
+
+    protected abstract string Caption { get; }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public abstract class View
+{
+    private readonly string _label;
+
+    protected View(string caption)
+    {
+        _label = caption;
+    }
+
+    public string Label =&gt; _label;
+
+    protected abstract string Caption { get; }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/virtual">Virtual members and construction order</a></li>
+</ul>

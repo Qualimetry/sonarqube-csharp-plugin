@@ -1,0 +1,20 @@
+<p>A <code>private</code> method can only be invoked from inside the type that declares it. When no reference to it exists anywhere in that type, it is dead code: it cannot be reached, yet it still has to be read, maintained and compiled.</p>
+<p>This rule reports a private method whose name appears nowhere else in the declaring type. If the method is genuinely an entry point reached by reflection, give it a usage or document it so the intent is explicit.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class Report
+{
+    public int Total() =&gt; 1;
+
+    private int Unused() =&gt; 0; // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class Report
+{
+    public int Total() =&gt; Helper();
+
+    private int Helper() =&gt; 0;
+}
+</pre>

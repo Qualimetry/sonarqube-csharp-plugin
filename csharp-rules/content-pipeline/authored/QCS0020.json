@@ -1,0 +1,23 @@
+{
+  "id": "QCS0020",
+  "title": "Method names should not be excessively long",
+  "tags": [
+    "metrics",
+    "readability"
+  ],
+  "messageFormat": "Method name '{0}' is {1} characters long, above the limit of {2}.",
+  "summary": [
+    "<p>When a method name grows very long it often tries to describe a sequence of steps rather than a single intent. That is a hint that the method itself is doing too much, or that the name is restating information the type and parameters already give.</p>",
+    "<p>The maximum length is configurable.</p>"
+  ],
+  "noncompliant": "public sealed class Service\n{\n    public void LoadValidateTransformAndPersistAllIncomingCustomerRecords()\n    {\n    }\n}",
+  "compliant": "public sealed class Service\n{\n    public void ImportCustomers()\n    {\n    }\n}",
+  "configuration": [
+    {
+      "parameter": "maxnamelength",
+      "type": "int",
+      "default": "40"
+    }
+  ],
+  "ruleKey": "qa_metrics_long_method_name"
+}

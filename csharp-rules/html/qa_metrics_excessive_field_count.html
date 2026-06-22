@@ -1,0 +1,24 @@
+<p>A type carrying a large number of fields is usually holding several distinct pieces of state that change for different reasons. Counting the declared fields highlights types whose data wants to be grouped into smaller, more cohesive structures.</p>
+<p>The field limit is configurable.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public sealed class Widget
+{
+    private int _a;
+    private int _b;
+    private int _c;
+    private int _d;
+    private int _e;
+    private int _f;
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public sealed class Widget
+{
+    private Position _position;
+    private Style _style;
+}
+</pre>
+<h2>Parameters</h2>
+<p>This rule is configurable. Edit <code>maxfields</code> (default <code>15</code>) on the rule in your quality profile; SonarQube applies the value during analysis and synchronises it to connected IDEs.</p>

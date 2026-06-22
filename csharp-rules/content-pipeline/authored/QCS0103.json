@@ -1,0 +1,23 @@
+{
+  "id": "QCS0103",
+  "title": "Private fields assigned only during construction should be readonly",
+  "tags": [
+    "convention",
+    "clarity",
+    "immutability"
+  ],
+  "messageFormat": "Mark field '{0}' as readonly since it is only assigned during construction.",
+  "summary": [
+    "<p>A private field that is set in its declaration or a constructor and never written again is conceptually immutable. Declaring it <code>readonly</code> turns that intent into a guarantee the compiler enforces.</p>",
+    "<p>The modifier documents that later code must not reassign the field and blocks an accidental write from slipping in during maintenance.</p>"
+  ],
+  "noncompliant": "public sealed class Cache\n{\n    private int _capacity; // Noncompliant\n\n    public Cache(int capacity)\n    {\n        _capacity = capacity;\n    }\n}",
+  "compliant": "public sealed class Cache\n{\n    private readonly int _capacity;\n\n    public Cache(int capacity)\n    {\n        _capacity = capacity;\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "readonly (C# reference)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/readonly"
+    }
+  ],
+  "ruleKey": "qa_style_field_can_be_readonly"
+}

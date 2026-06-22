@@ -1,0 +1,21 @@
+{
+  "id": "QCS0036",
+  "title": "Methods in a type should not differ only by letter case",
+  "tags": [
+    "convention",
+    "naming"
+  ],
+  "messageFormat": "Rename method '{0}'; another method in this type already uses the same name with different casing.",
+  "summary": [
+    "<p>When two methods on the same type share a name that differs only in capitalization, callers cannot tell them apart at a glance and the pair is invalid for any consumer that treats identifiers case-insensitively. Picking one spelling removes the ambiguity and keeps the public surface predictable.</p>"
+  ],
+  "noncompliant": "public class Mailbox\n{\n    public void Send() { }\n\n    public void send() { } // Noncompliant\n}",
+  "compliant": "public class Mailbox\n{\n    public void Send() { }\n\n    public void Receive() { }\n}",
+  "seeAlso": [
+    {
+      "text": "Capitalization conventions",
+      "href": "https://learn.microsoft.com/dotnet/standard/design-guidelines/capitalization-conventions"
+    }
+  ],
+  "ruleKey": "qa_naming_method_name_casing_consistency"
+}

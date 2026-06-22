@@ -1,0 +1,23 @@
+{
+  "id": "QCS0042",
+  "title": "A negated 'All' query should be written as 'Any'",
+  "tags": [
+    "convention",
+    "clarity",
+    "linq"
+  ],
+  "messageFormat": "Express this negated 'All' call as an 'Any' call with the opposite condition.",
+  "summary": [
+    "<p>Negating <code>All</code> asks the reader to invert a universal claim in their head: \"not every element matches\" really means \"some element fails\". Stating that directly with <code>Any</code> and the opposite predicate removes the double negative.</p>",
+    "<p>The two forms return the same result, so the rewrite is purely about reading the intent of the query at a glance.</p>"
+  ],
+  "noncompliant": "if (!items.All(i => i.IsValid)) // Noncompliant\n{\n    Reject();\n}",
+  "compliant": "if (items.Any(i => !i.IsValid))\n{\n    Reject();\n}",
+  "seeAlso": [
+    {
+      "text": "Enumerable.Any",
+      "href": "https://learn.microsoft.com/dotnet/api/system.linq.enumerable.any"
+    }
+  ],
+  "ruleKey": "qa_style_negated_all_to_any"
+}

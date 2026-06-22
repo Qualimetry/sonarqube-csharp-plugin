@@ -1,0 +1,16 @@
+{
+  "id": "QCS0127",
+  "title": "Private method is never used",
+  "tags": [
+    "unused",
+    "clarity"
+  ],
+  "messageFormat": "Remove this unused private method or call it where it is needed.",
+  "summary": [
+    "<p>A private method that is never called within its declaring type is unreachable code. It cannot be invoked from outside, so the reader is left guessing whether it is a forgotten helper, an unfinished feature, or a hazard waiting to be wired up incorrectly.</p>",
+    "<p>Delete the method, or call it from the code path it was written for.</p>"
+  ],
+  "noncompliant": "public class ReportBuilder\n{\n    public string Build() => Header();\n\n    private string Header() => \"Report\";\n\n    private string Footer() => \"End\"; // Noncompliant\n}",
+  "compliant": "public class ReportBuilder\n{\n    public string Build() => Header() + Footer();\n\n    private string Header() => \"Report\";\n\n    private string Footer() => \"End\";\n}",
+  "ruleKey": "qa_quality_unused_private_method"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "QCS0049",
+  "title": "Types marked InitializeOnLoad require a static constructor",
+  "tags": [
+    "unity",
+    "suspicious"
+  ],
+  "messageFormat": "Add a static constructor to this type or remove the InitializeOnLoad attribute.",
+  "summary": [
+    "<p>The <code>InitializeOnLoad</code> attribute tells the editor to run a type's static initialisation as soon as the project loads. Unity triggers that initialisation by invoking the type's static constructor, so a class carrying the attribute with no static constructor declares an intent it cannot honour.</p>",
+    "<p>Either add the static constructor that holds the load-time setup, or drop the attribute if no editor-load behaviour is needed. Leaving the attribute without a static constructor is dead intent that misleads the next reader.</p>"
+  ],
+  "noncompliant": "[InitializeOnLoad]\npublic class EditorBootstrap // Noncompliant\n{\n    public static bool Ready;\n}",
+  "compliant": "[InitializeOnLoad]\npublic class EditorBootstrap\n{\n    public static bool Ready;\n\n    static EditorBootstrap()\n    {\n        Ready = true;\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "InitializeOnLoadAttribute (Unity scripting reference)",
+      "href": "https://docs.unity3d.com/ScriptReference/InitializeOnLoadAttribute.html"
+    }
+  ],
+  "ruleKey": "qa_unity_initialize_on_load_static_constructor"
+}

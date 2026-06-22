@@ -1,0 +1,26 @@
+<p>A <code>[DllImport]</code> method declared <code>public</code> or <code>protected</code> exposes a raw native entry point to every consumer of the assembly. Callers bypass any managed validation around it and invoke unmanaged code directly, which is both a security risk and a brittle contract.</p>
+<p>Keep interop declarations internal or private inside a dedicated native-methods class, and surface a safe managed wrapper instead.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System.Runtime.InteropServices;
+
+public class Native
+{
+    [DllImport("kernel32.dll")]
+    public static extern int GetCurrentProcessId(); // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System.Runtime.InteropServices;
+
+internal static class Native
+{
+    [DllImport("kernel32.dll")]
+    internal static extern int GetCurrentProcessId();
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1401">CA1401: P/Invokes should not be visible</a></li>
+</ul>

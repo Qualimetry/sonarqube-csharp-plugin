@@ -1,0 +1,16 @@
+{
+  "id": "QCS0176",
+  "title": "Repeated 'Regex.IsMatch' with an inline pattern should use a cached Regex",
+  "tags": [
+    "performance",
+    "convention"
+  ],
+  "messageFormat": "Cache a compiled 'Regex' instead of calling the static 'Regex.IsMatch' with an inline pattern.",
+  "summary": [
+    "<p>The static <code>Regex.IsMatch</code> overloads parse and build the pattern on every call. In a hot path or a loop that repeated work is wasted: the pattern is constant but the engine recompiles it each time.</p>",
+    "<p>Promoting the pattern to a shared <code>Regex</code> instance (optionally <code>RegexOptions.Compiled</code>) parses it once and reuses the automaton for every match.</p>"
+  ],
+  "noncompliant": "using System.Text.RegularExpressions;\n\npublic class Validator\n{\n    public bool IsCode(string input)\n    {\n        return Regex.IsMatch(input, \"^[A-Z]{3}$\"); // Noncompliant\n    }\n}",
+  "compliant": "using System.Text.RegularExpressions;\n\npublic class Validator\n{\n    private static readonly Regex CodePattern = new Regex(\"^[A-Z]{3}$\");\n\n    public bool IsCode(string input)\n    {\n        return CodePattern.IsMatch(input);\n    }\n}",
+  "ruleKey": "qa_style_static_regex_is_match"
+}

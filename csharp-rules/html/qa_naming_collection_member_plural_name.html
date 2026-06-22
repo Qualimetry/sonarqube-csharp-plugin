@@ -1,0 +1,23 @@
+<p>A public property or field whose type is an array or sequence holds many values, so a singular name misrepresents it to every caller. A plural name communicates the multiplicity at the use site and matches how the rest of the framework names its sequence-valued members.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System.Collections.Generic;
+
+public class Order
+{
+    public List&lt;string&gt; Line { get; set; } // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System.Collections.Generic;
+
+public class Order
+{
+    public List&lt;string&gt; Lines { get; set; }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/standard/design-guidelines/names-of-type-members">Names of type members</a></li>
+</ul>

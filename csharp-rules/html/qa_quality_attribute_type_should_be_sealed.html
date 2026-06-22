@@ -1,0 +1,19 @@
+<p>Attributes are looked up by reflection, and the runtime walks the inheritance chain when it resolves them. An attribute type that can be derived from makes that lookup ambiguous and slower, and it is almost never the intent. Unless the type exists purely as a base for a family of attributes, sealing it states that it is a concrete, final attribute and removes the surprise of an accidental subclass.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System;
+
+public class AuditAttribute : Attribute // Noncompliant
+{
+    public string Reason { get; set; }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System;
+
+public sealed class AuditAttribute : Attribute
+{
+    public string Reason { get; set; }
+}
+</pre>

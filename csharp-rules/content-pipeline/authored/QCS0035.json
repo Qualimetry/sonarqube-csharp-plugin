@@ -1,0 +1,22 @@
+{
+  "id": "QCS0035",
+  "title": "Frame updates should use Time.deltaTime not Time.fixedDeltaTime",
+  "tags": [
+    "unity",
+    "suspicious"
+  ],
+  "messageFormat": "Use Time.deltaTime inside a per-frame update; Time.fixedDeltaTime belongs in FixedUpdate.",
+  "summary": [
+    "<p><code>Update</code> and <code>LateUpdate</code> run once per rendered frame at a variable cadence, so motion and timing in them must be scaled by <code>Time.deltaTime</code>, the elapsed time since the previous frame. Reading <code>Time.fixedDeltaTime</code> there instead pulls in the fixed physics step, which is unrelated to how long the current frame actually took.</p>",
+    "<p>The mismatch produces movement that speeds up or slows down with the frame rate instead of staying constant in real time. Use <code>Time.deltaTime</code> in frame callbacks and reserve <code>Time.fixedDeltaTime</code> for <code>FixedUpdate</code>.</p>"
+  ],
+  "noncompliant": "public class Mover : MonoBehaviour\n{\n    void Update()\n    {\n        position += speed * Time.fixedDeltaTime; // Noncompliant\n    }\n}",
+  "compliant": "public class Mover : MonoBehaviour\n{\n    void Update()\n    {\n        position += speed * Time.deltaTime;\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "Time.deltaTime (Unity scripting reference)",
+      "href": "https://docs.unity3d.com/ScriptReference/Time-deltaTime.html"
+    }
+  ],
+  "ruleKey": "qa_unity_fixed_delta_time_in_update"
+}

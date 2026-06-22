@@ -1,0 +1,30 @@
+<p>When a public, overridable method exists only to satisfy an interface that is not part of the assembly's public surface, leaving it open invites accidental overrides that no caller of the interface ever needed. Sealing the member states that the implementation is final and lets the runtime devirtualise the call.</p>
+<p>Mark the implementing member <code>sealed</code>, or make the interface itself public if extension was intended.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+internal interface IHandler
+{
+    void Handle();
+}
+
+public class Worker : IHandler
+{
+    public virtual void Handle() // Noncompliant
+    {
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+internal interface IHandler
+{
+    void Handle();
+}
+
+public class Worker : IHandler
+{
+    public void Handle()
+    {
+    }
+}
+</pre>

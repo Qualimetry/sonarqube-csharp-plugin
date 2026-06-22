@@ -1,0 +1,16 @@
+{
+  "id": "QCS0192",
+  "title": "Use var when the type is evident from a constructor call",
+  "tags": [
+    "clarity",
+    "style"
+  ],
+  "summary": [
+    "<p>When a local variable is initialised with a constructor call whose type is spelled out on the right-hand side, repeating that type on the left adds nothing. The declaration reads the type name twice and any later change to the constructed type has to be made in two places.</p>",
+    "<p>Use <code>var</code> so the type is stated once, by the initializer.</p>"
+  ],
+  "messageFormat": "Use 'var'; the type is already stated by the constructor on the right-hand side.",
+  "noncompliant": "using System.Collections.Generic;\n\npublic class Loader\n{\n    public void Run()\n    {\n        List<string> names = new List<string>(); // Noncompliant\n        names.Add(\"a\");\n    }\n}",
+  "compliant": "using System.Collections.Generic;\n\npublic class Loader\n{\n    public void Run()\n    {\n        var names = new List<string>();\n        names.Add(\"a\");\n    }\n}",
+  "ruleKey": "qa_quality_use_var_for_obvious_type"
+}

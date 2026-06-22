@@ -1,0 +1,22 @@
+<p>A nested type can never be reached more widely than the type that contains it, so declaring it <code>public</code> inside an <code>internal</code> or otherwise non-public container is misleading. The declared accessibility promises a reach the type does not have, and a reader has to trace the enclosing type to learn its true scope.</p>
+<p>Lower the nested type to match what its container actually allows, typically <code>private</code> or <code>internal</code>.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+internal class Pipeline
+{
+    public class Stage // Noncompliant
+    {
+        public int Order { get; set; }
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+internal class Pipeline
+{
+    private sealed class Stage
+    {
+        public int Order { get; set; }
+    }
+}
+</pre>

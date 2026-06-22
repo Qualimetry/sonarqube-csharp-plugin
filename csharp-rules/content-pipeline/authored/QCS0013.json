@@ -1,0 +1,23 @@
+{
+  "id": "QCS0013",
+  "title": "Types should not reference too many other types",
+  "tags": [
+    "metrics",
+    "maintainability"
+  ],
+  "messageFormat": "This type references {0} distinct types in its members, above the limit of {1}.",
+  "summary": [
+    "<p>A type whose members mention a large number of other types tends to sit at the centre of many responsibilities and is hard to change without ripple effects. Counting the distinct types named across a type's fields, properties, and method signatures gives a quick read on how tightly it is wired to the rest of the code base.</p>",
+    "<p>The limit is configurable so that gateway or composition types, where a wide surface is expected, can be tuned separately.</p>"
+  ],
+  "noncompliant": "public sealed class OrderProcessor\n{\n    private Catalog _catalog;\n    private Inventory _inventory;\n    private Pricing _pricing;\n    private Shipping _shipping;\n    private Billing _billing;\n    private Auditor _auditor;\n\n    public Receipt Handle(Cart cart, Customer customer, Coupon coupon)\n    {\n        return new Receipt();\n    }\n}",
+  "compliant": "public sealed class OrderProcessor\n{\n    private readonly IOrderPipeline _pipeline;\n\n    public OrderProcessor(IOrderPipeline pipeline)\n    {\n        _pipeline = pipeline;\n    }\n\n    public Receipt Handle(Cart cart)\n    {\n        return _pipeline.Run(cart);\n    }\n}",
+  "configuration": [
+    {
+      "parameter": "maxcoupling",
+      "type": "int",
+      "default": "20"
+    }
+  ],
+  "ruleKey": "qa_metrics_excessive_type_coupling"
+}

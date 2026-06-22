@@ -1,0 +1,15 @@
+<p>When an expression takes part in a string concatenation, the compiler already calls <code>ToString()</code> on each non-string operand. An explicit <code>ToString()</code> in that position is pure noise and, with a null operand, can even turn a safe empty result into a <code>NullReferenceException</code>.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public string Label(int count)
+{
+    return "Items: " + count.ToString(); // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public string Label(int count)
+{
+    return "Items: " + count;
+}
+</pre>

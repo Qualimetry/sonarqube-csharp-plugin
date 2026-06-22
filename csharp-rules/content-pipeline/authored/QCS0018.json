@@ -1,0 +1,15 @@
+{
+  "id": "QCS0018",
+  "title": "Documentation comments should not have an empty summary",
+  "tags": [
+    "clarity",
+    "convention"
+  ],
+  "messageFormat": "Complete or remove this documentation comment; its summary is empty.",
+  "summary": [
+    "<p>A documentation comment with a missing or blank <code>&lt;summary&gt;</code> is worse than no comment at all: tooling renders an empty tooltip, and a reader is led to believe the member is documented when it is not. Either write a summary that explains what the member does and why a caller would use it, or remove the stub so the member is honestly undocumented.</p>"
+  ],
+  "noncompliant": "public sealed class Report\n{\n    /// <summary></summary>\n    public void Render() // Noncompliant\n    {\n    }\n}",
+  "compliant": "public sealed class Report\n{\n    /// <summary>Writes the formatted report to the configured output.</summary>\n    public void Render()\n    {\n    }\n}",
+  "ruleKey": "qa_quality_empty_method_summary"
+}

@@ -1,0 +1,33 @@
+<p>A wide interface forces every implementer to satisfy the whole surface, even when a caller needs only a slice of it. Counting the members an interface declares highlights contracts that have grown into catch-alls and are candidates for splitting along the lines their callers actually use.</p>
+<p>The member limit is configurable.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public interface IDevice
+{
+    void Open();
+    void Close();
+    void Read();
+    void Write();
+    void Reset();
+    void Calibrate();
+    void Diagnose();
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public interface IReadableDevice
+{
+    void Open();
+    void Read();
+    void Close();
+}
+
+public interface IWritableDevice
+{
+    void Open();
+    void Write();
+    void Close();
+}
+</pre>
+<h2>Parameters</h2>
+<p>This rule is configurable. Edit <code>maxmembers</code> (default <code>20</code>) on the rule in your quality profile; SonarQube applies the value during analysis and synchronises it to connected IDEs.</p>

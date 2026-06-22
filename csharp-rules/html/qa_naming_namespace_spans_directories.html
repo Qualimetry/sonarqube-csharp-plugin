@@ -1,0 +1,23 @@
+<p>When one namespace spans several folders, navigation and ownership become unclear. Keep all types for a namespace under one directory.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+namespace Company.Product
+{
+    public sealed class Alpha
+    {
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+namespace Company.Product
+{
+    public sealed class Alpha
+    {
+    }
+
+    public sealed class Beta
+    {
+    }
+}
+</pre>

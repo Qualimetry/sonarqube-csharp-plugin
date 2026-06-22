@@ -1,0 +1,34 @@
+<p>When every instance field of a <code>struct</code> is <code>readonly</code> and none of its properties expose a setter, the value can never change after construction. Marking the type itself <code>readonly</code> states that contract explicitly and lets the compiler enforce it, so a later edit that introduces a mutating member is rejected at compile time rather than slipping through.</p>
+<p>A <code>readonly struct</code> also lets the compiler skip defensive copies when the value is accessed through a <code>readonly</code> reference, so the annotation documents intent and removes a class of hidden allocations at the same time.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public struct Money // Noncompliant
+{
+    private readonly decimal _amount;
+
+    public Money(decimal amount)
+    {
+        _amount = amount;
+    }
+
+    public decimal Amount =&gt; _amount;
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public readonly struct Money
+{
+    private readonly decimal _amount;
+
+    public Money(decimal amount)
+    {
+        _amount = amount;
+    }
+
+    public decimal Amount =&gt; _amount;
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/struct#readonly-struct">readonly struct (C# language reference)</a></li>
+</ul>

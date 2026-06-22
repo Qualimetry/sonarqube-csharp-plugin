@@ -1,0 +1,19 @@
+<p>Marking a member <code>public</code> inside a type that is itself <code>internal</code> or otherwise non-public is misleading: the member can never be reached from outside the assembly because the type that holds it cannot. The wider modifier suggests an external contract that does not exist and hides the member's real reach. Declare the member with accessibility that matches how far it can actually be used.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+internal sealed class Cache
+{
+    public void Evict() // Noncompliant
+    {
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+internal sealed class Cache
+{
+    internal void Evict()
+    {
+    }
+}
+</pre>

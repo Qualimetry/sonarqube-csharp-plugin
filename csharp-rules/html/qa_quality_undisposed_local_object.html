@@ -1,0 +1,31 @@
+<p>Constructing an <code>IDisposable</code> as a standalone statement and ignoring the result leaks whatever it holds: a file handle, socket, or native buffer stays open until finalization, if it is reclaimed at all. The allocation had a side effect that is never undone.</p>
+<p>Capture the instance in a <code>using</code> declaration or statement so it is disposed deterministically when the scope ends.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System.IO;
+
+public class Loader
+{
+    public void Touch(string path)
+    {
+        new StreamReader(path); // Noncompliant
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System.IO;
+
+public class Loader
+{
+    public string Touch(string path)
+    {
+        using var reader = new StreamReader(path);
+        return reader.ReadToEnd();
+    }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/statements/using">using statement (C# reference)</a></li>
+</ul>

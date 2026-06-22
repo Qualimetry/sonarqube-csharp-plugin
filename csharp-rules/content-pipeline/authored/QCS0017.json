@@ -1,0 +1,23 @@
+{
+  "id": "QCS0017",
+  "title": "Interfaces should not declare too many members",
+  "tags": [
+    "metrics",
+    "design"
+  ],
+  "messageFormat": "This interface declares {0} members, above the limit of {1}.",
+  "summary": [
+    "<p>A wide interface forces every implementer to satisfy the whole surface, even when a caller needs only a slice of it. Counting the members an interface declares highlights contracts that have grown into catch-alls and are candidates for splitting along the lines their callers actually use.</p>",
+    "<p>The member limit is configurable.</p>"
+  ],
+  "noncompliant": "public interface IDevice\n{\n    void Open();\n    void Close();\n    void Read();\n    void Write();\n    void Reset();\n    void Calibrate();\n    void Diagnose();\n}",
+  "compliant": "public interface IReadableDevice\n{\n    void Open();\n    void Read();\n    void Close();\n}\n\npublic interface IWritableDevice\n{\n    void Open();\n    void Write();\n    void Close();\n}",
+  "configuration": [
+    {
+      "parameter": "maxmembers",
+      "type": "int",
+      "default": "20"
+    }
+  ],
+  "ruleKey": "qa_metrics_large_interface"
+}

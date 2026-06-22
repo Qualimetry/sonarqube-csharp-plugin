@@ -1,0 +1,26 @@
+<p>A property that only returns a private readonly field, where that field is written nowhere but the constructor, is exactly what a getter-only auto-property provides. The explicit field and getter add boilerplate for no behaviour.</p>
+<p>A getter-only auto-property keeps the same immutability while removing the hand-written backing field.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public sealed class Point
+{
+    private readonly int _x;
+
+    public Point(int x) =&gt; _x = x;
+
+    public int X =&gt; _x; // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public sealed class Point
+{
+    public Point(int x) =&gt; X = x;
+
+    public int X { get; }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/auto-implemented-properties">Auto-implemented properties</a></li>
+</ul>

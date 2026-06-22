@@ -1,0 +1,30 @@
+<p>An abstract type can only be instantiated through a derived class, so a constructor that is <code>public</code> or <code>internal</code> advertises an entry point that no caller can ever use. It misleads readers about how the type is meant to be created.</p>
+<p>Constructors of abstract types exist solely for derived classes to chain into. Declare them <code>protected</code> (or <code>private</code> when only the type's own code chains to them) to state that contract precisely.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public abstract class Repository
+{
+    internal Repository(string name) // Noncompliant
+    {
+        Name = name;
+    }
+
+    public string Name { get; }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public abstract class Repository
+{
+    protected Repository(string name)
+    {
+        Name = name;
+    }
+
+    public string Name { get; }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/abstract">Abstract classes (C# language reference)</a></li>
+</ul>

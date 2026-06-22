@@ -1,0 +1,15 @@
+{
+  "id": "QCS0010",
+  "title": "Each source file should declare a single top-level type",
+  "tags": [
+    "clarity",
+    "convention"
+  ],
+  "messageFormat": "Move this type to its own file; a source file should declare one top-level type.",
+  "summary": [
+    "<p>Packing several top-level types into one file makes a type hard to find by name, hides it from a quick directory scan, and produces noisy diffs when unrelated types change together. Keeping one top-level type per file, named after the type, keeps navigation predictable and lets version control track each type's history independently. Nested types stay with their containing type and are not affected.</p>"
+  ],
+  "noncompliant": "public sealed class Customer\n{\n}\n\npublic sealed class Order // Noncompliant\n{\n}",
+  "compliant": "public sealed class Customer\n{\n}",
+  "ruleKey": "qa_quality_multiple_types_per_file"
+}

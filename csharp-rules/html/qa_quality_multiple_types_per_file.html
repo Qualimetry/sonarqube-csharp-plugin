@@ -1,0 +1,17 @@
+<p>Packing several top-level types into one file makes a type hard to find by name, hides it from a quick directory scan, and produces noisy diffs when unrelated types change together. Keeping one top-level type per file, named after the type, keeps navigation predictable and lets version control track each type's history independently. Nested types stay with their containing type and are not affected.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public sealed class Customer
+{
+}
+
+public sealed class Order // Noncompliant
+{
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public sealed class Customer
+{
+}
+</pre>

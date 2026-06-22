@@ -1,0 +1,23 @@
+{
+  "id": "QCS0141",
+  "title": "Synchronous methods should not carry an 'Async' name suffix",
+  "tags": [
+    "convention",
+    "clarity",
+    "async"
+  ],
+  "messageFormat": "Remove the 'Async' suffix from this method, which is not asynchronous.",
+  "summary": [
+    "<p>The <code>Async</code> suffix is a promise that the method returns a task to await. A synchronous method that returns a plain value yet ends in <code>Async</code> breaks that promise and leads callers to await something that cannot be awaited.</p>",
+    "<p>Naming the method without the suffix keeps the convention trustworthy, so the suffix continues to mean \"awaitable\" wherever it appears.</p>"
+  ],
+  "noncompliant": "public int ComputeAsync(int value) // Noncompliant\n{\n    return value * 2;\n}",
+  "compliant": "public int Compute(int value)\n{\n    return value * 2;\n}",
+  "seeAlso": [
+    {
+      "text": "Task-based asynchronous pattern naming",
+      "href": "https://learn.microsoft.com/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap"
+    }
+  ],
+  "ruleKey": "qa_style_async_suffix_on_sync_method"
+}

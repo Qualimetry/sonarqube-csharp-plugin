@@ -1,0 +1,15 @@
+{
+  "id": "QCS0165",
+  "title": "Unnecessary parentheses should be removed",
+  "tags": [
+    "clarity",
+    "redundancy"
+  ],
+  "messageFormat": "Remove these unnecessary parentheses.",
+  "summary": [
+    "<p>Parentheses wrapping a whole returned value that is already a single atomic expression, such as an identifier, literal or member access, add nothing to precedence or meaning. They make the reader pause to confirm there is no hidden grouping. Removing them leaves the intent unchanged and the line cleaner.</p>"
+  ],
+  "noncompliant": "public int Current(int value)\n{\n    return (value); // Noncompliant\n}",
+  "compliant": "public int Current(int value)\n{\n    return value;\n}",
+  "ruleKey": "qa_style_unnecessary_return_parentheses"
+}

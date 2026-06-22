@@ -1,0 +1,21 @@
+<p>A consistent <code>Base</code> suffix on an <code>abstract</code> class signals at the point of use that the type is meant to be inherited rather than instantiated. The suffix can be turned off through configuration where a project follows a different convention.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public abstract class Repository // Noncompliant
+{
+    public abstract void Save();
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public abstract class RepositoryBase
+{
+    public abstract void Save();
+}
+</pre>
+<h2>Parameters</h2>
+<p>This rule is configurable. Edit <code>suffix</code> (default <code>Base</code>) on the rule in your quality profile; SonarQube applies the value during analysis and synchronises it to connected IDEs.</p>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/standard/design-guidelines/names-of-classes-structs-and-interfaces">Names of classes, structs, and interfaces</a></li>
+</ul>

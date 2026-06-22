@@ -1,0 +1,22 @@
+{
+  "id": "QCS0072",
+  "title": "Avoid string concatenation inside loops",
+  "tags": [
+    "performance",
+    "suspicious"
+  ],
+  "messageFormat": "Accumulate this string with a StringBuilder instead of concatenating inside a loop.",
+  "summary": [
+    "<p>Strings are immutable, so a <code>+=</code> against a <code>string</code> allocates a brand new object on every iteration and copies all the characters seen so far. Inside a loop this turns linear work into quadratic work and creates a large amount of short-lived garbage.</p>",
+    "<p>Use a <code>StringBuilder</code> (or a single <code>string.Join</code>) so the characters are appended into one growable buffer and materialised once.</p>"
+  ],
+  "noncompliant": "string result = \"\";\nforeach (var item in items)\n{\n    result += item + \", \"; // Noncompliant\n}",
+  "compliant": "var builder = new StringBuilder();\nforeach (var item in items)\n{\n    builder.Append(item).Append(\", \");\n}\nstring result = builder.ToString();",
+  "seeAlso": [
+    {
+      "text": "StringBuilder Class",
+      "href": "https://learn.microsoft.com/dotnet/api/system.text.stringbuilder"
+    }
+  ],
+  "ruleKey": "qa_quality_string_concatenation_in_loop"
+}

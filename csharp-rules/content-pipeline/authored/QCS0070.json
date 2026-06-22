@@ -1,0 +1,15 @@
+{
+  "id": "QCS0070",
+  "title": "GC.Collect should be followed by GC.WaitForPendingFinalizers",
+  "tags": [
+    "suspicious",
+    "reliability"
+  ],
+  "messageFormat": "Follow this GC.Collect with GC.WaitForPendingFinalizers if you rely on finalizers having run.",
+  "summary": [
+    "<p>Forcing a collection with <code>GC.Collect</code> only schedules unreachable objects for finalization; the finalizers run later, on a separate thread. Code that forces a collection in order to release unmanaged resources or reclaim memory deterministically must wait for those finalizers, then collect again, or the resources are still pending when execution continues. If the method does not pair the call with <code>GC.WaitForPendingFinalizers</code>, the forced collection does not give the determinism it appears to promise.</p>"
+  ],
+  "noncompliant": "using System;\n\npublic sealed class Cleaner\n{\n    public void Purge()\n    {\n        GC.Collect(); // Noncompliant\n    }\n}",
+  "compliant": "using System;\n\npublic sealed class Cleaner\n{\n    public void Purge()\n    {\n        GC.Collect();\n        GC.WaitForPendingFinalizers();\n        GC.Collect();\n    }\n}",
+  "ruleKey": "qa_quality_garbage_collector_collect_without_wait"
+}

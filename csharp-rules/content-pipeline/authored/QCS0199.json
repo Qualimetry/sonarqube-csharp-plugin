@@ -1,0 +1,22 @@
+{
+  "id": "QCS0199",
+  "title": "Absolute URI literals should be valid",
+  "tags": [
+    "bug",
+    "suspicious"
+  ],
+  "messageFormat": "This URI literal is not a valid absolute URI and will throw when the Uri is constructed.",
+  "summary": [
+    "<p>Constructing a <code>Uri</code> from a constant string defaults to requiring an absolute URI, and an ill-formed literal throws a <code>UriFormatException</code> only when that line executes. A missing scheme or an illegal character in a fixed literal can be detected as soon as it is written.</p>",
+    "<p>Correct the literal so it is a well-formed absolute URI, or construct it with the relative kind when a relative reference is intended.</p>"
+  ],
+  "noncompliant": "using System;\n\npublic sealed class Service\n{\n    public Uri Endpoint() => new Uri(\"http://:// invalid\"); // Noncompliant\n}",
+  "compliant": "using System;\n\npublic sealed class Service\n{\n    public Uri Endpoint() => new Uri(\"https://example.com/api\");\n}",
+  "seeAlso": [
+    {
+      "text": "System.Uri (.NET API reference)",
+      "href": "https://learn.microsoft.com/dotnet/api/system.uri"
+    }
+  ],
+  "ruleKey": "qa_reliability_invalid_uri_literal"
+}

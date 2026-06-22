@@ -1,0 +1,23 @@
+{
+  "id": "QCS0022",
+  "title": "Methods should not declare too many parameters",
+  "tags": [
+    "metrics",
+    "design"
+  ],
+  "messageFormat": "'{0}' declares {1} parameters, above the limit of {2}.",
+  "summary": [
+    "<p>A long parameter list is hard to read at the call site, easy to misorder, and usually a sign that several related values want to travel together inside a dedicated type. Counting the parameters on a method or constructor flags signatures that have outgrown a comfortable shape.</p>",
+    "<p>The parameter limit is configurable.</p>"
+  ],
+  "noncompliant": "public sealed class Mailer\n{\n    public void Send(string to, string from, string subject, string body, bool html, int priority, string replyTo)\n    {\n    }\n}",
+  "compliant": "public sealed class Mailer\n{\n    public void Send(MailMessage message)\n    {\n    }\n}",
+  "configuration": [
+    {
+      "parameter": "maxparameters",
+      "type": "int",
+      "default": "7"
+    }
+  ],
+  "ruleKey": "qa_metrics_excessive_parameter_count"
+}

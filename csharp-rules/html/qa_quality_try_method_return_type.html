@@ -1,0 +1,19 @@
+<p>By convention a method whose name starts with <code>Try</code> signals success or failure through a <code>bool</code> result and returns any produced value through an <code>out</code> parameter. A <code>Try</code> method that returns something other than <code>bool</code> contradicts that expectation and confuses callers.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public int TryParseCount(string text) // Noncompliant
+{
+    return int.Parse(text);
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public bool TryParseCount(string text, out int count)
+{
+    return int.TryParse(text, out count);
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/standard/design-guidelines/exceptions-and-performance">Exceptions and the Try-Parse pattern</a></li>
+</ul>

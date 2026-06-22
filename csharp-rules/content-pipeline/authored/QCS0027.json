@@ -1,0 +1,23 @@
+{
+  "id": "QCS0027",
+  "title": "Static fields should not hold mutable collection types",
+  "tags": [
+    "design",
+    "immutability",
+    "concurrency"
+  ],
+  "messageFormat": "Replace this mutable collection in a static field with a read-only or immutable collection type.",
+  "summary": [
+    "<p>Declaring a static field with a mutable collection type such as <code>List&lt;T&gt;</code>, <code>Dictionary&lt;TKey, TValue&gt;</code>, or an array shares a single growable container across the whole process. Marking the field <code>readonly</code> only freezes the reference, not the contents, so any caller can still add, remove, or replace elements and corrupt state observed elsewhere.</p>",
+    "<p>Expose the data through a read-only or immutable collection type so the shared state cannot be mutated after initialization.</p>"
+  ],
+  "noncompliant": "public class Registry\n{\n    public static readonly List<string> Names = new(); // Noncompliant\n}",
+  "compliant": "public class Registry\n{\n    public static readonly IReadOnlyList<string> Names = new List<string>().AsReadOnly();\n}",
+  "seeAlso": [
+    {
+      "text": "Immutable collections",
+      "href": "https://learn.microsoft.com/dotnet/api/system.collections.immutable"
+    }
+  ],
+  "ruleKey": "qa_quality_static_mutable_collection_field"
+}

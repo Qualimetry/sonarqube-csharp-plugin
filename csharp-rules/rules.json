@@ -1,0 +1,3108 @@
+{
+  "rules": [
+    {
+      "id": "qa_architecture_namespace_dependency_cycle",
+      "key": "qa_architecture_namespace_dependency_cycle",
+      "title": "Namespace dependency cycles should be avoided",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "architecture",
+        "coupling"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_architecture_namespace_dependency_cycle.md"
+    },
+    {
+      "id": "qa_contract_immutable_struct_should_be_readonly",
+      "key": "qa_contract_immutable_struct_should_be_readonly",
+      "title": "Structs with only immutable state should be declared readonly",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "Contract",
+      "tags": [
+        "design",
+        "clarity"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_contract_immutable_struct_should_be_readonly.md"
+    },
+    {
+      "id": "qa_contract_pure_method_must_not_mutate_state",
+      "key": "qa_contract_pure_method_must_not_mutate_state",
+      "title": "Methods marked pure must not mutate observable state",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "Contract",
+      "tags": [
+        "reliability",
+        "suspicious"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_contract_pure_method_must_not_mutate_state.md"
+    },
+    {
+      "id": "qa_contract_pure_method_should_be_marked_pure",
+      "key": "qa_contract_pure_method_should_be_marked_pure",
+      "title": "Side-effect-free computations should be marked pure",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "Contract",
+      "tags": [
+        "design",
+        "clarity"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_contract_pure_method_should_be_marked_pure.md"
+    },
+    {
+      "id": "qa_interop_native_methods_container_modifiers",
+      "key": "qa_interop_native_methods_container_modifiers",
+      "title": "Native methods container should be internal and static",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "Interop",
+      "tags": [
+        "interop",
+        "convention"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_interop_native_methods_container_modifiers.md"
+    },
+    {
+      "id": "qa_interop_platform_invoke_in_native_methods",
+      "key": "qa_interop_platform_invoke_in_native_methods",
+      "title": "Platform invoke declarations should live in a dedicated native methods class",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "Interop",
+      "tags": [
+        "interop",
+        "design"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_interop_platform_invoke_in_native_methods.md"
+    },
+    {
+      "id": "qa_metrics_deep_inheritance",
+      "key": "qa_metrics_deep_inheritance",
+      "title": "Classes should not sit too deep in the inheritance hierarchy",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "Metrics",
+      "tags": [
+        "metrics",
+        "design"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_metrics_deep_inheritance.md",
+      "parameters": [
+        {
+          "key": "maxdepth",
+          "name": "maxdepth",
+          "type": "INTEGER",
+          "defaultValue": "5",
+          "description": "Threshold the rule compares against; measurements above it are reported. Default: 5."
+        }
+      ]
+    },
+    {
+      "id": "qa_metrics_excessive_field_count",
+      "key": "qa_metrics_excessive_field_count",
+      "title": "Types should not declare too many fields",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "Metrics",
+      "tags": [
+        "metrics",
+        "design"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_metrics_excessive_field_count.md",
+      "parameters": [
+        {
+          "key": "maxfields",
+          "name": "maxfields",
+          "type": "INTEGER",
+          "defaultValue": "15",
+          "description": "Threshold the rule compares against; measurements above it are reported. Default: 15."
+        }
+      ]
+    },
+    {
+      "id": "qa_metrics_excessive_instance_state",
+      "key": "qa_metrics_excessive_instance_state",
+      "title": "Types should not hold too much instance state",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "Metrics",
+      "tags": [
+        "metrics",
+        "design"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_metrics_excessive_instance_state.md",
+      "parameters": [
+        {
+          "key": "maxinstancefields",
+          "name": "maxinstancefields",
+          "type": "INTEGER",
+          "defaultValue": "15",
+          "description": "Threshold the rule compares against; measurements above it are reported. Default: 15."
+        }
+      ]
+    },
+    {
+      "id": "qa_metrics_excessive_method_count",
+      "key": "qa_metrics_excessive_method_count",
+      "title": "Types should not declare too many methods",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "Metrics",
+      "tags": [
+        "metrics",
+        "design"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_metrics_excessive_method_count.md",
+      "parameters": [
+        {
+          "key": "maxmethods",
+          "name": "maxmethods",
+          "type": "INTEGER",
+          "defaultValue": "20",
+          "description": "Threshold the rule compares against; measurements above it are reported. Default: 20."
+        }
+      ]
+    },
+    {
+      "id": "qa_metrics_excessive_method_overloads",
+      "key": "qa_metrics_excessive_method_overloads",
+      "title": "Methods should not have too many overloads",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "Metrics",
+      "tags": [
+        "metrics",
+        "design"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_metrics_excessive_method_overloads.md",
+      "parameters": [
+        {
+          "key": "maxoverloads",
+          "name": "maxoverloads",
+          "type": "INTEGER",
+          "defaultValue": "6",
+          "description": "Threshold the rule compares against; measurements above it are reported. Default: 6."
+        }
+      ]
+    },
+    {
+      "id": "qa_metrics_excessive_parameter_count",
+      "key": "qa_metrics_excessive_parameter_count",
+      "title": "Methods should not declare too many parameters",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "Metrics",
+      "tags": [
+        "metrics",
+        "design"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_metrics_excessive_parameter_count.md",
+      "parameters": [
+        {
+          "key": "maxparameters",
+          "name": "maxparameters",
+          "type": "INTEGER",
+          "defaultValue": "7",
+          "description": "Threshold the rule compares against; measurements above it are reported. Default: 7."
+        }
+      ]
+    },
+    {
+      "id": "qa_metrics_excessive_type_coupling",
+      "key": "qa_metrics_excessive_type_coupling",
+      "title": "Types should not reference too many other types",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "Metrics",
+      "tags": [
+        "metrics",
+        "maintainability"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_metrics_excessive_type_coupling.md",
+      "parameters": [
+        {
+          "key": "maxcoupling",
+          "name": "maxcoupling",
+          "type": "INTEGER",
+          "defaultValue": "20",
+          "description": "Threshold the rule compares against; measurements above it are reported. Default: 20."
+        }
+      ]
+    },
+    {
+      "id": "qa_metrics_field_assigned_from_many_methods",
+      "key": "qa_metrics_field_assigned_from_many_methods",
+      "title": "Fields should not be assigned from too many methods",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "Metrics",
+      "tags": [
+        "metrics",
+        "maintainability"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_metrics_field_assigned_from_many_methods.md",
+      "parameters": [
+        {
+          "key": "maxassigningmethods",
+          "name": "maxassigningmethods",
+          "type": "INTEGER",
+          "defaultValue": "3",
+          "description": "Threshold the rule compares against; measurements above it are reported. Default: 3."
+        }
+      ]
+    },
+    {
+      "id": "qa_metrics_high_cyclomatic_complexity",
+      "key": "qa_metrics_high_cyclomatic_complexity",
+      "title": "Methods should not be hard to maintain",
+      "severity": "CRITICAL",
+      "type": "Code Smell",
+      "category": "Metrics",
+      "tags": [
+        "metrics",
+        "complexity"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_metrics_high_cyclomatic_complexity.md",
+      "parameters": [
+        {
+          "key": "maxcomplexity",
+          "name": "maxcomplexity",
+          "type": "INTEGER",
+          "defaultValue": "15",
+          "description": "Threshold the rule compares against; measurements above it are reported. Default: 15."
+        }
+      ]
+    },
+    {
+      "id": "qa_metrics_large_interface",
+      "key": "qa_metrics_large_interface",
+      "title": "Interfaces should not declare too many members",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "Metrics",
+      "tags": [
+        "metrics",
+        "design"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_metrics_large_interface.md",
+      "parameters": [
+        {
+          "key": "maxmembers",
+          "name": "maxmembers",
+          "type": "INTEGER",
+          "defaultValue": "20",
+          "description": "Threshold the rule compares against; measurements above it are reported. Default: 20."
+        }
+      ]
+    },
+    {
+      "id": "qa_metrics_large_type",
+      "key": "qa_metrics_large_type",
+      "title": "Types should not be too long",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "Metrics",
+      "tags": [
+        "metrics",
+        "maintainability"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_metrics_large_type.md",
+      "parameters": [
+        {
+          "key": "maxlines",
+          "name": "maxlines",
+          "type": "INTEGER",
+          "defaultValue": "400",
+          "description": "Threshold the rule compares against; measurements above it are reported. Default: 400."
+        }
+      ]
+    },
+    {
+      "id": "qa_metrics_long_field_name",
+      "key": "qa_metrics_long_field_name",
+      "title": "Field names should not be excessively long",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Metrics",
+      "tags": [
+        "metrics",
+        "readability"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_metrics_long_field_name.md",
+      "parameters": [
+        {
+          "key": "maxnamelength",
+          "name": "maxnamelength",
+          "type": "INTEGER",
+          "defaultValue": "40",
+          "description": "Threshold the rule compares against; measurements above it are reported. Default: 40."
+        }
+      ]
+    },
+    {
+      "id": "qa_metrics_long_method",
+      "key": "qa_metrics_long_method",
+      "title": "Methods should not be too long",
+      "severity": "CRITICAL",
+      "type": "Code Smell",
+      "category": "Metrics",
+      "tags": [
+        "metrics",
+        "maintainability"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_metrics_long_method.md",
+      "parameters": [
+        {
+          "key": "maxstatements",
+          "name": "maxstatements",
+          "type": "INTEGER",
+          "defaultValue": "40",
+          "description": "Threshold the rule compares against; measurements above it are reported. Default: 40."
+        }
+      ]
+    },
+    {
+      "id": "qa_metrics_long_method_name",
+      "key": "qa_metrics_long_method_name",
+      "title": "Method names should not be excessively long",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Metrics",
+      "tags": [
+        "metrics",
+        "readability"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_metrics_long_method_name.md",
+      "parameters": [
+        {
+          "key": "maxnamelength",
+          "name": "maxnamelength",
+          "type": "INTEGER",
+          "defaultValue": "40",
+          "description": "Threshold the rule compares against; measurements above it are reported. Default: 40."
+        }
+      ]
+    },
+    {
+      "id": "qa_metrics_long_type_name",
+      "key": "qa_metrics_long_type_name",
+      "title": "Type names should not be excessively long",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Metrics",
+      "tags": [
+        "metrics",
+        "readability"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_metrics_long_type_name.md",
+      "parameters": [
+        {
+          "key": "maxnamelength",
+          "name": "maxnamelength",
+          "type": "INTEGER",
+          "defaultValue": "40",
+          "description": "Threshold the rule compares against; measurements above it are reported. Default: 40."
+        }
+      ]
+    },
+    {
+      "id": "qa_metrics_mutable_complex_field",
+      "key": "qa_metrics_mutable_complex_field",
+      "title": "Types should not expose too many mutable reference-typed fields",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "Metrics",
+      "tags": [
+        "metrics",
+        "immutability"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_metrics_mutable_complex_field.md",
+      "parameters": [
+        {
+          "key": "maxmutablecomplexfields",
+          "name": "maxmutablecomplexfields",
+          "type": "INTEGER",
+          "defaultValue": "0",
+          "description": "Threshold the rule compares against; measurements above it are reported. Default: 0."
+        }
+      ]
+    },
+    {
+      "id": "qa_metrics_type_poor_cohesion",
+      "key": "qa_metrics_type_poor_cohesion",
+      "title": "Types with poor cohesion should be split",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "Metrics",
+      "tags": [
+        "metrics",
+        "design"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_metrics_type_poor_cohesion.md"
+    },
+    {
+      "id": "qa_naming_abstract_base_class_suffix",
+      "key": "qa_naming_abstract_base_class_suffix",
+      "title": "Abstract base classes should carry a 'Base' suffix",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "Naming",
+      "tags": [
+        "convention",
+        "naming"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_naming_abstract_base_class_suffix.md",
+      "parameters": [
+        {
+          "key": "suffix",
+          "name": "suffix",
+          "type": "STRING",
+          "defaultValue": "Base",
+          "description": "Value the rule applies when evaluating code. Default: Base."
+        }
+      ]
+    },
+    {
+      "id": "qa_naming_attribute_type_suffix",
+      "key": "qa_naming_attribute_type_suffix",
+      "title": "Attribute types should carry an 'Attribute' suffix",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "Naming",
+      "tags": [
+        "convention",
+        "naming"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_naming_attribute_type_suffix.md"
+    },
+    {
+      "id": "qa_naming_collection_member_plural_name",
+      "key": "qa_naming_collection_member_plural_name",
+      "title": "Public collection members should have a plural name",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Naming",
+      "tags": [
+        "convention",
+        "naming"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_naming_collection_member_plural_name.md"
+    },
+    {
+      "id": "qa_naming_controller_type_suffix",
+      "key": "qa_naming_controller_type_suffix",
+      "title": "Controller types should carry a 'Controller' suffix",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "Naming",
+      "tags": [
+        "convention",
+        "naming"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_naming_controller_type_suffix.md"
+    },
+    {
+      "id": "qa_naming_directory_spans_namespaces",
+      "key": "qa_naming_directory_spans_namespaces",
+      "title": "Types in the same directory should share one namespace",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "Naming",
+      "tags": [
+        "clarity",
+        "convention"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_naming_directory_spans_namespaces.md"
+    },
+    {
+      "id": "qa_naming_exception_type_suffix",
+      "key": "qa_naming_exception_type_suffix",
+      "title": "Exception types should carry an 'Exception' suffix",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "Naming",
+      "tags": [
+        "convention",
+        "naming"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_naming_exception_type_suffix.md"
+    },
+    {
+      "id": "qa_naming_instance_field_underscore",
+      "key": "qa_naming_instance_field_underscore",
+      "title": "Private instance fields should start with an underscore",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "Naming",
+      "tags": [
+        "convention",
+        "naming"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_naming_instance_field_underscore.md"
+    },
+    {
+      "id": "qa_naming_interface_prefix",
+      "key": "qa_naming_interface_prefix",
+      "title": "Interface names should begin with the letter 'I'",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "Naming",
+      "tags": [
+        "convention",
+        "naming"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_naming_interface_prefix.md"
+    },
+    {
+      "id": "qa_naming_interface_prefix_casing",
+      "key": "qa_naming_interface_prefix_casing",
+      "title": "An interface's 'I' prefix should be followed by an uppercase letter",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "Naming",
+      "tags": [
+        "convention",
+        "naming"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_naming_interface_prefix_casing.md"
+    },
+    {
+      "id": "qa_naming_method_name_casing_consistency",
+      "key": "qa_naming_method_name_casing_consistency",
+      "title": "Methods in a type should not differ only by letter case",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "Naming",
+      "tags": [
+        "convention",
+        "naming"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_naming_method_name_casing_consistency.md"
+    },
+    {
+      "id": "qa_naming_method_name_upper_case",
+      "key": "qa_naming_method_name_upper_case",
+      "title": "Method names should start with an uppercase letter",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "Naming",
+      "tags": [
+        "convention",
+        "naming"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_naming_method_name_upper_case.md"
+    },
+    {
+      "id": "qa_naming_namespace_folder_mismatch",
+      "key": "qa_naming_namespace_folder_mismatch",
+      "title": "Namespace names should match the source file folder path",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "Naming",
+      "tags": [
+        "clarity",
+        "convention"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_naming_namespace_folder_mismatch.md"
+    },
+    {
+      "id": "qa_naming_namespace_spans_directories",
+      "key": "qa_naming_namespace_spans_directories",
+      "title": "Types in the same namespace should live in the same directory",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "Naming",
+      "tags": [
+        "clarity",
+        "convention"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_naming_namespace_spans_directories.md"
+    },
+    {
+      "id": "qa_naming_static_field_prefix",
+      "key": "qa_naming_static_field_prefix",
+      "title": "Private static fields should use an 's_' prefix",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "Naming",
+      "tags": [
+        "convention",
+        "naming"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_naming_static_field_prefix.md"
+    },
+    {
+      "id": "qa_naming_type_conflicts_with_namespace",
+      "key": "qa_naming_type_conflicts_with_namespace",
+      "title": "Types should not share a name with their containing namespace",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "Naming",
+      "tags": [
+        "clarity",
+        "convention"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_naming_type_conflicts_with_namespace.md"
+    },
+    {
+      "id": "qa_naming_type_name_upper_case",
+      "key": "qa_naming_type_name_upper_case",
+      "title": "Type names should start with an uppercase letter",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "Naming",
+      "tags": [
+        "convention",
+        "naming"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_naming_type_name_upper_case.md"
+    },
+    {
+      "id": "qa_quality_abstract_type_constructor_accessibility",
+      "key": "qa_quality_abstract_type_constructor_accessibility",
+      "title": "Abstract type constructors should be protected or private",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "clarity"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_abstract_type_constructor_accessibility.md"
+    },
+    {
+      "id": "qa_quality_abstract_type_public_constructor",
+      "key": "qa_quality_abstract_type_public_constructor",
+      "title": "Constructors of abstract types should not be public",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "clarity"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_abstract_type_public_constructor.md"
+    },
+    {
+      "id": "qa_quality_application_exception_base_type",
+      "key": "qa_quality_application_exception_base_type",
+      "title": "Exceptions should not derive from ApplicationException",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "exceptions"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_application_exception_base_type.md"
+    },
+    {
+      "id": "qa_quality_argument_exception_parameter_name",
+      "key": "qa_quality_argument_exception_parameter_name",
+      "title": "Argument exceptions should name a real parameter",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "bug",
+        "clarity"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_argument_exception_parameter_name.md"
+    },
+    {
+      "id": "qa_quality_assembly_multiple_versions",
+      "key": "qa_quality_assembly_multiple_versions",
+      "title": "Assemblies should not be referenced at multiple versions",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "reliability",
+        "dependencies"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_assembly_multiple_versions.md"
+    },
+    {
+      "id": "qa_quality_attribute_missing_usage",
+      "key": "qa_quality_attribute_missing_usage",
+      "title": "Annotate attribute types with AttributeUsage",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "clarity"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_attribute_missing_usage.md"
+    },
+    {
+      "id": "qa_quality_attribute_type_should_be_sealed",
+      "key": "qa_quality_attribute_type_should_be_sealed",
+      "title": "Attribute types should be sealed",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "performance"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_attribute_type_should_be_sealed.md"
+    },
+    {
+      "id": "qa_quality_attribute_usage_all_targets",
+      "key": "qa_quality_attribute_usage_all_targets",
+      "title": "Attributes should restrict the targets they apply to",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "clarity"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_attribute_usage_all_targets.md"
+    },
+    {
+      "id": "qa_quality_base_type_references_derived",
+      "key": "qa_quality_base_type_references_derived",
+      "title": "Base classes should not reference their derived types",
+      "severity": "CRITICAL",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "coupling"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_base_type_references_derived.md"
+    },
+    {
+      "id": "qa_quality_boxing_conversion",
+      "key": "qa_quality_boxing_conversion",
+      "title": "Boxing and unboxing conversions should be avoided",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "performance"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_boxing_conversion.md"
+    },
+    {
+      "id": "qa_quality_catch_without_exception_type",
+      "key": "qa_quality_catch_without_exception_type",
+      "title": "Catch clauses should name an exception type",
+      "severity": "MINOR",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "clarity",
+        "exceptions"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_catch_without_exception_type.md"
+    },
+    {
+      "id": "qa_quality_class_candidate_for_struct",
+      "key": "qa_quality_class_candidate_for_struct",
+      "title": "Small immutable value holders are candidates to become structs",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "performance"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_class_candidate_for_struct.md"
+    },
+    {
+      "id": "qa_quality_cloneable_implementation",
+      "key": "qa_quality_cloneable_implementation",
+      "title": "Avoid implementing ICloneable",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "clarity"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_cloneable_implementation.md"
+    },
+    {
+      "id": "qa_quality_concrete_collection_return_type",
+      "key": "qa_quality_concrete_collection_return_type",
+      "title": "Public members should return a collection abstraction",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "api-design"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_concrete_collection_return_type.md"
+    },
+    {
+      "id": "qa_quality_concrete_xml_node_return_type",
+      "key": "qa_quality_concrete_xml_node_return_type",
+      "title": "Avoid exposing concrete XmlNode return types",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "api-design"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_concrete_xml_node_return_type.md"
+    },
+    {
+      "id": "qa_quality_culture_insensitive_parsing",
+      "key": "qa_quality_culture_insensitive_parsing",
+      "title": "Parsing of numbers and dates should specify a culture",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "bug",
+        "globalization"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_culture_insensitive_parsing.md"
+    },
+    {
+      "id": "qa_quality_custom_delegate_declaration",
+      "key": "qa_quality_custom_delegate_declaration",
+      "title": "Prefer Func and Action over custom delegate types",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "clarity"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_custom_delegate_declaration.md"
+    },
+    {
+      "id": "qa_quality_dangerous_thread_method",
+      "key": "qa_quality_dangerous_thread_method",
+      "title": "Dangerous thread control methods should not be used",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "bug",
+        "concurrency"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_dangerous_thread_method.md"
+    },
+    {
+      "id": "qa_quality_discarded_exception_instance",
+      "key": "qa_quality_discarded_exception_instance",
+      "title": "Constructed exceptions should be thrown, not discarded",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "bug",
+        "error-handling"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_discarded_exception_instance.md"
+    },
+    {
+      "id": "qa_quality_disposable_field_in_non_disposable_type",
+      "key": "qa_quality_disposable_field_in_non_disposable_type",
+      "title": "Types holding disposable fields should be disposable",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "bug",
+        "resource-leak"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_disposable_field_in_non_disposable_type.md"
+    },
+    {
+      "id": "qa_quality_disposable_field_not_disposed",
+      "key": "qa_quality_disposable_field_not_disposed",
+      "title": "Disposable fields should be disposed",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "bug",
+        "resource-management"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_disposable_field_not_disposed.md"
+    },
+    {
+      "id": "qa_quality_dispose_method_without_i_disposable",
+      "key": "qa_quality_dispose_method_without_i_disposable",
+      "title": "Methods named Dispose should belong to a disposable type",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "convention",
+        "clarity"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_dispose_method_without_i_disposable.md"
+    },
+    {
+      "id": "qa_quality_dispose_missing_suppress_finalize",
+      "key": "qa_quality_dispose_missing_suppress_finalize",
+      "title": "Dispose should suppress finalization",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "bug",
+        "resource-management",
+        "performance"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_dispose_missing_suppress_finalize.md"
+    },
+    {
+      "id": "qa_quality_duplicate_type_across_assemblies",
+      "key": "qa_quality_duplicate_type_across_assemblies",
+      "title": "Types should not be defined in more than one assembly",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "architecture",
+        "duplication"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_duplicate_type_across_assemblies.md"
+    },
+    {
+      "id": "qa_quality_duplicate_type_name",
+      "key": "qa_quality_duplicate_type_name",
+      "title": "Distinct types should not share the same simple name",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "clarity",
+        "convention"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_duplicate_type_name.md"
+    },
+    {
+      "id": "qa_quality_empty_catch_block",
+      "key": "qa_quality_empty_catch_block",
+      "title": "Catch blocks should not be empty",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "bug",
+        "exception-handling"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_empty_catch_block.md"
+    },
+    {
+      "id": "qa_quality_empty_finalizer",
+      "key": "qa_quality_empty_finalizer",
+      "title": "Empty finalizers should be removed",
+      "severity": "MAJOR",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "performance",
+        "redundant"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_empty_finalizer.md"
+    },
+    {
+      "id": "qa_quality_empty_interface",
+      "key": "qa_quality_empty_interface",
+      "title": "Marker interfaces with no members should be avoided",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "clarity"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_empty_interface.md"
+    },
+    {
+      "id": "qa_quality_empty_method_summary",
+      "key": "qa_quality_empty_method_summary",
+      "title": "Documentation comments should not have an empty summary",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "clarity",
+        "convention"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_empty_method_summary.md"
+    },
+    {
+      "id": "qa_quality_empty_static_constructor",
+      "key": "qa_quality_empty_static_constructor",
+      "title": "Remove empty static constructors",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "clarity",
+        "performance"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_empty_static_constructor.md"
+    },
+    {
+      "id": "qa_quality_event_invoked_without_null_check",
+      "key": "qa_quality_event_invoked_without_null_check",
+      "title": "Events should be raised through a null-conditional invocation",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "bug",
+        "concurrency",
+        "exception-handling"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_event_invoked_without_null_check.md"
+    },
+    {
+      "id": "qa_quality_explicit_thread_creation",
+      "key": "qa_quality_explicit_thread_creation",
+      "title": "Prefer task-based concurrency over manual thread creation",
+      "severity": "CRITICAL",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "concurrency",
+        "design"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_explicit_thread_creation.md"
+    },
+    {
+      "id": "qa_quality_external_field_assignment",
+      "key": "qa_quality_external_field_assignment",
+      "title": "Fields should be assigned only within their declaring hierarchy",
+      "severity": "CRITICAL",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "encapsulation"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_external_field_assignment.md"
+    },
+    {
+      "id": "qa_quality_field_could_be_readonly",
+      "key": "qa_quality_field_could_be_readonly",
+      "title": "Mark fields readonly when they are never reassigned",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "immutability"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_field_could_be_readonly.md"
+    },
+    {
+      "id": "qa_quality_field_hides_base_field",
+      "key": "qa_quality_field_hides_base_field",
+      "title": "Fields should not hide a field of the same name in a base type",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "suspicious",
+        "clarity"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_field_hides_base_field.md"
+    },
+    {
+      "id": "qa_quality_garbage_collector_collect_call",
+      "key": "qa_quality_garbage_collector_collect_call",
+      "title": "Code should not force garbage collection",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "performance",
+        "suspicious"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_garbage_collector_collect_call.md"
+    },
+    {
+      "id": "qa_quality_garbage_collector_collect_without_wait",
+      "key": "qa_quality_garbage_collector_collect_without_wait",
+      "title": "GC.Collect should be followed by GC.WaitForPendingFinalizers",
+      "severity": "MAJOR",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "suspicious",
+        "reliability"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_garbage_collector_collect_without_wait.md"
+    },
+    {
+      "id": "qa_quality_general_exception_type_thrown",
+      "key": "qa_quality_general_exception_type_thrown",
+      "title": "General exception types should not be thrown",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "code-smell",
+        "exception-handling"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_general_exception_type_thrown.md"
+    },
+    {
+      "id": "qa_quality_hidden_base_method",
+      "key": "qa_quality_hidden_base_method",
+      "title": "Members should not hide inherited members",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "bug",
+        "design"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_hidden_base_method.md"
+    },
+    {
+      "id": "qa_quality_instance_method_could_be_static",
+      "key": "qa_quality_instance_method_could_be_static",
+      "title": "Make methods static when they use no instance state",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "performance"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_instance_method_could_be_static.md"
+    },
+    {
+      "id": "qa_quality_legacy_non_generic_collection",
+      "key": "qa_quality_legacy_non_generic_collection",
+      "title": "Prefer generic collections over Hashtable and ArrayList",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "performance"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_legacy_non_generic_collection.md"
+    },
+    {
+      "id": "qa_quality_list_contains_in_loop",
+      "key": "qa_quality_list_contains_in_loop",
+      "title": "Avoid List.Contains lookups inside loops",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "performance"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_list_contains_in_loop.md"
+    },
+    {
+      "id": "qa_quality_monitor_enter_without_exit",
+      "key": "qa_quality_monitor_enter_without_exit",
+      "title": "Monitor acquisition and release should be paired in one method",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "bug",
+        "concurrency"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_monitor_enter_without_exit.md"
+    },
+    {
+      "id": "qa_quality_multiple_types_per_file",
+      "key": "qa_quality_multiple_types_per_file",
+      "title": "Each source file should declare a single top-level type",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "clarity",
+        "convention"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_multiple_types_per_file.md"
+    },
+    {
+      "id": "qa_quality_mutable_collection_property_setter",
+      "key": "qa_quality_mutable_collection_property_setter",
+      "title": "Collection properties should be read-only",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "immutability"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_mutable_collection_property_setter.md"
+    },
+    {
+      "id": "qa_quality_mutable_record_property",
+      "key": "qa_quality_mutable_record_property",
+      "title": "Record properties should not have public setters",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "immutability"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_mutable_record_property.md"
+    },
+    {
+      "id": "qa_quality_mutable_struct",
+      "key": "qa_quality_mutable_struct",
+      "title": "Structures should be immutable",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "immutability"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_mutable_struct.md"
+    },
+    {
+      "id": "qa_quality_nested_type_masks_outer_static_member",
+      "key": "qa_quality_nested_type_masks_outer_static_member",
+      "title": "Nested type members should not mask an outer static member",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "clarity",
+        "confusing"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_nested_type_masks_outer_static_member.md"
+    },
+    {
+      "id": "qa_quality_non_private_method_could_be_static",
+      "key": "qa_quality_non_private_method_could_be_static",
+      "title": "Method that does not use instance state should be static",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "performance"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_non_private_method_could_be_static.md"
+    },
+    {
+      "id": "qa_quality_non_public_exception_type",
+      "key": "qa_quality_non_public_exception_type",
+      "title": "Declare exception types as public",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "error-handling"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_non_public_exception_type.md"
+    },
+    {
+      "id": "qa_quality_non_readonly_static_field",
+      "key": "qa_quality_non_readonly_static_field",
+      "title": "Static fields should be read-only",
+      "severity": "CRITICAL",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "immutability",
+        "concurrency"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_non_readonly_static_field.md"
+    },
+    {
+      "id": "qa_quality_non_standard_enum_underlying_type",
+      "key": "qa_quality_non_standard_enum_underlying_type",
+      "title": "Declare enums with the default Int32 underlying type",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "interoperability"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_non_standard_enum_underlying_type.md"
+    },
+    {
+      "id": "qa_quality_not_implemented_exception_throw",
+      "key": "qa_quality_not_implemented_exception_throw",
+      "title": "Methods should not throw NotImplementedException",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "bug",
+        "exception-handling"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_not_implemented_exception_throw.md"
+    },
+    {
+      "id": "qa_quality_obsolete_member_usage",
+      "key": "qa_quality_obsolete_member_usage",
+      "title": "Obsolete APIs should not be referenced",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "maintainability",
+        "deprecation"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_obsolete_member_usage.md"
+    },
+    {
+      "id": "qa_quality_overexposed_nested_type",
+      "key": "qa_quality_overexposed_nested_type",
+      "title": "Nested type should not be more accessible than its container",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "api-design"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_overexposed_nested_type.md"
+    },
+    {
+      "id": "qa_quality_override_does_not_call_base_dispose",
+      "key": "qa_quality_override_does_not_call_base_dispose",
+      "title": "Overrides of Dispose(bool) should call the base implementation",
+      "severity": "MAJOR",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "bug",
+        "reliability"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_override_does_not_call_base_dispose.md"
+    },
+    {
+      "id": "qa_quality_parent_directory_path_traversal",
+      "key": "qa_quality_parent_directory_path_traversal",
+      "title": "Hard-coded paths should not climb above the working directory",
+      "severity": "CRITICAL",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "suspicious",
+        "portability"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_parent_directory_path_traversal.md"
+    },
+    {
+      "id": "qa_quality_property_getter_mutates_state",
+      "key": "qa_quality_property_getter_mutates_state",
+      "title": "Property getters should not modify object state",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "bug",
+        "suspicious"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_property_getter_mutates_state.md"
+    },
+    {
+      "id": "qa_quality_protected_field_in_sealed_type",
+      "key": "qa_quality_protected_field_in_sealed_type",
+      "title": "Lower the visibility of protected fields in sealed types",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "encapsulation"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_protected_field_in_sealed_type.md"
+    },
+    {
+      "id": "qa_quality_protected_method_in_sealed_type",
+      "key": "qa_quality_protected_method_in_sealed_type",
+      "title": "Lower the visibility of protected methods in sealed types",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "encapsulation"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_protected_method_in_sealed_type.md"
+    },
+    {
+      "id": "qa_quality_protected_nested_type_in_sealed_type",
+      "key": "qa_quality_protected_nested_type_in_sealed_type",
+      "title": "Protected nested type in a sealed class should be private",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "clarity"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_protected_nested_type_in_sealed_type.md"
+    },
+    {
+      "id": "qa_quality_public_constant_field",
+      "key": "qa_quality_public_constant_field",
+      "title": "Public constants should be replaced with static read-only fields",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "maintainability"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_public_constant_field.md"
+    },
+    {
+      "id": "qa_quality_public_event_handler_exposed",
+      "key": "qa_quality_public_event_handler_exposed",
+      "title": "Event handler methods should not be public",
+      "severity": "MINOR",
+      "type": "Security Hotspot",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "api-design"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_public_event_handler_exposed.md"
+    },
+    {
+      "id": "qa_quality_public_event_handler_method",
+      "key": "qa_quality_public_event_handler_method",
+      "title": "Keep event handler methods non-public",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "clarity"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_public_event_handler_method.md"
+    },
+    {
+      "id": "qa_quality_public_field_declaration",
+      "key": "qa_quality_public_field_declaration",
+      "title": "Avoid exposing fields with public or internal visibility",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "encapsulation"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_public_field_declaration.md"
+    },
+    {
+      "id": "qa_quality_public_method_in_non_public_type",
+      "key": "qa_quality_public_method_in_non_public_type",
+      "title": "Members should not be more accessible than their containing type",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "encapsulation"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_public_method_in_non_public_type.md"
+    },
+    {
+      "id": "qa_quality_public_platform_invoke",
+      "key": "qa_quality_public_platform_invoke",
+      "title": "Platform invoke declarations should not be publicly visible",
+      "severity": "CRITICAL",
+      "type": "Security Hotspot",
+      "category": "CodeQuality",
+      "tags": [
+        "security",
+        "interop"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_public_platform_invoke.md"
+    },
+    {
+      "id": "qa_quality_public_pointer_exposure",
+      "key": "qa_quality_public_pointer_exposure",
+      "title": "Native handles should not be exposed as public fields",
+      "severity": "CRITICAL",
+      "type": "Security Hotspot",
+      "category": "CodeQuality",
+      "tags": [
+        "security",
+        "interop"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_public_pointer_exposure.md"
+    },
+    {
+      "id": "qa_quality_public_readonly_array_field",
+      "key": "qa_quality_public_readonly_array_field",
+      "title": "Readonly array fields can still be mutated",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "bug",
+        "encapsulation"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_public_readonly_array_field.md"
+    },
+    {
+      "id": "qa_quality_reader_writer_lock_acquire_without_release",
+      "key": "qa_quality_reader_writer_lock_acquire_without_release",
+      "title": "ReaderWriterLock acquire and release should be paired in one method",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "bug",
+        "concurrency"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_reader_writer_lock_acquire_without_release.md"
+    },
+    {
+      "id": "qa_quality_readonly_mutable_reference_field",
+      "key": "qa_quality_readonly_mutable_reference_field",
+      "title": "Readonly fields of mutable reference types give a false sense of immutability",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "suspicious",
+        "design"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_readonly_mutable_reference_field.md"
+    },
+    {
+      "id": "qa_quality_redundant_where_clause",
+      "key": "qa_quality_redundant_where_clause",
+      "title": "Fold Where into the following LINQ operator",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "clarity",
+        "performance"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_redundant_where_clause.md"
+    },
+    {
+      "id": "qa_quality_reflection_inside_loop",
+      "key": "qa_quality_reflection_inside_loop",
+      "title": "Avoid reflection calls inside loops",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "performance",
+        "suspicious"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_reflection_inside_loop.md"
+    },
+    {
+      "id": "qa_quality_reserved_enum_member_name",
+      "key": "qa_quality_reserved_enum_member_name",
+      "title": "Enum members should not be named Reserved",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "convention",
+        "clarity"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_reserved_enum_member_name.md"
+    },
+    {
+      "id": "qa_quality_reserved_exception_type_thrown",
+      "key": "qa_quality_reserved_exception_type_thrown",
+      "title": "Reserved exception types should not be thrown",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "bug",
+        "exception-handling"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_reserved_exception_type_thrown.md"
+    },
+    {
+      "id": "qa_quality_sealable_interface_implementation",
+      "key": "qa_quality_sealable_interface_implementation",
+      "title": "Methods implementing a non-public interface should be sealed",
+      "severity": "MAJOR",
+      "type": "Security Hotspot",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "performance"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_sealable_interface_implementation.md"
+    },
+    {
+      "id": "qa_quality_sealable_internal_class",
+      "key": "qa_quality_sealable_internal_class",
+      "title": "Non-extensible classes should be sealed",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "performance"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_sealable_internal_class.md"
+    },
+    {
+      "id": "qa_quality_serializable_interface_missing_attribute",
+      "key": "qa_quality_serializable_interface_missing_attribute",
+      "title": "ISerializable implementers should carry SerializableAttribute",
+      "severity": "CRITICAL",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "bug",
+        "serialization"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_serializable_interface_missing_attribute.md"
+    },
+    {
+      "id": "qa_quality_serializable_missing_constructor",
+      "key": "qa_quality_serializable_missing_constructor",
+      "title": "Serializable types must provide a deserialization constructor",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "bug",
+        "serialization"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_serializable_missing_constructor.md"
+    },
+    {
+      "id": "qa_quality_singleton_pattern",
+      "key": "qa_quality_singleton_pattern",
+      "title": "The singleton pattern should be avoided",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "testability"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_singleton_pattern.md"
+    },
+    {
+      "id": "qa_quality_stateless_type_should_be_static",
+      "key": "qa_quality_stateless_type_should_be_static",
+      "title": "Types with only static members should be static",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "clarity"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_stateless_type_should_be_static.md"
+    },
+    {
+      "id": "qa_quality_static_field_assigned_from_instance_method",
+      "key": "qa_quality_static_field_assigned_from_instance_method",
+      "title": "Static fields should not be assigned from instance methods",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "suspicious",
+        "concurrency"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_static_field_assigned_from_instance_method.md"
+    },
+    {
+      "id": "qa_quality_static_mutable_collection_field",
+      "key": "qa_quality_static_mutable_collection_field",
+      "title": "Static fields should not hold mutable collection types",
+      "severity": "CRITICAL",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "immutability",
+        "concurrency"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_static_mutable_collection_field.md"
+    },
+    {
+      "id": "qa_quality_string_concatenation_in_loop",
+      "key": "qa_quality_string_concatenation_in_loop",
+      "title": "Avoid string concatenation inside loops",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "performance",
+        "suspicious"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_string_concatenation_in_loop.md"
+    },
+    {
+      "id": "qa_quality_string_format_argument_count",
+      "key": "qa_quality_string_format_argument_count",
+      "title": "Composite format strings should match their argument list",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "bug",
+        "suspicious"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_string_format_argument_count.md"
+    },
+    {
+      "id": "qa_quality_switch_missing_default_clause",
+      "key": "qa_quality_switch_missing_default_clause",
+      "title": "Switch statements should declare a default clause",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "convention",
+        "suspicious"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_switch_missing_default_clause.md"
+    },
+    {
+      "id": "qa_quality_thread_static_on_instance_field",
+      "key": "qa_quality_thread_static_on_instance_field",
+      "title": "ThreadStatic should only be applied to static fields",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "bug",
+        "concurrency"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_thread_static_on_instance_field.md"
+    },
+    {
+      "id": "qa_quality_throw_in_static_constructor",
+      "key": "qa_quality_throw_in_static_constructor",
+      "title": "Static constructors should not throw",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "bug",
+        "exception-handling"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_throw_in_static_constructor.md"
+    },
+    {
+      "id": "qa_quality_try_method_return_type",
+      "key": "qa_quality_try_method_return_type",
+      "title": "Methods prefixed with Try should return bool",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "naming",
+        "clarity"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_try_method_return_type.md"
+    },
+    {
+      "id": "qa_quality_type_without_namespace",
+      "key": "qa_quality_type_without_namespace",
+      "title": "Types should be declared inside a namespace",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "clarity",
+        "convention"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_type_without_namespace.md"
+    },
+    {
+      "id": "qa_quality_undisposed_disposable_local",
+      "key": "qa_quality_undisposed_disposable_local",
+      "title": "Dispose objects a method creates and owns",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "bug",
+        "resource-management"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_undisposed_disposable_local.md"
+    },
+    {
+      "id": "qa_quality_undisposed_local_object",
+      "key": "qa_quality_undisposed_local_object",
+      "title": "Newly created disposables should not be discarded",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "bug",
+        "resource-leak"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_undisposed_local_object.md"
+    },
+    {
+      "id": "qa_quality_uninstantiable_class",
+      "key": "qa_quality_uninstantiable_class",
+      "title": "Remove or make static classes that can never be instantiated",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "dead-code"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_uninstantiable_class.md"
+    },
+    {
+      "id": "qa_quality_unmanaged_resource_missing_finalizer",
+      "key": "qa_quality_unmanaged_resource_missing_finalizer",
+      "title": "Types owning unmanaged resources should declare a finalizer",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "bug",
+        "resource-management"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_unmanaged_resource_missing_finalizer.md"
+    },
+    {
+      "id": "qa_quality_unused_parameter",
+      "key": "qa_quality_unused_parameter",
+      "title": "Private method has an unused parameter",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "unused",
+        "clarity"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_unused_parameter.md"
+    },
+    {
+      "id": "qa_quality_unused_private_field",
+      "key": "qa_quality_unused_private_field",
+      "title": "Private field is never used",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "unused",
+        "clarity"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_unused_private_field.md"
+    },
+    {
+      "id": "qa_quality_unused_private_method",
+      "key": "qa_quality_unused_private_method",
+      "title": "Private method is never used",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "unused",
+        "clarity"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_unused_private_method.md"
+    },
+    {
+      "id": "qa_quality_unused_private_nested_type",
+      "key": "qa_quality_unused_private_nested_type",
+      "title": "Private nested type is never used",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "unused",
+        "clarity"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_unused_private_nested_type.md"
+    },
+    {
+      "id": "qa_quality_uri_member_as_string",
+      "key": "qa_quality_uri_member_as_string",
+      "title": "URI and URL members should be typed as System.Uri",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "suspicious"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_uri_member_as_string.md"
+    },
+    {
+      "id": "qa_quality_use_name_of_for_parameter_name",
+      "key": "qa_quality_use_name_of_for_parameter_name",
+      "title": "Use nameof for parameter names in argument exceptions",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "clarity",
+        "maintainability"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_use_name_of_for_parameter_name.md"
+    },
+    {
+      "id": "qa_quality_use_var_for_obvious_type",
+      "key": "qa_quality_use_var_for_obvious_type",
+      "title": "Use var when the type is evident from a constructor call",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "clarity",
+        "style"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_use_var_for_obvious_type.md"
+    },
+    {
+      "id": "qa_quality_value_type_equals_without_operator",
+      "key": "qa_quality_value_type_equals_without_operator",
+      "title": "Structs that override Equals should define the equality operator",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "bug",
+        "consistency"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_value_type_equals_without_operator.md"
+    },
+    {
+      "id": "qa_quality_virtual_call_in_constructor",
+      "key": "qa_quality_virtual_call_in_constructor",
+      "title": "Constructors should not call overridable members",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "bug",
+        "design"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_virtual_call_in_constructor.md"
+    },
+    {
+      "id": "qa_quality_virtual_property_access_in_constructor",
+      "key": "qa_quality_virtual_property_access_in_constructor",
+      "title": "Constructors should not read overridable properties",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "bug",
+        "initialization"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_virtual_property_access_in_constructor.md"
+    },
+    {
+      "id": "qa_quality_visible_nested_type",
+      "key": "qa_quality_visible_nested_type",
+      "title": "Avoid publicly visible nested types",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "api-design"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_visible_nested_type.md"
+    },
+    {
+      "id": "qa_quality_xml_doc_nonexistent_parameter",
+      "key": "qa_quality_xml_doc_nonexistent_parameter",
+      "title": "XML doc should not describe a nonexistent parameter",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "CodeQuality",
+      "tags": [
+        "documentation",
+        "clarity"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_xml_doc_nonexistent_parameter.md"
+    },
+    {
+      "id": "qa_quality_xml_document_base_type",
+      "key": "qa_quality_xml_document_base_type",
+      "title": "Types should not derive from XmlDocument",
+      "severity": "MAJOR",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "design",
+        "maintainability"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_quality_xml_document_base_type.md"
+    },
+    {
+      "id": "qa_reliability_certificate_validation_disabled",
+      "key": "qa_reliability_certificate_validation_disabled",
+      "title": "Certificate validation must not be disabled",
+      "severity": "BLOCKER",
+      "type": "Vulnerability",
+      "category": "Reliability",
+      "tags": [
+        "security",
+        "suspicious"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_reliability_certificate_validation_disabled.md"
+    },
+    {
+      "id": "qa_reliability_com_security_initialization",
+      "key": "qa_reliability_com_security_initialization",
+      "title": "COM security initialization calls should be reviewed",
+      "severity": "CRITICAL",
+      "type": "Security Hotspot",
+      "category": "Reliability",
+      "tags": [
+        "security",
+        "interop",
+        "suspicious"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_reliability_com_security_initialization.md"
+    },
+    {
+      "id": "qa_reliability_data_adapter_injection",
+      "key": "qa_reliability_data_adapter_injection",
+      "title": "Data adapter queries should not be built by string concatenation",
+      "severity": "CRITICAL",
+      "type": "Security Hotspot",
+      "category": "Reliability",
+      "tags": [
+        "security",
+        "sql"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_reliability_data_adapter_injection.md"
+    },
+    {
+      "id": "qa_reliability_insecure_random_for_security",
+      "key": "qa_reliability_insecure_random_for_security",
+      "title": "System.Random should not produce security-sensitive values",
+      "severity": "CRITICAL",
+      "type": "Vulnerability",
+      "category": "Reliability",
+      "tags": [
+        "security",
+        "cryptography"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_reliability_insecure_random_for_security.md"
+    },
+    {
+      "id": "qa_reliability_invalid_ip_address_literal",
+      "key": "qa_reliability_invalid_ip_address_literal",
+      "title": "IP address literals should be valid",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "Reliability",
+      "tags": [
+        "bug",
+        "suspicious"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_reliability_invalid_ip_address_literal.md"
+    },
+    {
+      "id": "qa_reliability_invalid_json_literal",
+      "key": "qa_reliability_invalid_json_literal",
+      "title": "JSON string literals should be well-formed",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "Reliability",
+      "tags": [
+        "bug",
+        "suspicious"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_reliability_invalid_json_literal.md"
+    },
+    {
+      "id": "qa_reliability_invalid_regex_pattern",
+      "key": "qa_reliability_invalid_regex_pattern",
+      "title": "Regular expression literals should compile",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "Reliability",
+      "tags": [
+        "bug",
+        "suspicious"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_reliability_invalid_regex_pattern.md"
+    },
+    {
+      "id": "qa_reliability_invalid_uri_literal",
+      "key": "qa_reliability_invalid_uri_literal",
+      "title": "Absolute URI literals should be valid",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "Reliability",
+      "tags": [
+        "bug",
+        "suspicious"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_reliability_invalid_uri_literal.md"
+    },
+    {
+      "id": "qa_reliability_sql_command_injection",
+      "key": "qa_reliability_sql_command_injection",
+      "title": "Database command text should not be built by string concatenation",
+      "severity": "CRITICAL",
+      "type": "Security Hotspot",
+      "category": "Reliability",
+      "tags": [
+        "security",
+        "sql"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_reliability_sql_command_injection.md"
+    },
+    {
+      "id": "qa_reliability_type_initialization_cycle",
+      "key": "qa_reliability_type_initialization_cycle",
+      "title": "Static initialization cycles should be avoided",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "CodeQuality",
+      "tags": [
+        "reliability",
+        "initialization"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_reliability_type_initialization_cycle.md"
+    },
+    {
+      "id": "qa_reliability_weak_block_cipher",
+      "key": "qa_reliability_weak_block_cipher",
+      "title": "Weak block ciphers such as DES and Triple DES should not be used",
+      "severity": "CRITICAL",
+      "type": "Vulnerability",
+      "category": "Reliability",
+      "tags": [
+        "security",
+        "cryptography"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_reliability_weak_block_cipher.md"
+    },
+    {
+      "id": "qa_style_async_method_name_suffix",
+      "key": "qa_style_async_method_name_suffix",
+      "title": "Asynchronous methods should carry an 'Async' name suffix",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "convention",
+        "clarity",
+        "async"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_async_method_name_suffix.md"
+    },
+    {
+      "id": "qa_style_async_suffix_on_sync_method",
+      "key": "qa_style_async_suffix_on_sync_method",
+      "title": "Synchronous methods should not carry an 'Async' name suffix",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "convention",
+        "clarity",
+        "async"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_async_suffix_on_sync_method.md"
+    },
+    {
+      "id": "qa_style_boolean_conditional_simplification",
+      "key": "qa_style_boolean_conditional_simplification",
+      "title": "Conditional expressions yielding boolean literals should be simplified",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "clarity",
+        "convention"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_boolean_conditional_simplification.md"
+    },
+    {
+      "id": "qa_style_boolean_literal_comparison",
+      "key": "qa_style_boolean_literal_comparison",
+      "title": "Boolean expressions should not be compared to a boolean literal",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "convention",
+        "clarity"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_boolean_literal_comparison.md"
+    },
+    {
+      "id": "qa_style_boolean_return_via_if",
+      "key": "qa_style_boolean_return_via_if",
+      "title": "Boolean results should be returned directly instead of through if/else",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "clarity",
+        "convention"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_boolean_return_via_if.md"
+    },
+    {
+      "id": "qa_style_commented_out_code",
+      "key": "qa_style_commented_out_code",
+      "title": "Commented-out code should be removed",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "clarity",
+        "maintainability"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_commented_out_code.md"
+    },
+    {
+      "id": "qa_style_conditional_assignment_opportunity",
+      "key": "qa_style_conditional_assignment_opportunity",
+      "title": "if/else assigning one variable should use the conditional operator",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "clarity",
+        "convention"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_conditional_assignment_opportunity.md"
+    },
+    {
+      "id": "qa_style_console_composite_format",
+      "key": "qa_style_console_composite_format",
+      "title": "Composite formatting in console output should use string interpolation",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "clarity",
+        "convention"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_console_composite_format.md"
+    },
+    {
+      "id": "qa_style_empty_initializer",
+      "key": "qa_style_empty_initializer",
+      "title": "Empty object or collection initializers should be removed",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "convention",
+        "clarity"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_empty_initializer.md"
+    },
+    {
+      "id": "qa_style_empty_string_comparison",
+      "key": "qa_style_empty_string_comparison",
+      "title": "Emptiness checks should not compare a string to an empty literal",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "convention",
+        "clarity"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_empty_string_comparison.md"
+    },
+    {
+      "id": "qa_style_explicit_backing_field_property",
+      "key": "qa_style_explicit_backing_field_property",
+      "title": "Properties that only wrap a backing field should be auto-implemented",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "clarity",
+        "convention"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_explicit_backing_field_property.md"
+    },
+    {
+      "id": "qa_style_expression_body_opportunity",
+      "key": "qa_style_expression_body_opportunity",
+      "title": "Single-statement members should use an expression body",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "convention",
+        "clarity"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_expression_body_opportunity.md"
+    },
+    {
+      "id": "qa_style_extension_method_invocation_style",
+      "key": "qa_style_extension_method_invocation_style",
+      "title": "Extension methods should be called through member access",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "convention",
+        "clarity",
+        "linq"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_extension_method_invocation_style.md"
+    },
+    {
+      "id": "qa_style_field_can_be_readonly",
+      "key": "qa_style_field_can_be_readonly",
+      "title": "Private fields assigned only during construction should be readonly",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "convention",
+        "clarity",
+        "immutability"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_field_can_be_readonly.md"
+    },
+    {
+      "id": "qa_style_field_declaration_order",
+      "key": "qa_style_field_declaration_order",
+      "title": "Fields should be declared before other members",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "convention",
+        "clarity"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_field_declaration_order.md"
+    },
+    {
+      "id": "qa_style_getter_only_auto_property",
+      "key": "qa_style_getter_only_auto_property",
+      "title": "Read-only properties over a backing field should be getter-only auto-properties",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "convention",
+        "clarity",
+        "immutability"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_getter_only_auto_property.md"
+    },
+    {
+      "id": "qa_style_if_chain_to_switch",
+      "key": "qa_style_if_chain_to_switch",
+      "title": "Long if/else-if chains testing one value should use a 'switch'",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "clarity",
+        "convention"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_if_chain_to_switch.md"
+    },
+    {
+      "id": "qa_style_index_loop_over_collection",
+      "key": "qa_style_index_loop_over_collection",
+      "title": "Index-based 'for' loops over a collection should prefer 'foreach'",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "clarity",
+        "convention"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_index_loop_over_collection.md"
+    },
+    {
+      "id": "qa_style_local_can_be_const",
+      "key": "qa_style_local_can_be_const",
+      "title": "Local variables that never change should be declared const",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "convention",
+        "clarity",
+        "immutability"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_local_can_be_const.md"
+    },
+    {
+      "id": "qa_style_loop_counter_equality_comparison",
+      "key": "qa_style_loop_counter_equality_comparison",
+      "title": "Counting loops should bound the counter with a relational comparison",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "convention",
+        "clarity"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_loop_counter_equality_comparison.md"
+    },
+    {
+      "id": "qa_style_mergeable_nested_if",
+      "key": "qa_style_mergeable_nested_if",
+      "title": "Nested if statements without an else should be combined",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "convention",
+        "clarity"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_mergeable_nested_if.md"
+    },
+    {
+      "id": "qa_style_missing_configure_await",
+      "key": "qa_style_missing_configure_await",
+      "title": "Awaited tasks in reusable code should specify ConfigureAwait",
+      "severity": "MAJOR",
+      "type": "Bug",
+      "category": "Style",
+      "tags": [
+        "async",
+        "reliability"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_missing_configure_await.md"
+    },
+    {
+      "id": "qa_style_mutable_struct_should_be_class",
+      "key": "qa_style_mutable_struct_should_be_class",
+      "title": "Mutable value types should be reference types",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "design",
+        "pitfall"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_mutable_struct_should_be_class.md"
+    },
+    {
+      "id": "qa_style_negated_all_to_any",
+      "key": "qa_style_negated_all_to_any",
+      "title": "A negated 'All' query should be written as 'Any'",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "convention",
+        "clarity",
+        "linq"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_negated_all_to_any.md"
+    },
+    {
+      "id": "qa_style_negated_any_to_all",
+      "key": "qa_style_negated_any_to_all",
+      "title": "A negated 'Any' query should be written as 'All'",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "convention",
+        "clarity",
+        "linq"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_negated_any_to_all.md"
+    },
+    {
+      "id": "qa_style_null_guard_to_conditional",
+      "key": "qa_style_null_guard_to_conditional",
+      "title": "Null guards around a single call should use the null-conditional operator",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "clarity",
+        "convention"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_null_guard_to_conditional.md"
+    },
+    {
+      "id": "qa_style_numeric_literal_digit_separator",
+      "key": "qa_style_numeric_literal_digit_separator",
+      "title": "Long numeric literals should use digit separators",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "convention",
+        "clarity"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_numeric_literal_digit_separator.md"
+    },
+    {
+      "id": "qa_style_object_initializer_opportunity",
+      "key": "qa_style_object_initializer_opportunity",
+      "title": "Object creation followed by property assignments should use an object initializer",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "clarity",
+        "convention"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_object_initializer_opportunity.md"
+    },
+    {
+      "id": "qa_style_prefer_string_empty",
+      "key": "qa_style_prefer_string_empty",
+      "title": "Prefer 'string.Empty' over an empty string literal",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "convention",
+        "clarity"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_prefer_string_empty.md"
+    },
+    {
+      "id": "qa_style_prefer_verbatim_string",
+      "key": "qa_style_prefer_verbatim_string",
+      "title": "String literals with only escaped backslashes should be verbatim",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "clarity",
+        "convention"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_prefer_verbatim_string.md"
+    },
+    {
+      "id": "qa_style_private_set_candidate",
+      "key": "qa_style_private_set_candidate",
+      "title": "Auto-property setters assigned only in a constructor should be private",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "convention",
+        "clarity"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_private_set_candidate.md"
+    },
+    {
+      "id": "qa_style_property_changed_event_args_allocation",
+      "key": "qa_style_property_changed_event_args_allocation",
+      "title": "PropertyChangedEventArgs should be cached rather than allocated per notification",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "convention",
+        "performance"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_property_changed_event_args_allocation.md"
+    },
+    {
+      "id": "qa_style_redundant_default_field_initializer",
+      "key": "qa_style_redundant_default_field_initializer",
+      "title": "Fields should not be explicitly initialized to their default value",
+      "severity": "MINOR",
+      "type": "Bug",
+      "category": "Style",
+      "tags": [
+        "convention",
+        "clarity"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_redundant_default_field_initializer.md"
+    },
+    {
+      "id": "qa_style_redundant_else_after_jump",
+      "key": "qa_style_redundant_else_after_jump",
+      "title": "Redundant 'else' after a terminating branch should be removed",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "clarity",
+        "convention"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_redundant_else_after_jump.md"
+    },
+    {
+      "id": "qa_style_redundant_lambda_method_group",
+      "key": "qa_style_redundant_lambda_method_group",
+      "title": "Lambdas that only forward their arguments should be method groups",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "convention",
+        "clarity"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_redundant_lambda_method_group.md"
+    },
+    {
+      "id": "qa_style_redundant_to_string_in_concatenation",
+      "key": "qa_style_redundant_to_string_in_concatenation",
+      "title": "Redundant 'ToString()' in string concatenation should be removed",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "clarity",
+        "redundancy"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_redundant_to_string_in_concatenation.md"
+    },
+    {
+      "id": "qa_style_splittable_conjunction_if",
+      "key": "qa_style_splittable_conjunction_if",
+      "title": "Compound 'if' conditions joined by '&&' may read better as nested ifs",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "clarity",
+        "convention"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_splittable_conjunction_if.md"
+    },
+    {
+      "id": "qa_style_static_regex_is_match",
+      "key": "qa_style_static_regex_is_match",
+      "title": "Repeated 'Regex.IsMatch' with an inline pattern should use a cached Regex",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "performance",
+        "convention"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_static_regex_is_match.md"
+    },
+    {
+      "id": "qa_style_string_format_interpolation",
+      "key": "qa_style_string_format_interpolation",
+      "title": "'string.Format' calls should prefer string interpolation",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "clarity",
+        "convention"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_string_format_interpolation.md"
+    },
+    {
+      "id": "qa_style_switch_section_braces",
+      "key": "qa_style_switch_section_braces",
+      "title": "Switch sections should be enclosed in braces",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "convention",
+        "clarity"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_switch_section_braces.md"
+    },
+    {
+      "id": "qa_style_trailing_whitespace",
+      "key": "qa_style_trailing_whitespace",
+      "title": "Lines should not end with trailing whitespace",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "convention",
+        "clarity"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_trailing_whitespace.md"
+    },
+    {
+      "id": "qa_style_unnecessary_return_parentheses",
+      "key": "qa_style_unnecessary_return_parentheses",
+      "title": "Unnecessary parentheses should be removed",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "clarity",
+        "redundancy"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_unnecessary_return_parentheses.md"
+    },
+    {
+      "id": "qa_style_unnecessary_verbatim_string",
+      "key": "qa_style_unnecessary_verbatim_string",
+      "title": "Verbatim strings without escapes should be regular strings",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "convention",
+        "clarity"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_unnecessary_verbatim_string.md"
+    },
+    {
+      "id": "qa_style_unused_constructor_parameter",
+      "key": "qa_style_unused_constructor_parameter",
+      "title": "Constructor parameters should be used",
+      "severity": "INFO",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "convention",
+        "clarity"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_unused_constructor_parameter.md"
+    },
+    {
+      "id": "qa_style_unused_private_method",
+      "key": "qa_style_unused_private_method",
+      "title": "Unused private methods should be removed",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "Style",
+      "tags": [
+        "dead-code",
+        "maintainability"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_style_unused_private_method.md"
+    },
+    {
+      "id": "qa_unity_empty_unity_message",
+      "key": "qa_unity_empty_unity_message",
+      "title": "Empty Unity lifecycle methods should be removed",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "Unity",
+      "tags": [
+        "unity",
+        "performance"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_unity_empty_unity_message.md"
+    },
+    {
+      "id": "qa_unity_fixed_delta_time_in_update",
+      "key": "qa_unity_fixed_delta_time_in_update",
+      "title": "Frame updates should use Time.deltaTime not Time.fixedDeltaTime",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "Unity",
+      "tags": [
+        "unity",
+        "suspicious"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_unity_fixed_delta_time_in_update.md"
+    },
+    {
+      "id": "qa_unity_initialize_on_load_method_signature",
+      "key": "qa_unity_initialize_on_load_method_signature",
+      "title": "InitializeOnLoadMethod targets must be static and parameterless",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "Unity",
+      "tags": [
+        "unity",
+        "suspicious"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_unity_initialize_on_load_method_signature.md"
+    },
+    {
+      "id": "qa_unity_initialize_on_load_static_constructor",
+      "key": "qa_unity_initialize_on_load_static_constructor",
+      "title": "Types marked InitializeOnLoad require a static constructor",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "Unity",
+      "tags": [
+        "unity",
+        "suspicious"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_unity_initialize_on_load_static_constructor.md"
+    },
+    {
+      "id": "qa_unity_non_generic_get_component",
+      "key": "qa_unity_non_generic_get_component",
+      "title": "Prefer the generic GetComponent overload",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "Unity",
+      "tags": [
+        "unity",
+        "clarity"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_unity_non_generic_get_component.md"
+    },
+    {
+      "id": "qa_unity_prefer_set_pixels32",
+      "key": "qa_unity_prefer_set_pixels32",
+      "title": "Prefer the 32-bit pixel API over SetPixels",
+      "severity": "MAJOR",
+      "type": "Code Smell",
+      "category": "Unity",
+      "tags": [
+        "unity",
+        "performance"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_unity_prefer_set_pixels32.md"
+    },
+    {
+      "id": "qa_unity_redundant_serialize_field",
+      "key": "qa_unity_redundant_serialize_field",
+      "title": "SerializeField is redundant on a public field",
+      "severity": "MINOR",
+      "type": "Code Smell",
+      "category": "Unity",
+      "tags": [
+        "unity",
+        "redundancy"
+      ],
+      "defaultActive": false,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_unity_redundant_serialize_field.md"
+    },
+    {
+      "id": "qa_unity_scriptable_object_create_instance",
+      "key": "qa_unity_scriptable_object_create_instance",
+      "title": "Instantiate ScriptableObject types with CreateInstance",
+      "severity": "CRITICAL",
+      "type": "Bug",
+      "category": "Unity",
+      "tags": [
+        "unity",
+        "suspicious"
+      ],
+      "defaultActive": true,
+      "helpUrl": "https://github.com/Qualimetry/sonarqube-csharp-plugin/blob/main/docs/rules/qa_unity_scriptable_object_create_instance.md"
+    }
+  ]
+}

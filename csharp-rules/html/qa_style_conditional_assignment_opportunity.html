@@ -1,0 +1,26 @@
+<p>An <code>if</code>/<code>else</code> whose only job is to assign the same variable in each branch spreads a single decision over several lines and repeats the assignment target twice. The conditional operator expresses the same choice as one assignment, making it obvious that exactly one value is produced.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public int Clamp(bool high)
+{
+    int limit;
+    if (high) // Noncompliant
+    {
+        limit = 100;
+    }
+    else
+    {
+        limit = 10;
+    }
+
+    return limit;
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public int Clamp(bool high)
+{
+    int limit = high ? 100 : 10;
+    return limit;
+}
+</pre>

@@ -1,0 +1,22 @@
+{
+  "id": "QCS0053",
+  "title": "Constructor parameters should be used",
+  "tags": [
+    "convention",
+    "clarity"
+  ],
+  "messageFormat": "Use constructor parameter '{0}' or remove it.",
+  "summary": [
+    "<p>A constructor parameter that is never read or stored is dead weight: it suggests the caller is supplying state that the type then ignores, which is usually either a forgotten assignment or a leftover from an earlier design.</p>",
+    "<p>Either capture the value in a field or property, or drop the parameter so the constructor's contract matches what it actually does.</p>"
+  ],
+  "noncompliant": "public sealed class Report\n{\n    private readonly string _title;\n\n    public Report(string title, string author) // Noncompliant: 'author' is unused\n    {\n        _title = title;\n    }\n}",
+  "compliant": "public sealed class Report\n{\n    private readonly string _title;\n    private readonly string _author;\n\n    public Report(string title, string author)\n    {\n        _title = title;\n        _author = author;\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "Constructors (C# programming guide)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/constructors"
+    }
+  ],
+  "ruleKey": "qa_style_unused_constructor_parameter"
+}

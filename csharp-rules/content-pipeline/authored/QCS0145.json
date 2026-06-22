@@ -1,0 +1,16 @@
+{
+  "id": "QCS0145",
+  "title": "Redundant 'else' after a terminating branch should be removed",
+  "tags": [
+    "clarity",
+    "convention"
+  ],
+  "messageFormat": "Remove this redundant 'else' and pull its body out of the block.",
+  "summary": [
+    "<p>When the body of an <code>if</code> ends with a statement that leaves the enclosing method or loop, such as <code>return</code>, <code>throw</code>, <code>break</code> or <code>continue</code>, the matching <code>else</code> can never be reached as a fall-through. Keeping it only adds a level of nesting.</p>",
+    "<p>Dropping the <code>else</code> and letting the following code run unconditionally keeps the happy path flat and easier to read without changing behaviour.</p>"
+  ],
+  "noncompliant": "public string Describe(int value)\n{\n    if (value < 0)\n    {\n        return \"negative\";\n    }\n    else // Noncompliant\n    {\n        return \"non-negative\";\n    }\n}",
+  "compliant": "public string Describe(int value)\n{\n    if (value < 0)\n    {\n        return \"negative\";\n    }\n\n    return \"non-negative\";\n}",
+  "ruleKey": "qa_style_redundant_else_after_jump"
+}

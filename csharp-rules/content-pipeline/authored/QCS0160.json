@@ -1,0 +1,22 @@
+{
+  "id": "QCS0160",
+  "title": "Types should not derive from XmlDocument",
+  "tags": [
+    "design",
+    "maintainability"
+  ],
+  "messageFormat": "Compose XmlDocument instead of deriving from it.",
+  "summary": [
+    "<p><code>XmlDocument</code> is a large, non-virtual-friendly class that was never designed as a base type. A subclass inherits dozens of members it cannot meaningfully override and becomes tightly bound to an implementation that is expensive and hard to evolve.</p>",
+    "<p>Hold an <code>XmlDocument</code> as a private field and expose only the operations the type actually needs.</p>"
+  ],
+  "noncompliant": "using System.Xml;\n\npublic class ConfigDocument : XmlDocument // Noncompliant\n{\n}",
+  "compliant": "using System.Xml;\n\npublic class ConfigDocument\n{\n    private readonly XmlDocument _document = new XmlDocument();\n\n    public void Load(string path) => _document.Load(path);\n}",
+  "seeAlso": [
+    {
+      "text": "Composition over inheritance",
+      "href": "https://learn.microsoft.com/dotnet/standard/design-guidelines/choosing-between-class-and-struct"
+    }
+  ],
+  "ruleKey": "qa_quality_xml_document_base_type"
+}

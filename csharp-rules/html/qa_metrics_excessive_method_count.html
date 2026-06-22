@@ -1,0 +1,23 @@
+<p>A type with a very long list of methods is often a hub that has accumulated behaviour belonging to several collaborators. Counting the methods it declares is a quick way to spot types that have drifted past a single responsibility.</p>
+<p>The method limit is configurable.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public sealed class Manager
+{
+    public void One() { }
+    public void Two() { }
+    public void Three() { }
+    public void Four() { }
+    public void Five() { }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public sealed class Coordinator
+{
+    public void Start() { }
+    public void Stop() { }
+}
+</pre>
+<h2>Parameters</h2>
+<p>This rule is configurable. Edit <code>maxmethods</code> (default <code>20</code>) on the rule in your quality profile; SonarQube applies the value during analysis and synchronises it to connected IDEs.</p>

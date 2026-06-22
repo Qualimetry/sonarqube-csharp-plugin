@@ -1,0 +1,20 @@
+<p>An attribute declared with <code>AttributeTargets.All</code> can be placed on assemblies, classes, methods, parameters, return values, and more. Almost no attribute is meaningful in every one of those positions, so the broad target list lets the attribute be applied where it does nothing and hides genuine misuse from the compiler.</p>
+<p>List only the program elements the attribute is designed for in its <code>AttributeUsage</code>.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System;
+
+[AttributeUsage(AttributeTargets.All)] // Noncompliant
+public sealed class AuditAttribute : Attribute
+{
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System;
+
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
+public sealed class AuditAttribute : Attribute
+{
+}
+</pre>

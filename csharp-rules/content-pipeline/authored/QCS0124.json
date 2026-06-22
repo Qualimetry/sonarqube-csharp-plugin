@@ -1,0 +1,22 @@
+{
+  "id": "QCS0124",
+  "title": "Platform invoke declarations should not be publicly visible",
+  "tags": [
+    "security",
+    "interop"
+  ],
+  "messageFormat": "Reduce this P/Invoke declaration to non-public visibility.",
+  "summary": [
+    "<p>A <code>[DllImport]</code> method declared <code>public</code> or <code>protected</code> exposes a raw native entry point to every consumer of the assembly. Callers bypass any managed validation around it and invoke unmanaged code directly, which is both a security risk and a brittle contract.</p>",
+    "<p>Keep interop declarations internal or private inside a dedicated native-methods class, and surface a safe managed wrapper instead.</p>"
+  ],
+  "noncompliant": "using System.Runtime.InteropServices;\n\npublic class Native\n{\n    [DllImport(\"kernel32.dll\")]\n    public static extern int GetCurrentProcessId(); // Noncompliant\n}",
+  "compliant": "using System.Runtime.InteropServices;\n\ninternal static class Native\n{\n    [DllImport(\"kernel32.dll\")]\n    internal static extern int GetCurrentProcessId();\n}",
+  "seeAlso": [
+    {
+      "text": "CA1401: P/Invokes should not be visible",
+      "href": "https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1401"
+    }
+  ],
+  "ruleKey": "qa_quality_public_platform_invoke"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "QCS0201",
+  "title": "Boxing and unboxing conversions should be avoided",
+  "tags": [
+    "performance"
+  ],
+  "messageFormat": "Remove this boxing or unboxing conversion.",
+  "summary": [
+    "<p>Boxing value types onto the heap and unboxing them back adds allocation and runtime cost on hot paths. Prefer generic APIs, typed overloads, or ref-based patterns that keep values on the stack.</p>"
+  ],
+  "noncompliant": "public sealed class Counter\n{\n    public void Report(object value)\n    {\n        System.Console.WriteLine(value);\n    }\n\n    public void Emit(int count)\n    {\n        Report(count);\n    }\n}",
+  "compliant": "public sealed class Counter\n{\n    public void Report(int value)\n    {\n        System.Console.WriteLine(value);\n    }\n\n    public void Emit(int count)\n    {\n        Report(count);\n    }\n}",
+  "ruleKey": "qa_quality_boxing_conversion"
+}

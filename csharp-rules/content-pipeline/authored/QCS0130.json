@@ -1,0 +1,22 @@
+{
+  "id": "QCS0130",
+  "title": "Prefer the 32-bit pixel API over SetPixels",
+  "tags": [
+    "unity",
+    "performance"
+  ],
+  "messageFormat": "Use SetPixels32 to write texture pixels instead of SetPixels.",
+  "summary": [
+    "<p><code>SetPixels</code> accepts an array of floating-point <code>Color</code> values, which the engine has to convert down to the eight-bit channels textures actually store. For large textures that conversion and the wider element size make each upload measurably slower and allocate more managed memory than necessary.</p>",
+    "<p><code>SetPixels32</code> takes <code>Color32</code> values that already match the stored format, so the write skips the conversion step. Prefer it whenever the pixel data does not need full floating-point precision.</p>"
+  ],
+  "noncompliant": "public class TextureWriter\n{\n    public void Fill(Texture2D texture, Color[] pixels)\n    {\n        texture.SetPixels(pixels); // Noncompliant\n    }\n}",
+  "compliant": "public class TextureWriter\n{\n    public void Fill(Texture2D texture, Color32[] pixels)\n    {\n        texture.SetPixels32(pixels);\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "Texture2D.SetPixels32 (Unity scripting reference)",
+      "href": "https://docs.unity3d.com/ScriptReference/Texture2D.SetPixels32.html"
+    }
+  ],
+  "ruleKey": "qa_unity_prefer_set_pixels32"
+}

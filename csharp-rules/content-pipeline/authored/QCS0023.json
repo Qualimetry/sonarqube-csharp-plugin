@@ -1,0 +1,23 @@
+{
+  "id": "QCS0023",
+  "title": "Static fields should be read-only",
+  "tags": [
+    "design",
+    "immutability",
+    "concurrency"
+  ],
+  "messageFormat": "Mark this static field as 'readonly' or expose its value through a property instead.",
+  "summary": [
+    "<p>A static field that is neither <code>readonly</code> nor <code>const</code> is shared, writable state for the whole process. Any code in any thread can reassign it, so its value at a given moment is hard to reason about and races are easy to introduce.</p>",
+    "<p>Marking the field <code>readonly</code> pins the reference after construction and documents that the slot is set once. When the value genuinely needs to change, hide it behind a property with controlled access so the mutation point is explicit.</p>"
+  ],
+  "noncompliant": "public class Settings\n{\n    public static string Environment = \"Production\"; // Noncompliant\n}",
+  "compliant": "public class Settings\n{\n    public static readonly string Environment = \"Production\";\n}",
+  "seeAlso": [
+    {
+      "text": "readonly (C# reference)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/readonly"
+    }
+  ],
+  "ruleKey": "qa_quality_non_readonly_static_field"
+}
