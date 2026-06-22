@@ -1,0 +1,22 @@
+<p>The <code>ThreadStatic</code> attribute gives each thread its own copy of a field, but the runtime only honors it on <code>static</code> fields. Placing it on an instance field compiles without complaint yet does nothing, so code that relies on per-thread isolation silently shares one value across threads.</p>
+<p>Make the field <code>static</code> if per-thread storage is the intent, or remove the attribute if it was applied by mistake. For per-thread instance state, use <code>ThreadLocal&lt;T&gt;</code> instead.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class Context
+{
+    [ThreadStatic]
+    private int depth; // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class Context
+{
+    [ThreadStatic]
+    private static int depth;
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/api/system.threadstaticattribute">ThreadStaticAttribute</a></li>
+</ul>

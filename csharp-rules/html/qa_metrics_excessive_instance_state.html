@@ -1,0 +1,24 @@
+<p>The amount of state an instance carries is the sum of its instance fields and its instance auto-implemented properties. A type that holds a large number of these slots tends to be a grab-bag of loosely related data and is a candidate for splitting into smaller, more focused objects.</p>
+<p>The state limit is configurable.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public sealed class Profile
+{
+    private int _a;
+    private int _b;
+    public int C { get; set; }
+    public int D { get; set; }
+    public int E { get; set; }
+    public int F { get; set; }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public sealed class Profile
+{
+    public Name Name { get; set; }
+    public Address Address { get; set; }
+}
+</pre>
+<h2>Parameters</h2>
+<p>This rule is configurable. Edit <code>maxinstancefields</code> (default <code>15</code>) on the rule in your quality profile; SonarQube applies the value during analysis and synchronises it to connected IDEs.</p>

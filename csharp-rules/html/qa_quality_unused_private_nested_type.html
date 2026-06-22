@@ -1,0 +1,28 @@
+<p>A private nested type is only visible inside the type that declares it. When nothing in that enclosing type refers to it, the nested type is dead code: it adds surface area and maintenance cost without contributing to any behaviour.</p>
+<p>Remove the nested type, or use it from the enclosing type that was meant to depend on it.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class Scheduler
+{
+    public void Run() { }
+
+    private sealed class PendingJob // Noncompliant
+    {
+        public int Id { get; set; }
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class Scheduler
+{
+    private readonly PendingJob _next = new();
+
+    public void Run() =&gt; _next.Id++;
+
+    private sealed class PendingJob
+    {
+        public int Id { get; set; }
+    }
+}
+</pre>

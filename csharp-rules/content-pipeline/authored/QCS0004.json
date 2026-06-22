@@ -1,0 +1,21 @@
+{
+  "id": "QCS0004",
+  "title": "Constructors of abstract types should not be public",
+  "tags": [
+    "design",
+    "clarity"
+  ],
+  "messageFormat": "Make this constructor of an abstract type protected rather than public.",
+  "summary": [
+    "<p>An <code>abstract</code> type cannot be instantiated directly, so a <code>public</code> constructor on it is misleading: callers see a constructor they can never invoke. Declaring such constructors <code>protected</code> states the real contract, that only derived types call them.</p>"
+  ],
+  "noncompliant": "public abstract class Shape\n{\n    public Shape(string name) // Noncompliant\n    {\n        Name = name;\n    }\n\n    public string Name { get; }\n}",
+  "compliant": "public abstract class Shape\n{\n    protected Shape(string name)\n    {\n        Name = name;\n    }\n\n    public string Name { get; }\n}",
+  "seeAlso": [
+    {
+      "text": "Abstract classes (C# language reference)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/abstract"
+    }
+  ],
+  "ruleKey": "qa_quality_abstract_type_public_constructor"
+}

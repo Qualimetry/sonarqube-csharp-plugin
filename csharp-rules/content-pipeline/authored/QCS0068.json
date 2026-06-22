@@ -1,0 +1,23 @@
+{
+  "id": "QCS0068",
+  "title": "Fields should not be assigned from too many methods",
+  "tags": [
+    "metrics",
+    "maintainability"
+  ],
+  "messageFormat": "Field '{0}' is assigned in {1} different methods, above the limit of {2}.",
+  "summary": [
+    "<p>When a single field is written from many methods, the rules that govern its value are scattered across the type and the order in which those methods run starts to matter in subtle ways. Counting the distinct methods that assign to a field highlights mutable state whose lifecycle has become hard to follow and which often wants to be wrapped behind a single setter or moved into its own object.</p>",
+    "<p>The limit on assigning methods is configurable.</p>"
+  ],
+  "noncompliant": "public sealed class Session\n{\n    private string _state;\n\n    public void Open() { _state = \"open\"; }\n    public void Pause() { _state = \"paused\"; }\n    public void Resume() { _state = \"open\"; }\n    public void Close() { _state = \"closed\"; }\n}",
+  "compliant": "public sealed class Session\n{\n    private string _state;\n\n    private void Transition(string next) { _state = next; }\n\n    public void Open() => Transition(\"open\");\n    public void Close() => Transition(\"closed\");\n}",
+  "configuration": [
+    {
+      "parameter": "maxassigningmethods",
+      "type": "int",
+      "default": "3"
+    }
+  ],
+  "ruleKey": "qa_metrics_field_assigned_from_many_methods"
+}

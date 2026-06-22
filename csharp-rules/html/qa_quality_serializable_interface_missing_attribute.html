@@ -1,0 +1,32 @@
+<p>Implementing <code>ISerializable</code> states an intent to participate in serialization, but the runtime only treats a type as serializable when it also carries <code>[Serializable]</code>. Without the attribute the custom <code>GetObjectData</code> is never reached and serialization fails at run time.</p>
+<p>Mark the type <code>[Serializable]</code> so the declared contract and the runtime behaviour agree.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System.Runtime.Serialization;
+
+#pragma warning disable SYSLIB0051
+public class Ticket : ISerializable // Noncompliant
+{
+    public void GetObjectData(SerializationInfo info, StreamingContext context)
+    {
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System;
+using System.Runtime.Serialization;
+
+#pragma warning disable SYSLIB0051
+[Serializable]
+public class Ticket : ISerializable
+{
+    public void GetObjectData(SerializationInfo info, StreamingContext context)
+    {
+    }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/api/system.serializableattribute">SerializableAttribute (.NET API)</a></li>
+</ul>

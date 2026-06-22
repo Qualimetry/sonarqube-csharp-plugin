@@ -1,0 +1,22 @@
+{
+  "id": "QCS0082",
+  "title": "Obsolete APIs should not be referenced",
+  "tags": [
+    "maintainability",
+    "deprecation"
+  ],
+  "messageFormat": "Replace this reference to an obsolete API with its supported alternative.",
+  "summary": [
+    "<p>An API marked with <code>[Obsolete]</code> has been retired by its author: it may behave differently than expected, carry known defects, or disappear entirely in a future version. Continuing to call it ties new code to a contract that is already on its way out.</p>",
+    "<p>Move to the replacement the attribute points to, or drop the dependency on the deprecated member, so the code stays aligned with the surface its libraries actually support.</p>"
+  ],
+  "noncompliant": "public class Report\n{\n    [System.Obsolete(\"Use BuildV2 instead.\")]\n    public string Build() => \"v1\";\n\n    public string Render() => Build(); // Noncompliant\n}",
+  "compliant": "public class Report\n{\n    [System.Obsolete(\"Use BuildV2 instead.\")]\n    public string Build() => \"v1\";\n\n    public string BuildV2() => \"v2\";\n\n    public string Render() => BuildV2();\n}",
+  "seeAlso": [
+    {
+      "text": "ObsoleteAttribute (.NET API)",
+      "href": "https://learn.microsoft.com/dotnet/api/system.obsoleteattribute"
+    }
+  ],
+  "ruleKey": "qa_quality_obsolete_member_usage"
+}

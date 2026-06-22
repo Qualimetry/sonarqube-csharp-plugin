@@ -1,0 +1,15 @@
+{
+  "id": "QCS0146",
+  "title": "Lines should not end with trailing whitespace",
+  "tags": [
+    "convention",
+    "clarity"
+  ],
+  "messageFormat": "Remove the trailing whitespace at the end of this line.",
+  "summary": [
+    "<p>Spaces or tabs sitting at the end of a line are invisible in most editors yet they pollute diffs, trigger noisy version-control changes, and can break here-strings or shell snippets embedded in source. They carry no meaning and should not survive review.</p>"
+  ],
+  "noncompliant": "public class Account\n{\n    public int Balance { get; set; }   \n}",
+  "compliant": "public class Account\n{\n    public int Balance { get; set; }\n}",
+  "ruleKey": "qa_style_trailing_whitespace"
+}

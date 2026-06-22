@@ -1,0 +1,23 @@
+<p>An empty static constructor does nothing, but its presence forces the runtime to add an initialization check before the first access of the type and removes the <code>beforefieldinit</code> flag the compiler would otherwise emit. Deleting it is behaviour-preserving and slightly faster.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class Settings
+{
+    static Settings() // Noncompliant
+    {
+    }
+
+    public static int Limit = 100;
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class Settings
+{
+    public static int Limit = 100;
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/static-constructors">Static Constructors (C# guide)</a></li>
+</ul>

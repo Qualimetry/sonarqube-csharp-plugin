@@ -1,0 +1,22 @@
+{
+  "id": "QCS0051",
+  "title": "Collection properties should be read-only",
+  "tags": [
+    "design",
+    "immutability"
+  ],
+  "messageFormat": "Remove the setter from this collection property and let callers mutate the existing instance.",
+  "summary": [
+    "<p>A collection property with a public setter lets callers swap the whole container for a different instance, including <code>null</code>. Code that captured the previous reference keeps mutating an object the owner no longer sees, and every access has to defend against the property being reassigned.</p>",
+    "<p>Expose the collection through a getter only and initialize it once. Callers add and remove items on the owned instance, and the owner keeps control of the container's lifetime.</p>"
+  ],
+  "noncompliant": "public class Order\n{\n    public List<string> Items { get; set; } = new(); // Noncompliant\n}",
+  "compliant": "public class Order\n{\n    public List<string> Items { get; } = new();\n}",
+  "seeAlso": [
+    {
+      "text": "Collection design guidelines",
+      "href": "https://learn.microsoft.com/dotnet/standard/design-guidelines/guidelines-for-collections"
+    }
+  ],
+  "ruleKey": "qa_quality_mutable_collection_property_setter"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "QCS0009",
+  "title": "Prefer Func and Action over custom delegate types",
+  "tags": [
+    "design",
+    "clarity"
+  ],
+  "messageFormat": "Replace this custom delegate with a Func or Action; its signature is already expressible.",
+  "summary": [
+    "<p>A bespoke delegate type whose signature maps cleanly onto the built-in <code>Func&lt;&gt;</code> or <code>Action&lt;&gt;</code> families adds a name a reader has to look up and an extra type that every caller must reference, for no behavioural gain. The framework delegates are universally understood and compose directly with LINQ and the task-based APIs. Keep a named delegate only when it carries semantics the generic forms cannot, such as <code>ref</code> or <code>out</code> parameters.</p>"
+  ],
+  "noncompliant": "public delegate int Transformer(int input); // Noncompliant\n\npublic sealed class Pipeline\n{\n    public Transformer Step { get; set; }\n}",
+  "compliant": "using System;\n\npublic sealed class Pipeline\n{\n    public Func<int, int> Step { get; set; }\n}",
+  "ruleKey": "qa_quality_custom_delegate_declaration"
+}

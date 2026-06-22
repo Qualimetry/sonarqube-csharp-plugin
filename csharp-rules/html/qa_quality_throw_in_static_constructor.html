@@ -1,0 +1,27 @@
+<p>If a static constructor throws, the runtime wraps the exception in a <code>TypeInitializationException</code> and marks the type as unusable for the rest of the process. Every later attempt to touch the type, even an unrelated static member, fails with the same error, and the failure is detached from the line that actually went wrong.</p>
+<p>Keep static constructors free of code that can fail. Do lazy, fallible initialization on first use where it can be retried and where the exception reaches the caller in context.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class Config
+{
+    static Config()
+    {
+        throw new InvalidOperationException("missing settings"); // Noncompliant
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class Config
+{
+    private static readonly Lazy&lt;Config&gt; instance = new(Load);
+
+    public static Config Instance =&gt; instance.Value;
+
+    private static Config Load() =&gt; new();
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/static-constructors">Static constructors (C# programming guide)</a></li>
+</ul>

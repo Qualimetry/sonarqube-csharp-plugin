@@ -1,0 +1,23 @@
+{
+  "id": "QCS0029",
+  "title": "Types should not be too long",
+  "tags": [
+    "metrics",
+    "maintainability"
+  ],
+  "messageFormat": "This type spans {0} lines, above the limit of {1}.",
+  "summary": [
+    "<p>The number of source lines a type occupies is a rough but useful proxy for how much responsibility it carries. A type that runs to many hundreds of lines is hard to hold in the head and is often hiding several smaller types that want to be extracted.</p>",
+    "<p>The line limit is configurable.</p>"
+  ],
+  "noncompliant": "public sealed class Everything\n{\n    // ... hundreds of lines of unrelated members ...\n    public void A() { }\n    public void B() { }\n}",
+  "compliant": "public sealed class Orders\n{\n    public void Place() { }\n}\n\npublic sealed class Invoices\n{\n    public void Issue() { }\n}",
+  "configuration": [
+    {
+      "parameter": "maxlines",
+      "type": "int",
+      "default": "400"
+    }
+  ],
+  "ruleKey": "qa_metrics_large_type"
+}

@@ -1,0 +1,21 @@
+<p>A documentation comment with a missing or blank <code>&lt;summary&gt;</code> is worse than no comment at all: tooling renders an empty tooltip, and a reader is led to believe the member is documented when it is not. Either write a summary that explains what the member does and why a caller would use it, or remove the stub so the member is honestly undocumented.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public sealed class Report
+{
+    /// &lt;summary&gt;&lt;/summary&gt;
+    public void Render() // Noncompliant
+    {
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public sealed class Report
+{
+    /// &lt;summary&gt;Writes the formatted report to the configured output.&lt;/summary&gt;
+    public void Render()
+    {
+    }
+}
+</pre>

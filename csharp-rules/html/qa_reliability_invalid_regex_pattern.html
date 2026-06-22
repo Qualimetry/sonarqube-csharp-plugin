@@ -1,0 +1,24 @@
+<p>A constant regular expression pattern is only validated when the <code>Regex</code> is constructed at runtime, so an unbalanced group, a dangling quantifier, or an unterminated character class surfaces as an <code>ArgumentException</code> rather than at the point the pattern was written.</p>
+<p>Correct the pattern so it is a syntactically valid regular expression.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System.Text.RegularExpressions;
+
+public sealed class Matcher
+{
+    public Regex Build() =&gt; new Regex("(unclosed"); // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System.Text.RegularExpressions;
+
+public sealed class Matcher
+{
+    public Regex Build() =&gt; new Regex("(closed)");
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/standard/base-types/regular-expression-language-quick-reference">.NET regular expression language reference</a></li>
+</ul>

@@ -1,0 +1,15 @@
+{
+  "id": "QCS0069",
+  "title": "Static fields should not be assigned from instance methods",
+  "tags": [
+    "suspicious",
+    "concurrency"
+  ],
+  "messageFormat": "Do not assign the static field '{0}' from an instance method; shared state changed per instance is a common source of races.",
+  "summary": [
+    "<p>Writing to a static field from an instance method means every object of the type mutates state that all instances share. The intent is almost always to change per-object state, so this is usually a typo where an instance field was meant. Even when deliberate, concurrent callers race on the shared field with no synchronisation. Assign instance fields from instance methods, and confine static field writes to a static initializer or a clearly synchronised static method.</p>"
+  ],
+  "noncompliant": "public sealed class Counter\n{\n    private static int _total;\n\n    public void Add(int amount)\n    {\n        _total = _total + amount; // Noncompliant\n    }\n}",
+  "compliant": "public sealed class Counter\n{\n    private int _total;\n\n    public void Add(int amount)\n    {\n        _total = _total + amount;\n    }\n}",
+  "ruleKey": "qa_quality_static_field_assigned_from_instance_method"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "QCS0163",
+  "title": "Types holding disposable fields should be disposable",
+  "tags": [
+    "bug",
+    "resource-leak"
+  ],
+  "messageFormat": "This type owns a disposable field but does not implement IDisposable.",
+  "summary": [
+    "<p>When a type keeps an <code>IDisposable</code> in an instance field, it owns that resource for the life of the instance. If the type itself is not disposable, there is no point at which the held resource can be released, so it survives until finalization or leaks outright.</p>",
+    "<p>Implement <code>IDisposable</code> on the owning type and dispose the field in <code>Dispose</code>.</p>"
+  ],
+  "noncompliant": "using System.IO;\n\npublic class Recorder // Noncompliant\n{\n    private readonly MemoryStream _stream = new MemoryStream();\n\n    public long Size => _stream.Length;\n}",
+  "compliant": "using System;\nusing System.IO;\n\npublic class Recorder : IDisposable\n{\n    private readonly MemoryStream _stream = new MemoryStream();\n\n    public long Size => _stream.Length;\n\n    public void Dispose() => _stream.Dispose();\n}",
+  "seeAlso": [
+    {
+      "text": "Implement a Dispose method",
+      "href": "https://learn.microsoft.com/dotnet/standard/garbage-collection/implementing-dispose"
+    }
+  ],
+  "ruleKey": "qa_quality_disposable_field_in_non_disposable_type"
+}

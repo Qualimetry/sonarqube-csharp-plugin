@@ -1,0 +1,22 @@
+<p>Returning a concrete <code>XmlNode</code>, <code>XmlElement</code>, or <code>XmlDocument</code> ties every caller to the legacy DOM implementation and to the mutable object graph behind it. The API can no longer switch to a different XML representation without breaking consumers.</p>
+<p>Expose a reader, a projected model, or an interface that conveys only what the caller needs.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public XmlElement LoadConfig() // Noncompliant
+{
+    var document = new XmlDocument();
+    document.LoadXml("&lt;config/&gt;");
+    return document.DocumentElement;
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public XmlReader LoadConfig()
+{
+    return XmlReader.Create(new StringReader("&lt;config/&gt;"));
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/standard/data/xml/">XML processing in .NET</a></li>
+</ul>

@@ -1,0 +1,32 @@
+<p>Passing a parameter name to an argument exception as a string literal silently rots when the parameter is renamed: the refactoring tool updates the signature but leaves the literal pointing at a name that no longer exists. The <code>nameof</code> operator binds the text to the symbol, so a rename keeps them in step and a typo becomes a compile error.</p>
+<p>Replace the literal with <code>nameof(parameter)</code>.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System;
+
+public class Account
+{
+    public void Withdraw(decimal amount)
+    {
+        if (amount &lt;= 0)
+        {
+            throw new ArgumentOutOfRangeException("amount"); // Noncompliant
+        }
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System;
+
+public class Account
+{
+    public void Withdraw(decimal amount)
+    {
+        if (amount &lt;= 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(amount));
+        }
+    }
+}
+</pre>

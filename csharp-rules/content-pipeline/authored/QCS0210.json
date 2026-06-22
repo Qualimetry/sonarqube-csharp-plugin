@@ -1,0 +1,15 @@
+{
+  "id": "QCS0210",
+  "title": "Types with poor cohesion should be split",
+  "tags": [
+    "metrics",
+    "design"
+  ],
+  "messageFormat": "Type '{0}' has groups of methods that do not share instance state.",
+  "summary": [
+    "<p>When most methods in a type touch disjoint sets of fields, the type is doing unrelated work. Split it into focused types with clearer responsibilities.</p>"
+  ],
+  "noncompliant": "public sealed class KitchenSink\n{\n    private int _invoiceCount;\n    private int _shipmentCount;\n    private int _refundCount;\n    private int _inventoryCount;\n\n    public void CountInvoice() => _invoiceCount++;\n    public void CountShipment() => _shipmentCount++;\n    public void CountRefund() => _refundCount++;\n    public void CountInventory() => _inventoryCount++;\n}",
+  "compliant": "public sealed class InvoiceTracker\n{\n    private int _invoiceCount;\n    public void CountInvoice() => _invoiceCount++;\n}\n\npublic sealed class ShipmentTracker\n{\n    private int _shipmentCount;\n    public void CountShipment() => _shipmentCount++;\n}",
+  "ruleKey": "qa_metrics_type_poor_cohesion"
+}

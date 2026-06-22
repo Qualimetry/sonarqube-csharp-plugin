@@ -1,0 +1,16 @@
+<p>A regular string literal whose backslashes are all doubled, such as a file path or a regular-expression pattern, is hard to read because each real backslash appears twice. A verbatim string prefixed with <code>@</code> takes backslashes literally, so the text matches what the value actually is.</p>
+<p>This rule only flags literals whose sole escape sequences are doubled backslashes, where switching to a verbatim string preserves the value exactly.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public string LogPath()
+{
+    return "C:\\logs\\app.txt"; // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public string LogPath()
+{
+    return @"C:\logs\app.txt";
+}
+</pre>

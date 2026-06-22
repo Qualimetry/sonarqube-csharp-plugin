@@ -1,0 +1,22 @@
+<p>Cyclomatic complexity counts the independent paths through a method by adding one for each branch point such as an <code>if</code>, loop, <code>case</code>, <code>catch</code>, conditional operator, or short-circuit boolean. A high count means more paths to understand and to cover with tests, and is a strong predictor of defects.</p>
+<p>The complexity limit is configurable.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public string Classify(int n)
+{
+    if (n &lt; 0) return "neg";
+    if (n == 0) return "zero";
+    if (n &lt; 10 &amp;&amp; n &gt; 0) return "small";
+    if (n &lt; 100 || n == 500) return "medium";
+    return n &gt; 1000 ? "huge" : "large";
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public string Classify(int n)
+{
+    return _ranges.First(range =&gt; range.Contains(n)).Label;
+}
+</pre>
+<h2>Parameters</h2>
+<p>This rule is configurable. Edit <code>maxcomplexity</code> (default <code>15</code>) on the rule in your quality profile; SonarQube applies the value during analysis and synchronises it to connected IDEs.</p>

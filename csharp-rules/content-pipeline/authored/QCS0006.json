@@ -1,0 +1,23 @@
+{
+  "id": "QCS0006",
+  "title": "Asynchronous methods should carry an 'Async' name suffix",
+  "tags": [
+    "convention",
+    "clarity",
+    "async"
+  ],
+  "messageFormat": "Add the 'Async' suffix to the name of this asynchronous method.",
+  "summary": [
+    "<p>When a method is declared <code>async</code>, callers usually need to <code>await</code> its result. Naming the method with an <code>Async</code> suffix advertises that obligation at the call site, so a reader spots the awaitable without inspecting the signature.</p>",
+    "<p>An asynchronous method whose name gives no hint of its nature invites callers to ignore the returned task, which silently drops exceptions and continuations. The suffix is the convention the framework itself follows for its task-returning members.</p>"
+  ],
+  "noncompliant": "public async Task Save(Order order) // Noncompliant\n{\n    await _store.WriteAsync(order);\n}",
+  "compliant": "public async Task SaveAsync(Order order)\n{\n    await _store.WriteAsync(order);\n}",
+  "seeAlso": [
+    {
+      "text": "Task-based asynchronous pattern naming",
+      "href": "https://learn.microsoft.com/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap"
+    }
+  ],
+  "ruleKey": "qa_style_async_method_name_suffix"
+}

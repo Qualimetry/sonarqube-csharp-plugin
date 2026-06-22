@@ -1,0 +1,14 @@
+<p>An empty string literal <code>""</code> is easy to confuse with a single space or to overlook entirely in a dense expression. The named member <code>string.Empty</code> states the intent unambiguously.</p>
+<p>Reserving <code>string.Empty</code> for the deliberate empty value also makes a genuine literal stand out as carrying real text.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public string Prefix { get; set; } = ""; // Noncompliant
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public string Prefix { get; set; } = string.Empty;
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/api/system.string.empty">String.Empty field</a></li>
+</ul>

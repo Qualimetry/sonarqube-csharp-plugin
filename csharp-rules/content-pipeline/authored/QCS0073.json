@@ -1,0 +1,21 @@
+{
+  "id": "QCS0073",
+  "title": "Prefer task-based concurrency over manual thread creation",
+  "tags": [
+    "concurrency",
+    "design"
+  ],
+  "messageFormat": "Schedule this work with Task or the thread pool instead of creating a Thread directly.",
+  "summary": [
+    "<p>Constructing a <code>Thread</code> by hand allocates a dedicated OS thread, bypasses the managed thread pool, and leaves you to coordinate lifetime, exceptions, and results yourself. Most workloads are better expressed with <code>Task.Run</code> or the higher-level task abstractions, which pool threads, propagate exceptions, and compose with <code>async</code>/<code>await</code>.</p>"
+  ],
+  "noncompliant": "var worker = new Thread(DoWork); // Noncompliant\nworker.Start();",
+  "compliant": "Task.Run(DoWork);",
+  "seeAlso": [
+    {
+      "text": "Task-based asynchronous programming",
+      "href": "https://learn.microsoft.com/dotnet/standard/parallel-programming/task-based-asynchronous-programming"
+    }
+  ],
+  "ruleKey": "qa_quality_explicit_thread_creation"
+}

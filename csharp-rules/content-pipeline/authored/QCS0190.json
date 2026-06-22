@@ -1,0 +1,22 @@
+{
+  "id": "QCS0190",
+  "title": "Mutable value types should be reference types",
+  "tags": [
+    "design",
+    "pitfall"
+  ],
+  "messageFormat": "Make this a class because exposing mutable state from a struct is error-prone.",
+  "summary": [
+    "<p>A struct that publishes mutable fields or settable properties copies its state on every assignment, argument pass, and collection access, so a mutation often lands on a hidden copy and is silently lost. A type whose contract is to hold changeable state is almost always clearer and safer as a class, where the reference semantics match the intent.</p>",
+    "<p>Value types are best reserved for small, immutable bundles of data. When mutability is required, a class avoids the copy traps that mutable structs are notorious for.</p>"
+  ],
+  "noncompliant": "public struct Cursor // Noncompliant\n{\n    public int Line;\n    public int Column;\n}",
+  "compliant": "public sealed class Cursor\n{\n    public int Line { get; set; }\n    public int Column { get; set; }\n}",
+  "seeAlso": [
+    {
+      "text": "Choosing between class and struct",
+      "href": "https://learn.microsoft.com/dotnet/standard/design-guidelines/choosing-between-class-and-struct"
+    }
+  ],
+  "ruleKey": "qa_style_mutable_struct_should_be_class"
+}

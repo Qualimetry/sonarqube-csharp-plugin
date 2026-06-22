@@ -1,0 +1,21 @@
+<p>A type that ultimately derives from <code>System.Exception</code> shows up in <code>catch</code> clauses, stack traces, and logs. Ending its name with <code>Exception</code> signals at every one of those sites that the type represents a failure, and keeps it consistent with the framework's own exception types.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System;
+
+public class PaymentFailed : Exception // Noncompliant
+{
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System;
+
+public class PaymentFailedException : Exception
+{
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/standard/design-guidelines/names-of-classes-structs-and-interfaces">Names of exceptions</a></li>
+</ul>

@@ -1,0 +1,22 @@
+{
+  "id": "QCS0066",
+  "title": "Reserved exception types should not be thrown",
+  "tags": [
+    "bug",
+    "exception-handling"
+  ],
+  "messageFormat": "Do not throw the runtime-reserved exception type '{0}'; throw a specific application exception instead.",
+  "summary": [
+    "<p>Some exception types are reserved for the runtime to signal conditions it detects itself, such as <code>NullReferenceException</code>, <code>IndexOutOfRangeException</code>, or <code>OutOfMemoryException</code>. Throwing them from application code impersonates the runtime, so a handler can no longer tell a real fault from a deliberate one.</p>",
+    "<p>Throw an exception that describes the actual problem, for example <code>ArgumentNullException</code> for a missing argument or <code>ArgumentOutOfRangeException</code> for an out-of-bounds value, so callers can react to the real cause.</p>"
+  ],
+  "noncompliant": "public void Validate(string value)\n{\n    if (value == null)\n    {\n        throw new NullReferenceException(); // Noncompliant\n    }\n}",
+  "compliant": "public void Validate(string value)\n{\n    if (value == null)\n    {\n        throw new ArgumentNullException(nameof(value));\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "Exception throwing guidelines",
+      "href": "https://learn.microsoft.com/dotnet/standard/design-guidelines/exception-throwing"
+    }
+  ],
+  "ruleKey": "qa_quality_reserved_exception_type_thrown"
+}

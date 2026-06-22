@@ -1,0 +1,22 @@
+{
+  "id": "QCS0136",
+  "title": "Side-effect-free computations should be marked pure",
+  "tags": [
+    "design",
+    "clarity"
+  ],
+  "messageFormat": "Mark method '{0}' with [Pure]; it returns a computed value and has no side effects.",
+  "summary": [
+    "<p>An expression-bodied method that returns a value built only from its inputs, without calling other methods, constructing objects, or assigning to any state, is observably pure. Annotating such a method with <code>[Pure]</code> documents that contract for callers and lets analysers reason about safe caching and reordering.</p>",
+    "<p>The annotation is a no-op at runtime, so adding it never changes behaviour; it only records an invariant that the method already satisfies.</p>"
+  ],
+  "noncompliant": "public class Geometry\n{\n    public int Square(int n) => n * n; // Noncompliant\n}",
+  "compliant": "using System.Diagnostics.Contracts;\n\npublic class Geometry\n{\n    [Pure]\n    public int Square(int n) => n * n;\n}",
+  "seeAlso": [
+    {
+      "text": "PureAttribute (System.Diagnostics.Contracts)",
+      "href": "https://learn.microsoft.com/dotnet/api/system.diagnostics.contracts.pureattribute"
+    }
+  ],
+  "ruleKey": "qa_contract_pure_method_should_be_marked_pure"
+}

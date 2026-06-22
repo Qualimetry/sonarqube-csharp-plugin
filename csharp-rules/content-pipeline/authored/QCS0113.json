@@ -1,0 +1,21 @@
+{
+  "id": "QCS0113",
+  "title": "Lower the visibility of protected methods in sealed types",
+  "tags": [
+    "design",
+    "encapsulation"
+  ],
+  "messageFormat": "Declare this method private; a sealed type cannot be derived from, so protected grants no extra access.",
+  "summary": [
+    "<p>A <code>protected</code> method exists so that derived types can call or override it. In a <code>sealed</code> type there are no derived types, so the modifier is meaningless and only widens the apparent contract. Declaring the method <code>private</code> matches its real reachability.</p>"
+  ],
+  "noncompliant": "public sealed class Report\n{\n    protected void Render() // Noncompliant\n    {\n    }\n}",
+  "compliant": "public sealed class Report\n{\n    private void Render()\n    {\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "Access Modifiers (C# guide)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers"
+    }
+  ],
+  "ruleKey": "qa_quality_protected_method_in_sealed_type"
+}

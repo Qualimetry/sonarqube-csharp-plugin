@@ -1,0 +1,21 @@
+{
+  "id": "QCS0088",
+  "title": "Keep event handler methods non-public",
+  "tags": [
+    "design",
+    "clarity"
+  ],
+  "messageFormat": "Reduce the visibility of this event handler to private or protected.",
+  "summary": [
+    "<p>A method shaped like an event handler (returning <code>void</code> and taking an <code>object</code> sender plus an <code>EventArgs</code> argument) is wired up by code that subscribes to an event, not called directly by other types. Exposing it publicly enlarges the API surface and invites callers to invoke it out of context.</p>"
+  ],
+  "noncompliant": "public void OnSaved(object sender, EventArgs e) // Noncompliant\n{\n    Refresh();\n}",
+  "compliant": "private void OnSaved(object sender, EventArgs e)\n{\n    Refresh();\n}",
+  "seeAlso": [
+    {
+      "text": "Handling and raising events",
+      "href": "https://learn.microsoft.com/dotnet/standard/events/"
+    }
+  ],
+  "ruleKey": "qa_quality_public_event_handler_method"
+}

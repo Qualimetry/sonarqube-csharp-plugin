@@ -1,0 +1,16 @@
+{
+  "id": "QCS0151",
+  "title": "Methods implementing a non-public interface should be sealed",
+  "tags": [
+    "design",
+    "performance"
+  ],
+  "summary": [
+    "<p>When a public, overridable method exists only to satisfy an interface that is not part of the assembly's public surface, leaving it open invites accidental overrides that no caller of the interface ever needed. Sealing the member states that the implementation is final and lets the runtime devirtualise the call.</p>",
+    "<p>Mark the implementing member <code>sealed</code>, or make the interface itself public if extension was intended.</p>"
+  ],
+  "messageFormat": "Seal this member; it implements an interface that is not publicly visible and is not meant to be overridden further.",
+  "noncompliant": "internal interface IHandler\n{\n    void Handle();\n}\n\npublic class Worker : IHandler\n{\n    public virtual void Handle() // Noncompliant\n    {\n    }\n}",
+  "compliant": "internal interface IHandler\n{\n    void Handle();\n}\n\npublic class Worker : IHandler\n{\n    public void Handle()\n    {\n    }\n}",
+  "ruleKey": "qa_quality_sealable_interface_implementation"
+}

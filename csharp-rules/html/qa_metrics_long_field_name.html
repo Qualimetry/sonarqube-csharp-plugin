@@ -1,0 +1,18 @@
+<p>An identifier that runs on for dozens of characters is usually a sign that the name is encoding context that the surrounding type or namespace already supplies. Long field names slow reading and push lines past comfortable widths.</p>
+<p>The maximum length is configurable so teams can match their own house style.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public sealed class Report
+{
+    private int theTotalNumberOfProcessedRecordsAcrossEveryBatch;
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public sealed class Report
+{
+    private int processedRecordCount;
+}
+</pre>
+<h2>Parameters</h2>
+<p>This rule is configurable. Edit <code>maxnamelength</code> (default <code>40</code>) on the rule in your quality profile; SonarQube applies the value during analysis and synchronises it to connected IDEs.</p>

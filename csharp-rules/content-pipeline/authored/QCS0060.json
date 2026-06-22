@@ -1,0 +1,23 @@
+{
+  "id": "QCS0060",
+  "title": "Dispose should suppress finalization",
+  "tags": [
+    "bug",
+    "resource-management",
+    "performance"
+  ],
+  "messageFormat": "Call 'GC.SuppressFinalize(this)' in Dispose so the finalizer is not run after the resource is already released.",
+  "summary": [
+    "<p>When a type has both a finalizer and a <code>Dispose</code> method, calling <code>Dispose</code> already releases everything. If <code>Dispose</code> does not tell the runtime to skip finalization, the object is still placed on the finalizer queue, which delays its reclamation by a full garbage-collection cycle and runs cleanup code a second time.</p>",
+    "<p>Call <code>GC.SuppressFinalize(this)</code> at the end of <code>Dispose</code> so the now-cleaned object bypasses the finalizer.</p>"
+  ],
+  "noncompliant": "public class Connection : IDisposable\n{\n    ~Connection()\n    {\n        Close();\n    }\n\n    public void Dispose() // Noncompliant\n    {\n        Close();\n    }\n\n    private void Close()\n    {\n    }\n}",
+  "compliant": "public class Connection : IDisposable\n{\n    ~Connection()\n    {\n        Close();\n    }\n\n    public void Dispose()\n    {\n        Close();\n        GC.SuppressFinalize(this);\n    }\n\n    private void Close()\n    {\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "GC.SuppressFinalize",
+      "href": "https://learn.microsoft.com/dotnet/api/system.gc.suppressfinalize"
+    }
+  ],
+  "ruleKey": "qa_quality_dispose_missing_suppress_finalize"
+}

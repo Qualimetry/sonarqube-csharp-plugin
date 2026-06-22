@@ -1,0 +1,22 @@
+{
+  "id": "QCS0149",
+  "title": "Data adapter queries should not be built by string concatenation",
+  "tags": [
+    "security",
+    "sql"
+  ],
+  "messageFormat": "Pass a parameterized command to this data adapter instead of a query built from concatenated or interpolated values.",
+  "summary": [
+    "<p>A data adapter constructed with a SQL string that is assembled from concatenation, interpolation, or <code>string.Format</code> carries the same injection risk as a raw command: the runtime values become part of the statement the adapter runs to fill or update a dataset.</p>",
+    "<p>Build the adapter from a command whose text is constant and whose runtime values are supplied as parameters.</p>"
+  ],
+  "noncompliant": "public Adapter Build(string status)\n{\n    return new Adapter(\"SELECT * FROM Orders WHERE Status = '\" + status + \"'\", _connection); // Noncompliant\n}",
+  "compliant": "public Adapter Build(string status)\n{\n    var command = new Command(\"SELECT * FROM Orders WHERE Status = @status\", _connection);\n    command.AddParameter(\"@status\", status);\n    return new Adapter(command);\n}",
+  "seeAlso": [
+    {
+      "text": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command",
+      "href": "https://cwe.mitre.org/data/definitions/89.html"
+    }
+  ],
+  "ruleKey": "qa_reliability_data_adapter_injection"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "QCS0094",
+  "title": "Parsing of numbers and dates should specify a culture",
+  "tags": [
+    "bug",
+    "globalization"
+  ],
+  "messageFormat": "Pass an explicit IFormatProvider so this parse does not depend on the ambient culture.",
+  "summary": [
+    "<p>The culture-free overloads of <code>Parse</code> and <code>TryParse</code> on <code>double</code>, <code>float</code>, <code>decimal</code>, <code>DateTime</code> and <code>DateTimeOffset</code> read the thread's current culture. The same string then parses differently on two machines: a decimal comma, a date order, or a grouping separator silently changes the result or fails outright.</p>",
+    "<p>State the intent explicitly. Use <code>CultureInfo.InvariantCulture</code> for machine-readable data, or the specific user culture when the value really is locale dependent.</p>"
+  ],
+  "noncompliant": "using System;\n\npublic class Money\n{\n    public decimal Read(string text) => decimal.Parse(text); // Noncompliant\n}",
+  "compliant": "using System;\nusing System.Globalization;\n\npublic class Money\n{\n    public decimal Read(string text) => decimal.Parse(text, CultureInfo.InvariantCulture);\n}",
+  "seeAlso": [
+    {
+      "text": "CA1305: Specify IFormatProvider",
+      "href": "https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1305"
+    }
+  ],
+  "ruleKey": "qa_quality_culture_insensitive_parsing"
+}

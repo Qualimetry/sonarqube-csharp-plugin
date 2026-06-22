@@ -1,0 +1,16 @@
+{
+  "id": "QCS0175",
+  "title": "Object creation followed by property assignments should use an object initializer",
+  "tags": [
+    "clarity",
+    "convention"
+  ],
+  "messageFormat": "Use an object initializer instead of assigning properties on separate statements.",
+  "summary": [
+    "<p>Creating an object and then setting its members one statement at a time scatters a single logical construction across several lines and leaves the instance in a half-built state in between. An object initializer keeps the whole shape of the new value in one expression.</p>",
+    "<p>This rule flags a local that is assigned a freshly created object and immediately followed by member assignments on that same local.</p>"
+  ],
+  "noncompliant": "public Widget Build()\n{\n    var widget = new Widget(); // Noncompliant\n    widget.Width = 10;\n    return widget;\n}",
+  "compliant": "public Widget Build()\n{\n    var widget = new Widget\n    {\n        Width = 10,\n    };\n    return widget;\n}",
+  "ruleKey": "qa_style_object_initializer_opportunity"
+}

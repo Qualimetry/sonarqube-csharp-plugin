@@ -1,0 +1,22 @@
+{
+  "id": "QCS0118",
+  "title": "Nested type members should not mask an outer static member",
+  "tags": [
+    "clarity",
+    "confusing"
+  ],
+  "messageFormat": "This member shadows a static member of the same name on an enclosing type.",
+  "summary": [
+    "<p>When a nested type declares a member with the same name as a static member of an enclosing type, an unqualified reference inside the nested type now binds to the nested member instead of the outer one. A reader who expects the enclosing static value is silently wrong, and the bug only surfaces at run time.</p>",
+    "<p>Give the nested member a distinct name so the two never compete for the same unqualified reference.</p>"
+  ],
+  "noncompliant": "public class Registry\n{\n    public static int Version;\n\n    public class Entry\n    {\n        public int Version; // Noncompliant\n    }\n}",
+  "compliant": "public class Registry\n{\n    public static int Version;\n\n    public class Entry\n    {\n        public int EntryVersion;\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "Nested types (C# reference)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/nested-types"
+    }
+  ],
+  "ruleKey": "qa_quality_nested_type_masks_outer_static_member"
+}

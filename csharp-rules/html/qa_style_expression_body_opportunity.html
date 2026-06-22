@@ -1,0 +1,16 @@
+<p>A method or accessor whose block contains a single return or expression statement carries three lines of braces around one line of work. An expression body states the same logic with <code>=&gt;</code>, reducing the visual weight and making the one-liner read as the simple mapping it is.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public int Square(int value)
+{
+    return value * value; // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public int Square(int value) =&gt; value * value;
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/programming-guide/statements-expressions-operators/expression-bodied-members">Expression-bodied members (C# language reference)</a></li>
+</ul>

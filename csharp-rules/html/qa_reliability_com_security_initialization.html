@@ -1,0 +1,26 @@
+<p>Calls such as <code>CoInitializeSecurity</code> and <code>CoSetProxyBlanket</code> set the authentication, impersonation, and authorization levels for COM communication across the whole process. A weak level set here applies to every subsequent proxy, so a single mistake silently lowers the trust boundary for all later interop.</p>
+<p>These functions should be confined to an audited interop layer where the chosen security levels are explicit and reviewed, rather than called ad hoc from ordinary code.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+internal static class Interop
+{
+    public static void Configure()
+    {
+        CoInitializeSecurity(IntPtr.Zero, -1, IntPtr.Zero, IntPtr.Zero, 0, 3, IntPtr.Zero, 0, IntPtr.Zero); // Noncompliant
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+internal static class Interop
+{
+    public static void Configure()
+    {
+        ConfigureManagedSecurity();
+    }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://cwe.mitre.org/data/definitions/749.html">CWE-749: Exposed Dangerous Method or Function</a></li>
+</ul>

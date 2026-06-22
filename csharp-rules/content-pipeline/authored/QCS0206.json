@@ -1,0 +1,15 @@
+{
+  "id": "QCS0206",
+  "title": "Namespace dependency cycles should be avoided",
+  "tags": [
+    "architecture",
+    "coupling"
+  ],
+  "messageFormat": "Namespace dependency cycle detected: {0}.",
+  "summary": [
+    "<p>Cyclic dependencies between namespaces make layering hard to reason about and block clean refactors. Break the cycle by introducing a shared abstraction or moving shared types to a neutral namespace.</p>"
+  ],
+  "noncompliant": "namespace Alpha.Services\n{\n    public sealed class AlphaService\n    {\n        public void Run(BetaServices.Client client) => client.Execute();\n    }\n}\n\nnamespace BetaServices\n{\n    public sealed class Client\n    {\n        public void Execute() => new Alpha.Services.AlphaService().Run(this);\n    }\n}",
+  "compliant": "namespace Alpha.Contracts\n{\n    public interface IClient\n    {\n        void Execute();\n    }\n}\n\nnamespace Alpha.Services\n{\n    public sealed class AlphaService\n    {\n        public void Run(IClient client) => client.Execute();\n    }\n}\n\nnamespace Beta.Client\n{\n    public sealed class Client : IClient\n    {\n        public void Execute() { }\n    }\n}",
+  "ruleKey": "qa_architecture_namespace_dependency_cycle"
+}

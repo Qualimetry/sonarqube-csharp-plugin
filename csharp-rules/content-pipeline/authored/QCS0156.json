@@ -1,0 +1,16 @@
+{
+  "id": "QCS0156",
+  "title": "Structures should be immutable",
+  "tags": [
+    "design",
+    "immutability"
+  ],
+  "summary": [
+    "<p>A value type is copied on assignment, on every method call, and whenever it is boxed. A mutable struct therefore behaves unpredictably: writing to a copy leaves the original untouched, and mutating an element retrieved from a collection updates a throwaway copy. The result is bugs that look like the assignment simply did not happen.</p>",
+    "<p>Make structs immutable by declaring fields <code>readonly</code> and exposing get-only or <code>init</code> properties, setting all state through the constructor.</p>"
+  ],
+  "messageFormat": "Make this struct immutable; expose its state through readonly fields or get-only properties.",
+  "noncompliant": "public struct Point // Noncompliant\n{\n    public int X { get; set; }\n    public int Y { get; set; }\n}",
+  "compliant": "public struct Point\n{\n    public Point(int x, int y)\n    {\n        X = x;\n        Y = y;\n    }\n\n    public int X { get; }\n    public int Y { get; }\n}",
+  "ruleKey": "qa_quality_mutable_struct"
+}

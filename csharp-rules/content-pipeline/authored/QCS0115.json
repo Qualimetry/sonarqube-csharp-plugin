@@ -1,0 +1,22 @@
+{
+  "id": "QCS0115",
+  "title": "Monitor acquisition and release should be paired in one method",
+  "tags": [
+    "bug",
+    "concurrency"
+  ],
+  "messageFormat": "This method enters a Monitor lock but never releases it in the same method.",
+  "summary": [
+    "<p>A <code>Monitor.Enter</code> or <code>Monitor.TryEnter</code> that is not balanced by a <code>Monitor.Exit</code> in the same method leaks the lock: any exception, early return, or simple oversight leaves the monitor held forever and the next thread deadlocks.</p>",
+    "<p>Keep the acquire and release together, with the release in a <code>finally</code>, or prefer a <code>lock</code> statement which guarantees the pairing.</p>"
+  ],
+  "noncompliant": "using System.Threading;\n\npublic class Cache\n{\n    private readonly object _gate = new object();\n\n    public void Add()\n    {\n        Monitor.Enter(_gate); // Noncompliant\n        Mutate();\n    }\n\n    private void Mutate()\n    {\n    }\n}",
+  "compliant": "using System.Threading;\n\npublic class Cache\n{\n    private readonly object _gate = new object();\n\n    public void Add()\n    {\n        Monitor.Enter(_gate);\n        try\n        {\n            Mutate();\n        }\n        finally\n        {\n            Monitor.Exit(_gate);\n        }\n    }\n\n    private void Mutate()\n    {\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "Monitor class (.NET API)",
+      "href": "https://learn.microsoft.com/dotnet/api/system.threading.monitor"
+    }
+  ],
+  "ruleKey": "qa_quality_monitor_enter_without_exit"
+}

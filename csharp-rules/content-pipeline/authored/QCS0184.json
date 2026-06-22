@@ -1,0 +1,22 @@
+{
+  "id": "QCS0184",
+  "title": "Constructors should not read overridable properties",
+  "tags": [
+    "bug",
+    "initialization"
+  ],
+  "messageFormat": "This constructor reads an overridable property whose override may run before the subclass is initialized.",
+  "summary": [
+    "<p>Reading a <code>virtual</code> or <code>abstract</code> property from a constructor dispatches to the most-derived override, which executes while the derived constructor has not run yet. The override sees fields that are still at their default values and can return a wrong answer or throw.</p>",
+    "<p>Read a non-virtual member, pass the value in as a constructor argument, or defer the work to an initialization step that runs after construction completes.</p>"
+  ],
+  "noncompliant": "public abstract class View\n{\n    private readonly string _label;\n\n    protected View()\n    {\n        _label = Caption; // Noncompliant\n    }\n\n    public string Label => _label;\n\n    protected abstract string Caption { get; }\n}",
+  "compliant": "public abstract class View\n{\n    private readonly string _label;\n\n    protected View(string caption)\n    {\n        _label = caption;\n    }\n\n    public string Label => _label;\n\n    protected abstract string Caption { get; }\n}",
+  "seeAlso": [
+    {
+      "text": "Virtual members and construction order",
+      "href": "https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/virtual"
+    }
+  ],
+  "ruleKey": "qa_quality_virtual_property_access_in_constructor"
+}

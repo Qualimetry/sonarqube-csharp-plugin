@@ -1,0 +1,22 @@
+{
+  "id": "QCS0137",
+  "title": "ReaderWriterLock acquire and release should be paired in one method",
+  "tags": [
+    "bug",
+    "concurrency"
+  ],
+  "messageFormat": "This method acquires a ReaderWriterLock but never releases it in the same method.",
+  "summary": [
+    "<p>Acquiring a <code>ReaderWriterLock</code> with <code>AcquireReaderLock</code> or <code>AcquireWriterLock</code> and not releasing it in the same method leaves the lock held when control leaves through an exception or an early return. Subsequent readers and writers then block indefinitely.</p>",
+    "<p>Release the lock in a <code>finally</code> within the same method so every acquisition is matched no matter how the method exits.</p>"
+  ],
+  "noncompliant": "using System.Threading;\n\npublic class Store\n{\n    private readonly ReaderWriterLock _lock = new ReaderWriterLock();\n\n    public void Append()\n    {\n        _lock.AcquireWriterLock(1000); // Noncompliant\n        Write();\n    }\n\n    private void Write()\n    {\n    }\n}",
+  "compliant": "using System.Threading;\n\npublic class Store\n{\n    private readonly ReaderWriterLock _lock = new ReaderWriterLock();\n\n    public void Append()\n    {\n        _lock.AcquireWriterLock(1000);\n        try\n        {\n            Write();\n        }\n        finally\n        {\n            _lock.ReleaseWriterLock();\n        }\n    }\n\n    private void Write()\n    {\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "ReaderWriterLockSlim (.NET API)",
+      "href": "https://learn.microsoft.com/dotnet/api/system.threading.readerwriterlockslim"
+    }
+  ],
+  "ruleKey": "qa_quality_reader_writer_lock_acquire_without_release"
+}

@@ -1,0 +1,25 @@
+<p>An <code>if</code> whose condition chains several requirements with <code>&amp;&amp;</code> packs every precondition onto one line. When a branch has no <code>else</code>, splitting the conjunction into nested <code>if</code> statements lets each guard stand on its own and gives a natural place to attach an early exit or comment per step.</p>
+<p>This is a readability option, not a correctness fix; teams that prefer flat conditions can leave it disabled.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public void Save(string name, bool dirty)
+{
+    if (name != null &amp;&amp; dirty) // Noncompliant
+    {
+        Persist(name);
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public void Save(string name, bool dirty)
+{
+    if (name != null)
+    {
+        if (dirty)
+        {
+            Persist(name);
+        }
+    }
+}
+</pre>

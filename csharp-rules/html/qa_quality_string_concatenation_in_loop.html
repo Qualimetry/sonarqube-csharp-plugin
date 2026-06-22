@@ -1,0 +1,23 @@
+<p>Strings are immutable, so a <code>+=</code> against a <code>string</code> allocates a brand new object on every iteration and copies all the characters seen so far. Inside a loop this turns linear work into quadratic work and creates a large amount of short-lived garbage.</p>
+<p>Use a <code>StringBuilder</code> (or a single <code>string.Join</code>) so the characters are appended into one growable buffer and materialised once.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+string result = "";
+foreach (var item in items)
+{
+    result += item + ", "; // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+var builder = new StringBuilder();
+foreach (var item in items)
+{
+    builder.Append(item).Append(", ");
+}
+string result = builder.ToString();
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/api/system.text.stringbuilder">StringBuilder Class</a></li>
+</ul>

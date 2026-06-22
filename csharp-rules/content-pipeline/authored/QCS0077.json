@@ -1,0 +1,22 @@
+{
+  "id": "QCS0077",
+  "title": "Static constructors should not throw",
+  "tags": [
+    "bug",
+    "exception-handling"
+  ],
+  "messageFormat": "Do not throw from a static constructor; a failed type initializer makes the whole type unusable.",
+  "summary": [
+    "<p>If a static constructor throws, the runtime wraps the exception in a <code>TypeInitializationException</code> and marks the type as unusable for the rest of the process. Every later attempt to touch the type, even an unrelated static member, fails with the same error, and the failure is detached from the line that actually went wrong.</p>",
+    "<p>Keep static constructors free of code that can fail. Do lazy, fallible initialization on first use where it can be retried and where the exception reaches the caller in context.</p>"
+  ],
+  "noncompliant": "public class Config\n{\n    static Config()\n    {\n        throw new InvalidOperationException(\"missing settings\"); // Noncompliant\n    }\n}",
+  "compliant": "public class Config\n{\n    private static readonly Lazy<Config> instance = new(Load);\n\n    public static Config Instance => instance.Value;\n\n    private static Config Load() => new();\n}",
+  "seeAlso": [
+    {
+      "text": "Static constructors (C# programming guide)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/static-constructors"
+    }
+  ],
+  "ruleKey": "qa_quality_throw_in_static_constructor"
+}

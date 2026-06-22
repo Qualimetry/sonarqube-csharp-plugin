@@ -1,0 +1,25 @@
+<p>A private method that never touches <code>this</code>, an instance field, or an instance member does not depend on the object it is declared on. Marking it <code>static</code> makes that independence explicit, avoids passing an unused receiver, and clarifies that the method has no per-instance side effects.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class Geometry
+{
+    private int Area(int width, int height) // Noncompliant
+    {
+        return width * height;
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class Geometry
+{
+    private static int Area(int width, int height)
+    {
+        return width * height;
+    }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/static">static (C# reference)</a></li>
+</ul>

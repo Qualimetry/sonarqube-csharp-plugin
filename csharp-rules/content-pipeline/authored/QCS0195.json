@@ -1,0 +1,22 @@
+{
+  "id": "QCS0195",
+  "title": "JSON string literals should be well-formed",
+  "tags": [
+    "bug",
+    "suspicious"
+  ],
+  "messageFormat": "This JSON literal is malformed and will fail to parse at runtime.",
+  "summary": [
+    "<p>When a constant string is handed to a JSON parser, malformed content is only discovered when the line runs and throws. A missing brace, a trailing comma, or an unquoted key turns into a runtime parse failure that a quick check of the literal would have caught.</p>",
+    "<p>Fix the literal so it is valid JSON before it reaches the parser.</p>"
+  ],
+  "noncompliant": "public sealed class Config\n{\n    public object Load() => Json.Parse(\"{ \\\"enabled\\\": true, }\"); // Noncompliant\n}",
+  "compliant": "public sealed class Config\n{\n    public object Load() => Json.Parse(\"{ \\\"enabled\\\": true }\");\n}",
+  "seeAlso": [
+    {
+      "text": "RFC 8259: The JavaScript Object Notation (JSON) Data Interchange Format",
+      "href": "https://www.rfc-editor.org/rfc/rfc8259"
+    }
+  ],
+  "ruleKey": "qa_reliability_invalid_json_literal"
+}

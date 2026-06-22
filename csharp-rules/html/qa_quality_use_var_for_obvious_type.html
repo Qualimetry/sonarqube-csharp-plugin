@@ -1,0 +1,28 @@
+<p>When a local variable is initialised with a constructor call whose type is spelled out on the right-hand side, repeating that type on the left adds nothing. The declaration reads the type name twice and any later change to the constructed type has to be made in two places.</p>
+<p>Use <code>var</code> so the type is stated once, by the initializer.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System.Collections.Generic;
+
+public class Loader
+{
+    public void Run()
+    {
+        List&lt;string&gt; names = new List&lt;string&gt;(); // Noncompliant
+        names.Add("a");
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System.Collections.Generic;
+
+public class Loader
+{
+    public void Run()
+    {
+        var names = new List&lt;string&gt;();
+        names.Add("a");
+    }
+}
+</pre>

@@ -1,0 +1,26 @@
+<p><code>SetPixels</code> accepts an array of floating-point <code>Color</code> values, which the engine has to convert down to the eight-bit channels textures actually store. For large textures that conversion and the wider element size make each upload measurably slower and allocate more managed memory than necessary.</p>
+<p><code>SetPixels32</code> takes <code>Color32</code> values that already match the stored format, so the write skips the conversion step. Prefer it whenever the pixel data does not need full floating-point precision.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class TextureWriter
+{
+    public void Fill(Texture2D texture, Color[] pixels)
+    {
+        texture.SetPixels(pixels); // Noncompliant
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class TextureWriter
+{
+    public void Fill(Texture2D texture, Color32[] pixels)
+    {
+        texture.SetPixels32(pixels);
+    }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://docs.unity3d.com/ScriptReference/Texture2D.SetPixels32.html">Texture2D.SetPixels32 (Unity scripting reference)</a></li>
+</ul>

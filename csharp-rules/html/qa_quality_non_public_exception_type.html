@@ -1,0 +1,20 @@
+<p>An exception that escapes an assembly but is declared <code>internal</code> (or otherwise non-public) cannot be named in a <code>catch</code> clause by the calling code. Consumers are forced to catch a broader base type, losing the ability to react to the specific failure.</p>
+<p>Make any exception that can reach external callers <code>public</code>, or keep it private only if it is always caught within the same assembly.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+internal sealed class ImportFailedException : Exception // Noncompliant
+{
+    public ImportFailedException(string message) : base(message) { }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public sealed class ImportFailedException : Exception
+{
+    public ImportFailedException(string message) : base(message) { }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/standard/exceptions/how-to-create-user-defined-exceptions">Creating and throwing exceptions</a></li>
+</ul>

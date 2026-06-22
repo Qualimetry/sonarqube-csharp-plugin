@@ -1,0 +1,21 @@
+{
+  "id": "QCS0092",
+  "title": "Mark fields readonly when they are never reassigned",
+  "tags": [
+    "design",
+    "immutability"
+  ],
+  "messageFormat": "Mark this field readonly; it is only assigned during construction.",
+  "summary": [
+    "<p>A private field that is only set in its declaration or in a constructor and is never written again can be declared <code>readonly</code>. The modifier documents the intent, lets the compiler reject accidental later assignments, and enables small optimizations.</p>"
+  ],
+  "noncompliant": "public class Connection\n{\n    private string _endpoint; // Noncompliant\n\n    public Connection(string endpoint)\n    {\n        _endpoint = endpoint;\n    }\n\n    public string Endpoint => _endpoint;\n}",
+  "compliant": "public class Connection\n{\n    private readonly string _endpoint;\n\n    public Connection(string endpoint)\n    {\n        _endpoint = endpoint;\n    }\n\n    public string Endpoint => _endpoint;\n}",
+  "seeAlso": [
+    {
+      "text": "readonly (C# reference)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/readonly"
+    }
+  ],
+  "ruleKey": "qa_quality_field_could_be_readonly"
+}

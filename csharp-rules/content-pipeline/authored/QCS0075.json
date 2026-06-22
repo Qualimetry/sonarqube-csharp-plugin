@@ -1,0 +1,22 @@
+{
+  "id": "QCS0075",
+  "title": "Avoid implementing ICloneable",
+  "tags": [
+    "design",
+    "clarity"
+  ],
+  "messageFormat": "Do not implement ICloneable; expose a strongly typed copy method instead.",
+  "summary": [
+    "<p><code>ICloneable</code> has a single <code>Clone()</code> member that returns <code>object</code> and never states whether the copy is deep or shallow. Callers cannot tell what they get back and must cast the result, so the contract carries no useful guarantee.</p>",
+    "<p>Provide an explicit, strongly typed copy operation (for example a copy constructor or a <code>Copy()</code> method that returns the concrete type) and document its depth.</p>"
+  ],
+  "noncompliant": "public sealed class Box : ICloneable // Noncompliant\n{\n    public int Value { get; set; }\n\n    public object Clone() => new Box { Value = Value };\n}",
+  "compliant": "public sealed class Box\n{\n    public int Value { get; set; }\n\n    public Box Copy() => new Box { Value = Value };\n}",
+  "seeAlso": [
+    {
+      "text": "ICloneable Interface",
+      "href": "https://learn.microsoft.com/dotnet/api/system.icloneable"
+    }
+  ],
+  "ruleKey": "qa_quality_cloneable_implementation"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "QCS0045",
+  "title": "Long numeric literals should use digit separators",
+  "tags": [
+    "convention",
+    "clarity"
+  ],
+  "messageFormat": "Group the digits of this numeric literal with '_' separators to make it readable.",
+  "summary": [
+    "<p>A run of five or more digits with no grouping forces the reader to count places to judge the magnitude of a constant. The underscore digit separator lets the value be scanned the way numbers are normally written.</p>",
+    "<p>The separator is ignored by the compiler, so it improves legibility without affecting the literal's value.</p>"
+  ],
+  "noncompliant": "const int Timeout = 60000; // Noncompliant",
+  "compliant": "const int Timeout = 60_000;",
+  "seeAlso": [
+    {
+      "text": "Integral numeric types (C# reference)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/integral-numeric-types"
+    }
+  ],
+  "ruleKey": "qa_style_numeric_literal_digit_separator"
+}

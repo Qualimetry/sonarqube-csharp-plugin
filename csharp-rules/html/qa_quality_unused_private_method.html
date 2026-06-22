@@ -1,0 +1,24 @@
+<p>A private method that is never called within its declaring type is unreachable code. It cannot be invoked from outside, so the reader is left guessing whether it is a forgotten helper, an unfinished feature, or a hazard waiting to be wired up incorrectly.</p>
+<p>Delete the method, or call it from the code path it was written for.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public class ReportBuilder
+{
+    public string Build() =&gt; Header();
+
+    private string Header() =&gt; "Report";
+
+    private string Footer() =&gt; "End"; // Noncompliant
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class ReportBuilder
+{
+    public string Build() =&gt; Header() + Footer();
+
+    private string Header() =&gt; "Report";
+
+    private string Footer() =&gt; "End";
+}
+</pre>

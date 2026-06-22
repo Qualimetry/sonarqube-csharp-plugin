@@ -1,0 +1,21 @@
+<p>A type that derives from <code>System.Attribute</code> is consumed through the attribute usage syntax, where the compiler lets callers drop the trailing <code>Attribute</code> word. Keeping that word in the declared name is what makes the shorthand readable and keeps the declaration consistent with how the framework's own attributes are spelled.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System;
+
+public sealed class Audited : Attribute // Noncompliant
+{
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System;
+
+public sealed class AuditedAttribute : Attribute
+{
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/standard/design-guidelines/names-of-classes-structs-and-interfaces">Attribute class naming guidance</a></li>
+</ul>

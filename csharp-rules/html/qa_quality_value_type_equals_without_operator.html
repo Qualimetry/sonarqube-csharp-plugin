@@ -1,0 +1,32 @@
+<p>Overriding <code>Equals</code> on a value type signals that equality has been given real meaning. But <code>==</code> on a struct that defines no equality operator falls back to a different mechanism, so <code>a.Equals(b)</code> and <code>a == b</code> can return opposite answers for the same pair.</p>
+<p>Provide a matching <code>operator ==</code> (and <code>operator !=</code>) so every form of equality on the type agrees.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public struct Temperature
+{
+    public int Degrees;
+
+    public override bool Equals(object obj) =&gt; obj is Temperature t &amp;&amp; t.Degrees == Degrees; // Noncompliant
+
+    public override int GetHashCode() =&gt; Degrees;
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public struct Temperature
+{
+    public int Degrees;
+
+    public override bool Equals(object obj) =&gt; obj is Temperature t &amp;&amp; t.Degrees == Degrees;
+
+    public override int GetHashCode() =&gt; Degrees;
+
+    public static bool operator ==(Temperature left, Temperature right) =&gt; left.Degrees == right.Degrees;
+
+    public static bool operator !=(Temperature left, Temperature right) =&gt; !(left == right);
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/csharp/programming-guide/statements-expressions-operators/how-to-define-value-equality-for-a-type">How to define value equality for a type</a></li>
+</ul>

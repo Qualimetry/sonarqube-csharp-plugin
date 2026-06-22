@@ -1,0 +1,17 @@
+<p>Static field initializers and static constructors run in dependency order. A cycle leaves one member uninitialized at first access and can throw <code>TypeInitializationException</code>.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public sealed class Cycle
+{
+    private static readonly int A = B + 1;
+    private static readonly int B = A + 1;
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public sealed class NoCycle
+{
+    private static readonly int A = 1;
+    private static readonly int B = A + 1;
+}
+</pre>

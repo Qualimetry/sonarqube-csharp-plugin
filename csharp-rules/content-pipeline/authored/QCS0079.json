@@ -1,0 +1,23 @@
+{
+  "id": "QCS0079",
+  "title": "COM security initialization calls should be reviewed",
+  "tags": [
+    "security",
+    "interop",
+    "suspicious"
+  ],
+  "messageFormat": "Review this COM security initialization call; misconfigured process-wide COM security weakens every later interop call.",
+  "summary": [
+    "<p>Calls such as <code>CoInitializeSecurity</code> and <code>CoSetProxyBlanket</code> set the authentication, impersonation, and authorization levels for COM communication across the whole process. A weak level set here applies to every subsequent proxy, so a single mistake silently lowers the trust boundary for all later interop.</p>",
+    "<p>These functions should be confined to an audited interop layer where the chosen security levels are explicit and reviewed, rather than called ad hoc from ordinary code.</p>"
+  ],
+  "noncompliant": "internal static class Interop\n{\n    public static void Configure()\n    {\n        CoInitializeSecurity(IntPtr.Zero, -1, IntPtr.Zero, IntPtr.Zero, 0, 3, IntPtr.Zero, 0, IntPtr.Zero); // Noncompliant\n    }\n}",
+  "compliant": "internal static class Interop\n{\n    public static void Configure()\n    {\n        ConfigureManagedSecurity();\n    }\n}",
+  "seeAlso": [
+    {
+      "text": "CWE-749: Exposed Dangerous Method or Function",
+      "href": "https://cwe.mitre.org/data/definitions/749.html"
+    }
+  ],
+  "ruleKey": "qa_reliability_com_security_initialization"
+}

@@ -1,0 +1,22 @@
+<p>A local that holds a freshly created <code>IDisposable</code> owns that resource. If the method never disposes it, never returns it, and never hands ownership to another component, the underlying handle (file, socket, connection) leaks until the finalizer eventually runs, if ever.</p>
+<p>Wrap the local in a <code>using</code> declaration or call <code>Dispose</code> on every exit path.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+public void Save(string path)
+{
+    var stream = new FileStream(path, FileMode.Create); // Noncompliant
+    stream.WriteByte(0);
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public void Save(string path)
+{
+    using var stream = new FileStream(path, FileMode.Create);
+    stream.WriteByte(0);
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/standard/garbage-collection/using-objects">Using objects that implement IDisposable</a></li>
+</ul>

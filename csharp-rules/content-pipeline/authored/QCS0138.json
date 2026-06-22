@@ -1,0 +1,16 @@
+{
+  "id": "QCS0138",
+  "title": "Record properties should not have public setters",
+  "tags": [
+    "design",
+    "immutability"
+  ],
+  "summary": [
+    "<p>Records exist to model immutable values: equality, <code>with</code> expressions, and safe sharing all assume the value cannot change after construction. A property with a public <code>set</code> accessor breaks that assumption, so two records that were equal can silently diverge and hashed lookups can lose track of them.</p>",
+    "<p>Declare the property with <code>init</code> or make it get-only and set it through the constructor.</p>"
+  ],
+  "messageFormat": "Replace this 'set' accessor with 'init' so the record stays immutable.",
+  "noncompliant": "public record Money\n{\n    public decimal Amount { get; set; } // Noncompliant\n    public string Currency { get; init; } = \"USD\";\n}",
+  "compliant": "public record Money\n{\n    public decimal Amount { get; init; }\n    public string Currency { get; init; } = \"USD\";\n}",
+  "ruleKey": "qa_quality_mutable_record_property"
+}

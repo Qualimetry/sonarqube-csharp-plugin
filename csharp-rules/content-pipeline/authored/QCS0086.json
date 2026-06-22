@@ -1,0 +1,21 @@
+{
+  "id": "QCS0086",
+  "title": "Remove empty static constructors",
+  "tags": [
+    "clarity",
+    "performance"
+  ],
+  "messageFormat": "Remove this empty static constructor; it has no effect and prevents the beforefieldinit optimization.",
+  "summary": [
+    "<p>An empty static constructor does nothing, but its presence forces the runtime to add an initialization check before the first access of the type and removes the <code>beforefieldinit</code> flag the compiler would otherwise emit. Deleting it is behaviour-preserving and slightly faster.</p>"
+  ],
+  "noncompliant": "public class Settings\n{\n    static Settings() // Noncompliant\n    {\n    }\n\n    public static int Limit = 100;\n}",
+  "compliant": "public class Settings\n{\n    public static int Limit = 100;\n}",
+  "seeAlso": [
+    {
+      "text": "Static Constructors (C# guide)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/static-constructors"
+    }
+  ],
+  "ruleKey": "qa_quality_empty_static_constructor"
+}

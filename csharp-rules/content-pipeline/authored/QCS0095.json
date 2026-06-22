@@ -1,0 +1,22 @@
+{
+  "id": "QCS0095",
+  "title": "Structs with only immutable state should be declared readonly",
+  "tags": [
+    "design",
+    "clarity"
+  ],
+  "messageFormat": "Declare struct '{0}' as readonly; all of its instance state is already immutable.",
+  "summary": [
+    "<p>When every instance field of a <code>struct</code> is <code>readonly</code> and none of its properties expose a setter, the value can never change after construction. Marking the type itself <code>readonly</code> states that contract explicitly and lets the compiler enforce it, so a later edit that introduces a mutating member is rejected at compile time rather than slipping through.</p>",
+    "<p>A <code>readonly struct</code> also lets the compiler skip defensive copies when the value is accessed through a <code>readonly</code> reference, so the annotation documents intent and removes a class of hidden allocations at the same time.</p>"
+  ],
+  "noncompliant": "public struct Money // Noncompliant\n{\n    private readonly decimal _amount;\n\n    public Money(decimal amount)\n    {\n        _amount = amount;\n    }\n\n    public decimal Amount => _amount;\n}",
+  "compliant": "public readonly struct Money\n{\n    private readonly decimal _amount;\n\n    public Money(decimal amount)\n    {\n        _amount = amount;\n    }\n\n    public decimal Amount => _amount;\n}",
+  "seeAlso": [
+    {
+      "text": "readonly struct (C# language reference)",
+      "href": "https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/struct#readonly-struct"
+    }
+  ],
+  "ruleKey": "qa_contract_immutable_struct_should_be_readonly"
+}

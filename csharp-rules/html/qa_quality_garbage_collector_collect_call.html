@@ -1,0 +1,27 @@
+<p>An explicit <code>GC.Collect</code> forces a full collection on the runtime's schedule rather than its own. It almost always hurts: it promotes short-lived objects, stalls threads, and masks the real allocation problem instead of fixing it.</p>
+<p>Remove the call and address the underlying allocation pattern; the garbage collector is tuned to decide when collection is worthwhile.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System;
+
+public class Importer
+{
+    public void Finish()
+    {
+        GC.Collect(); // Noncompliant
+    }
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+public class Importer
+{
+    public void Finish()
+    {
+    }
+}
+</pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/dotnet/api/system.gc.collect">GC.Collect (.NET API)</a></li>
+</ul>

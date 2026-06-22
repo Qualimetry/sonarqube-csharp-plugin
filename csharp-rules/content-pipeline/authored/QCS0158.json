@@ -1,0 +1,21 @@
+{
+  "id": "QCS0158",
+  "title": "Type names should start with an uppercase letter",
+  "tags": [
+    "convention",
+    "naming"
+  ],
+  "messageFormat": "Rename type '{0}' so its name starts with an uppercase letter.",
+  "summary": [
+    "<p>Classes, structs, records, enums, and interfaces are all written in PascalCase, beginning with an uppercase letter. A type whose name opens with a lowercase letter looks like a variable or a keyword and breaks the casing pattern readers rely on to recognise types.</p>"
+  ],
+  "noncompliant": "public class widget // Noncompliant\n{\n}",
+  "compliant": "public class Widget\n{\n}",
+  "seeAlso": [
+    {
+      "text": "Capitalization conventions",
+      "href": "https://learn.microsoft.com/dotnet/standard/design-guidelines/capitalization-conventions"
+    }
+  ],
+  "ruleKey": "qa_naming_type_name_upper_case"
+}

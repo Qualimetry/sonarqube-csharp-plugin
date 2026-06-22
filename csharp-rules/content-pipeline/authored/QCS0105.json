@@ -1,0 +1,21 @@
+{
+  "id": "QCS0105",
+  "title": "Annotate attribute types with AttributeUsage",
+  "tags": [
+    "design",
+    "clarity"
+  ],
+  "messageFormat": "Apply [AttributeUsage] to this attribute type to declare the targets it supports.",
+  "summary": [
+    "<p>Without an <code>[AttributeUsage]</code> declaration an attribute defaults to being valid on every program element and non-repeatable. Stating the intended targets (and whether it may be applied more than once or is inherited) prevents misuse and documents the design.</p>"
+  ],
+  "noncompliant": "public sealed class AuditAttribute : Attribute // Noncompliant\n{\n}",
+  "compliant": "[AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]\npublic sealed class AuditAttribute : Attribute\n{\n}",
+  "seeAlso": [
+    {
+      "text": "AttributeUsageAttribute Class",
+      "href": "https://learn.microsoft.com/dotnet/api/system.attributeusageattribute"
+    }
+  ],
+  "ruleKey": "qa_quality_attribute_missing_usage"
+}

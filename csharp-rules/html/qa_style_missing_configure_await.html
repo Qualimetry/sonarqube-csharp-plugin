@@ -1,0 +1,30 @@
+<p>By default <code>await</code> captures the current synchronization context and resumes on it. In library and other reusable code that capture is rarely needed and, on contexts with a single UI or request thread, resuming on it can deadlock when a caller blocks on the task.</p>
+<p>Stating <code>ConfigureAwait(false)</code> (or <code>true</code> where the context really is required) makes the intent explicit at every await and avoids the accidental capture.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+using System.Threading.Tasks;
+
+public class Loader
+{
+    public async Task RunAsync()
+    {
+        await FetchAsync(); // Noncompliant
+    }
+
+    private Task FetchAsync() =&gt; Task.CompletedTask;
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+using System.Threading.Tasks;
+
+public class Loader
+{
+    public async Task RunAsync()
+    {
+        await FetchAsync().ConfigureAwait(false);
+    }
+
+    private Task FetchAsync() =&gt; Task.CompletedTask;
+}
+</pre>
